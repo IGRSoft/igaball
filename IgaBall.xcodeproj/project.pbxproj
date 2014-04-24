@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A54FCAD51908F926009B5255 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAD41908F926009B5255 /* Foundation.framework */; };
+		A54FCAD71908F926009B5255 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAD61908F926009B5255 /* CoreGraphics.framework */; };
+		A54FCAD91908F926009B5255 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAD81908F926009B5255 /* UIKit.framework */; };
+		A54FCADB1908F926009B5255 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCADA1908F926009B5255 /* SpriteKit.framework */; };
+		A54FCAE31908F926009B5255 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A54FCAE21908F926009B5255 /* main.m */; };
+		A54FCAE71908F926009B5255 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A54FCAE61908F926009B5255 /* AppDelegate.m */; };
+		A54FCAF01908F926009B5255 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A54FCAEF1908F926009B5255 /* ViewController.m */; };
+		A54FCAF31908F926009B5255 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A54FCAF21908F926009B5255 /* MyScene.m */; };
+		A54FCAFE1908F926009B5255 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAFD1908F926009B5255 /* XCTest.framework */; };
+		A54FCAFF1908F926009B5255 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAD41908F926009B5255 /* Foundation.framework */; };
+		A54FCB001908F926009B5255 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAD81908F926009B5255 /* UIKit.framework */; };
+		A54FCB081908F926009B5255 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A54FCB061908F926009B5255 /* InfoPlist.strings */; };
+		A54FCB0A1908F926009B5255 /* IgaBallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A54FCB091908F926009B5255 /* IgaBallTests.m */; };
+		A5B1770A1908FA54000C9921 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B177021908FA54000C9921 /* Main_iPad.storyboard */; };
+		A5B1770B1908FA54000C9921 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B177041908FA54000C9921 /* Main_iPhone.storyboard */; };
+		A5B1770C1908FA54000C9921 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B177061908FA54000C9921 /* Images.xcassets */; };
+		A5B1770D1908FA54000C9921 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B177071908FA54000C9921 /* Spaceship.png */; };
+		A5B1770E1908FA54000C9921 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B177081908FA54000C9921 /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A54FCB011908F926009B5255 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A54FCAC91908F926009B5255 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A54FCAD01908F926009B5255;
+			remoteInfo = IgaBall;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A54FCAD11908F926009B5255 /* IgaBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IgaBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A54FCAD41908F926009B5255 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A54FCAD61908F926009B5255 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A54FCAD81908F926009B5255 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A54FCADA1908F926009B5255 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		A54FCADE1908F926009B5255 /* IgaBall-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IgaBall-Info.plist"; sourceTree = "<group>"; };
+		A54FCAE21908F926009B5255 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A54FCAE41908F926009B5255 /* IgaBall-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IgaBall-Prefix.pch"; sourceTree = "<group>"; };
+		A54FCAE51908F926009B5255 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A54FCAE61908F926009B5255 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A54FCAEE1908F926009B5255 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A54FCAEF1908F926009B5255 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A54FCAF11908F926009B5255 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
+		A54FCAF21908F926009B5255 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
+		A54FCAFC1908F926009B5255 /* IgaBallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IgaBallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A54FCAFD1908F926009B5255 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		A54FCB051908F926009B5255 /* IgaBallTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IgaBallTests-Info.plist"; sourceTree = "<group>"; };
+		A54FCB071908F926009B5255 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A54FCB091908F926009B5255 /* IgaBallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IgaBallTests.m; sourceTree = "<group>"; };
+		A5B177031908FA54000C9921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		A5B177051908FA54000C9921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		A5B177061908FA54000C9921 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A5B177071908FA54000C9921 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
+		A5B177091908FA54000C9921 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A54FCACE1908F926009B5255 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54FCAD71908F926009B5255 /* CoreGraphics.framework in Frameworks */,
+				A54FCAD91908F926009B5255 /* UIKit.framework in Frameworks */,
+				A54FCADB1908F926009B5255 /* SpriteKit.framework in Frameworks */,
+				A54FCAD51908F926009B5255 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A54FCAF91908F926009B5255 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54FCAFE1908F926009B5255 /* XCTest.framework in Frameworks */,
+				A54FCB001908F926009B5255 /* UIKit.framework in Frameworks */,
+				A54FCAFF1908F926009B5255 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A54FCAC81908F926009B5255 = {
+			isa = PBXGroup;
+			children = (
+				A5B177011908FA54000C9921 /* Resources */,
+				A54FCADC1908F926009B5255 /* IgaBall */,
+				A54FCB031908F926009B5255 /* IgaBallTests */,
+				A54FCAD31908F926009B5255 /* Frameworks */,
+				A54FCAD21908F926009B5255 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A54FCAD21908F926009B5255 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A54FCAD11908F926009B5255 /* IgaBall.app */,
+				A54FCAFC1908F926009B5255 /* IgaBallTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A54FCAD31908F926009B5255 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A54FCAD41908F926009B5255 /* Foundation.framework */,
+				A54FCAD61908F926009B5255 /* CoreGraphics.framework */,
+				A54FCAD81908F926009B5255 /* UIKit.framework */,
+				A54FCADA1908F926009B5255 /* SpriteKit.framework */,
+				A54FCAFD1908F926009B5255 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A54FCADC1908F926009B5255 /* IgaBall */ = {
+			isa = PBXGroup;
+			children = (
+				A54FCAE51908F926009B5255 /* AppDelegate.h */,
+				A54FCAE61908F926009B5255 /* AppDelegate.m */,
+				A54FCAEE1908F926009B5255 /* ViewController.h */,
+				A54FCAEF1908F926009B5255 /* ViewController.m */,
+				A54FCAF11908F926009B5255 /* MyScene.h */,
+				A54FCAF21908F926009B5255 /* MyScene.m */,
+				A54FCADD1908F926009B5255 /* Supporting Files */,
+			);
+			path = IgaBall;
+			sourceTree = "<group>";
+		};
+		A54FCADD1908F926009B5255 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A54FCADE1908F926009B5255 /* IgaBall-Info.plist */,
+				A54FCAE21908F926009B5255 /* main.m */,
+				A54FCAE41908F926009B5255 /* IgaBall-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A54FCB031908F926009B5255 /* IgaBallTests */ = {
+			isa = PBXGroup;
+			children = (
+				A54FCB091908F926009B5255 /* IgaBallTests.m */,
+				A54FCB041908F926009B5255 /* Supporting Files */,
+			);
+			path = IgaBallTests;
+			sourceTree = "<group>";
+		};
+		A54FCB041908F926009B5255 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A54FCB051908F926009B5255 /* IgaBallTests-Info.plist */,
+				A54FCB061908F926009B5255 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5B177011908FA54000C9921 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A5B177021908FA54000C9921 /* Main_iPad.storyboard */,
+				A5B177041908FA54000C9921 /* Main_iPhone.storyboard */,
+				A5B177061908FA54000C9921 /* Images.xcassets */,
+				A5B177071908FA54000C9921 /* Spaceship.png */,
+				A5B177081908FA54000C9921 /* InfoPlist.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A54FCAD01908F926009B5255 /* IgaBall */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A54FCB0D1908F926009B5255 /* Build configuration list for PBXNativeTarget "IgaBall" */;
+			buildPhases = (
+				A54FCACD1908F926009B5255 /* Sources */,
+				A54FCACE1908F926009B5255 /* Frameworks */,
+				A54FCACF1908F926009B5255 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IgaBall;
+			productName = IgaBall;
+			productReference = A54FCAD11908F926009B5255 /* IgaBall.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A54FCAFB1908F926009B5255 /* IgaBallTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A54FCB101908F926009B5255 /* Build configuration list for PBXNativeTarget "IgaBallTests" */;
+			buildPhases = (
+				A54FCAF81908F926009B5255 /* Sources */,
+				A54FCAF91908F926009B5255 /* Frameworks */,
+				A54FCAFA1908F926009B5255 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A54FCB021908F926009B5255 /* PBXTargetDependency */,
+			);
+			name = IgaBallTests;
+			productName = IgaBallTests;
+			productReference = A54FCAFC1908F926009B5255 /* IgaBallTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A54FCAC91908F926009B5255 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "IGR Software";
+				TargetAttributes = {
+					A54FCAFB1908F926009B5255 = {
+						TestTargetID = A54FCAD01908F926009B5255;
+					};
+				};
+			};
+			buildConfigurationList = A54FCACC1908F926009B5255 /* Build configuration list for PBXProject "IgaBall" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A54FCAC81908F926009B5255;
+			productRefGroup = A54FCAD21908F926009B5255 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A54FCAD01908F926009B5255 /* IgaBall */,
+				A54FCAFB1908F926009B5255 /* IgaBallTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A54FCACF1908F926009B5255 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5B1770D1908FA54000C9921 /* Spaceship.png in Resources */,
+				A5B1770E1908FA54000C9921 /* InfoPlist.strings in Resources */,
+				A5B1770C1908FA54000C9921 /* Images.xcassets in Resources */,
+				A5B1770A1908FA54000C9921 /* Main_iPad.storyboard in Resources */,
+				A5B1770B1908FA54000C9921 /* Main_iPhone.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A54FCAFA1908F926009B5255 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54FCB081908F926009B5255 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A54FCACD1908F926009B5255 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54FCAF31908F926009B5255 /* MyScene.m in Sources */,
+				A54FCAF01908F926009B5255 /* ViewController.m in Sources */,
+				A54FCAE71908F926009B5255 /* AppDelegate.m in Sources */,
+				A54FCAE31908F926009B5255 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A54FCAF81908F926009B5255 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54FCB0A1908F926009B5255 /* IgaBallTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A54FCB021908F926009B5255 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A54FCAD01908F926009B5255 /* IgaBall */;
+			targetProxy = A54FCB011908F926009B5255 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A54FCB061908F926009B5255 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A54FCB071908F926009B5255 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A5B177021908FA54000C9921 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5B177031908FA54000C9921 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		A5B177041908FA54000C9921 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5B177051908FA54000C9921 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		A5B177081908FA54000C9921 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5B177091908FA54000C9921 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A54FCB0B1908F926009B5255 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A54FCB0C1908F926009B5255 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A54FCB0E1908F926009B5255 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IgaBall/IgaBall-Prefix.pch";
+				INFOPLIST_FILE = "IgaBall/IgaBall-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A54FCB0F1908F926009B5255 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IgaBall/IgaBall-Prefix.pch";
+				INFOPLIST_FILE = "IgaBall/IgaBall-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A54FCB111908F926009B5255 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IgaBall.app/IgaBall";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IgaBall/IgaBall-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "IgaBallTests/IgaBallTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		A54FCB121908F926009B5255 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IgaBall.app/IgaBall";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IgaBall/IgaBall-Prefix.pch";
+				INFOPLIST_FILE = "IgaBallTests/IgaBallTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A54FCACC1908F926009B5255 /* Build configuration list for PBXProject "IgaBall" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A54FCB0B1908F926009B5255 /* Debug */,
+				A54FCB0C1908F926009B5255 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A54FCB0D1908F926009B5255 /* Build configuration list for PBXNativeTarget "IgaBall" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A54FCB0E1908F926009B5255 /* Debug */,
+				A54FCB0F1908F926009B5255 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A54FCB101908F926009B5255 /* Build configuration list for PBXNativeTarget "IgaBallTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A54FCB111908F926009B5255 /* Debug */,
+				A54FCB121908F926009B5255 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A54FCAC91908F926009B5255 /* Project object */;
+}
