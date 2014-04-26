@@ -14,3 +14,9 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+#ifdef DEBUG
+#define DBNSLog NSLog
+#else
+#define DBNSLog( s, ... )
+#endif
