@@ -27,6 +27,8 @@
 		A5556F5F190D1C310078C4C9 /* LoadingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5556F5B190D1C310078C4C9 /* LoadingScene.m */; };
 		A5556F60190D1C310078C4C9 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5556F5D190D1C310078C4C9 /* MainMenuScene.m */; };
 		A5556F64190D1C8A0078C4C9 /* PillowObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A5556F63190D1C8A0078C4C9 /* PillowObject.m */; };
+		A5974A5819100E0C009BD12A /* BallObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A5974A5719100E0C009BD12A /* BallObject.m */; };
+		A5974A6319102D12009BD12A /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5974A6219102D12009BD12A /* GameOverScene.m */; };
 		A5B1770A1908FA54000C9921 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B177021908FA54000C9921 /* Main_iPad.storyboard */; };
 		A5B1770B1908FA54000C9921 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B177041908FA54000C9921 /* Main_iPhone.storyboard */; };
 		A5B1770C1908FA54000C9921 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B177061908FA54000C9921 /* Images.xcassets */; };
@@ -74,6 +76,10 @@
 		A5556F62190D1C8A0078C4C9 /* PillowObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PillowObject.h; sourceTree = "<group>"; };
 		A5556F63190D1C8A0078C4C9 /* PillowObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PillowObject.m; sourceTree = "<group>"; };
 		A5556F65190D1F140078C4C9 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		A5974A5619100E0C009BD12A /* BallObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallObject.h; sourceTree = "<group>"; };
+		A5974A5719100E0C009BD12A /* BallObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallObject.m; sourceTree = "<group>"; };
+		A5974A6119102D12009BD12A /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		A5974A6219102D12009BD12A /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		A5B177031908FA54000C9921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		A5B177051908FA54000C9921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		A5B177061908FA54000C9921 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -202,6 +208,8 @@
 				A5556F5B190D1C310078C4C9 /* LoadingScene.m */,
 				A5556F5C190D1C310078C4C9 /* MainMenuScene.h */,
 				A5556F5D190D1C310078C4C9 /* MainMenuScene.m */,
+				A5974A6119102D12009BD12A /* GameOverScene.h */,
+				A5974A6219102D12009BD12A /* GameOverScene.m */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -211,6 +219,8 @@
 			children = (
 				A5556F62190D1C8A0078C4C9 /* PillowObject.h */,
 				A5556F63190D1C8A0078C4C9 /* PillowObject.m */,
+				A5974A5619100E0C009BD12A /* BallObject.h */,
+				A5974A5719100E0C009BD12A /* BallObject.m */,
 			);
 			path = Oblects;
 			sourceTree = "<group>";
@@ -328,6 +338,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5556F64190D1C8A0078C4C9 /* PillowObject.m in Sources */,
+				A5974A6319102D12009BD12A /* GameOverScene.m in Sources */,
+				A5974A5819100E0C009BD12A /* BallObject.m in Sources */,
 				A54FCAF01908F926009B5255 /* GameController.m in Sources */,
 				A54FCAE71908F926009B5255 /* AppDelegate.m in Sources */,
 				A5556F5E190D1C310078C4C9 /* GameScene.m in Sources */,
