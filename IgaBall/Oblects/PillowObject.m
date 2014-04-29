@@ -78,7 +78,8 @@
 			 }
 		 }
 		 
-		 [self deactivateObject];
+		 self.physicsBody = nil;
+		 self.alpha = 0.5f;
 		 
 	 }]
 						  ]]

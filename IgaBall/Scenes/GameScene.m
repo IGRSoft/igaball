@@ -17,7 +17,7 @@
 
 @property (nonatomic, weak) GameController *viewController;
 @property (nonatomic, strong) SKLabelNode  *scoreLabel;
-
+@property (nonatomic, assign) BOOL isGameOver;
 @end
 
 #define PILLOWCOUNT 3
@@ -36,17 +36,19 @@
 		self.physicsWorld.gravity = CGVectorMake(0,0);
 		self.physicsWorld.contactDelegate = self;
 		
+		self.isGameOver = NO;
+		
 		self.viewController = controller;
 		self.name = NSStringFromClass([self class]);
 		
 		self.backgroundColor = [UIColor colorWithRed:210.f/255.f green:170.f/255.f blue:220.f/255.f alpha:1.f];
 		
-		SKTexture *texture = texture = [SKTexture textureWithImageNamed:@"Grass"];
+		SKTexture *texture = [SKTexture textureWithImageNamed:@"Grass"];
         SKSpriteNode *grassRight = [SKSpriteNode spriteNodeWithTexture:texture size:texture.size];
 		
         grassRight.position = CGPointMake(self.frame.size.width - texture.size.width * 0.5f,
                                        CGRectGetMidY(self.frame));
-        
+	
         [self addChild:grassRight];
 		
 		[self addPillowToFrame:grassRight.frame rotate:NO];
@@ -60,6 +62,29 @@
 		
 		[self addPillowToFrame:grassLeft.frame rotate:YES];
 		
+		
+		//Add offscreen Collision
+		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:texture.size];
+		physicsBody.dynamic = NO;
+		physicsBody.categoryBitMask = offScreenCategory;
+		physicsBody.contactTestBitMask = ballCategory;
+		physicsBody.collisionBitMask = 0;
+		
+		SKSpriteNode *offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:texture.size];
+		offScreenNodeRight.position = CGPointMake(grassRight.position.x + grassRight.size.width,
+												  grassRight.position.y);
+		
+		SKSpriteNode *offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:texture.size];
+		offScreenNodeLeft.position = CGPointMake(grassLeft.position.x - grassLeft.size.width,
+												 grassLeft.position.y);
+		
+		offScreenNodeRight.physicsBody = [physicsBody copy];
+		[self addChild:offScreenNodeRight];
+		
+		offScreenNodeLeft.physicsBody = [physicsBody copy];
+		[self addChild:offScreenNodeLeft];
+		
+		// Add Score
 		self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         self.scoreLabel.text = @"0";
         self.scoreLabel.fontSize = 20;
@@ -74,6 +99,11 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if (self.isGameOver)
+	{
+		return;
+	}
+	
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
@@ -120,20 +150,15 @@
 	
 	BallDiraction ballDiraction = arc4random() % 2;
 	
-	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -screeCentre : screeCentre), ball.position.y);
+	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -(screeCentre * 2.f) : (screeCentre * 2.f)), ball.position.y);
 	
 	CGFloat realMoveDuration = [ball moveDuration];
-	SKAction *oneRevolution = [SKAction repeatAction:[SKAction rotateByAngle:-M_PI*2 duration:realMoveDuration] count:(NSUInteger)realMoveDuration];
     SKAction *actionMove = [SKAction moveTo:realDest duration:realMoveDuration];
-
-	SKAction *group = [SKAction group:@[oneRevolution, actionMove]];
 	
-	SKAction *actionGameOver = [self actionGameOver];
-	
-    [ball runAction:[SKAction sequence:@[group, actionGameOver]]];
+    [ball runAction:[SKAction sequence:@[actionMove]]];
 }
 
-- (SKAction *) actionGameOver
+- (SKAction *)actionGameOver
 {
 	return [SKAction runBlock:^{
 		// 5
@@ -152,8 +177,22 @@
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
+	if (self.isGameOver)
+	{
+		return;
+	}
+	
     // 1
     SKPhysicsBody *firstBody, *secondBody;
+	
+	if (contact.bodyA.categoryBitMask == offScreenCategory || contact.bodyB.categoryBitMask == offScreenCategory)
+	{
+		[self runAction:[self actionGameOver]];
+		
+		self.isGameOver = YES;
+		
+		return;
+	}
 	
     if (contact.bodyA.categoryBitMask > contact.bodyB.categoryBitMask)
     {
@@ -197,14 +236,9 @@
 	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -(self.frame.size.width) : (self.frame.size.width)), ball.position.y);
 	
 	CGFloat realMoveDuration = [ball moveDuration];
-	SKAction *oneRevolution = [SKAction repeatAction:[SKAction rotateByAngle:-M_PI*2 duration:realMoveDuration] count:(NSUInteger)realMoveDuration];
     SKAction *actionMove = [SKAction moveTo:realDest duration:realMoveDuration];
 	
-	SKAction *group = [SKAction group:@[oneRevolution, actionMove]];
-	
-	SKAction *actionGameOver = [self actionGameOver];
-	
-    [ball runAction:[SKAction sequence:@[group, actionGameOver]]];
+    [ball runAction:[SKAction sequence:@[actionMove]]];
 	
 	[pillow deactivateObject];
 }
