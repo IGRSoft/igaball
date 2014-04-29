@@ -12,6 +12,7 @@
 @interface PillowObject ()
 
 @property (nonatomic) SKTexture *texture;
+@property (nonatomic, assign) CGFloat activationDuration;
 
 @end
 
@@ -27,6 +28,9 @@
 		node.name = NSStringFromClass([PillowObject class]);
 		
 		self.alpha = 0.5f;
+		
+		self.activationDuration = defaultDuration / 2.f;
+		
 		[self addChild:node];
 	}
 	
@@ -40,6 +44,11 @@
 
 - (void)activateObject
 {
+	if (self.physicsBody)
+	{
+		return;
+	}
+	
 	self.alpha = 1.f;
 	
 	SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_texture.size];
@@ -50,17 +59,41 @@
 	
 	self.physicsBody = physicsBody;
 	
-	// deactivate Object after 0.5s
+	// deactivate Object after 1.5s or less
+	
+	CGFloat offset = arc4random() % 100 / 10000.f;
+	_activationDuration -= offset;
+	
 	[self runAction:
 	 [SKAction sequence:@[
-						  [SKAction waitForDuration:0.5],
+						  [SKAction waitForDuration:_activationDuration],
 						  [SKAction runBlock:^{
 		 
-		 self.physicsBody = nil;
-		 self.alpha = 0.5f;
+		 // there are no colision
+		 if (self.physicsBody)
+		 {
+			 if (self.delegate && [self.delegate respondsToSelector:@selector(wasFallStart)])
+			 {
+				 [self.delegate wasFallStart];
+			 }
+		 }
+		 
+		 [self deactivateObject];
+		 
 	 }]
 						  ]]
 	 ];
+}
+
+- (void)deactivateObject
+{
+	if ([self hasActions])
+	{
+		[self removeAllActions];
+	}
+	
+	self.physicsBody = nil;
+	self.alpha = 0.5f;
 }
 
 @end

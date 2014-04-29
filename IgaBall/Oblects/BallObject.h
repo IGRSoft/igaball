@@ -10,6 +10,8 @@
 
 @interface BallObject : SKNode
 
+@property (nonatomic, assign) CGFloat moveDuration;
+
 - (CGSize)size;
 
 @end

@@ -37,6 +37,8 @@
 		
 		self.physicsBody = physicsBody;
 		
+		self.moveDuration = defaultDuration;
+		
 		[self addChild:node];
 	}
 	
@@ -46,6 +48,15 @@
 - (CGSize)size
 {
 	return _texture.size;
+}
+
+- (CGFloat)moveDuration
+{
+	CGFloat offset = arc4random() % 100 / 10000.f;
+
+	_moveDuration -= offset;
+	
+	return _moveDuration;
 }
 
 @end
