@@ -18,6 +18,8 @@
 @property (nonatomic, weak) GameController *viewController;
 @property (nonatomic, strong) SKLabelNode  *scoreLabel;
 @property (nonatomic, assign) BOOL isGameOver;
+@property (nonatomic, assign) NSInteger score;
+
 @end
 
 #define PILLOWCOUNT 3
@@ -37,6 +39,7 @@
 		self.physicsWorld.contactDelegate = self;
 		
 		self.isGameOver = NO;
+		self.score = 0;
 		
 		self.viewController = controller;
 		self.name = NSStringFromClass([self class]);
@@ -152,9 +155,7 @@
 	
 	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -(screeCentre * 2.f) : (screeCentre * 2.f)), ball.position.y);
 	
-	CGFloat realMoveDuration = [ball moveDuration];
-    SKAction *actionMove = [SKAction moveTo:realDest duration:realMoveDuration];
-	
+	SKAction *actionMove = [self actionBall:ball destination:realDest];
     [ball runAction:[SKAction sequence:@[actionMove]]];
 }
 
@@ -166,6 +167,19 @@
 		GameOverScene *gameOverScene = [[GameOverScene alloc] initWithSize:self.size controller:self.viewController score:[self.scoreLabel.text integerValue]];
 		[self.view presentScene:gameOverScene transition: reveal];
 	}];
+}
+
+- (SKAction *)actionBall:(BallObject *)ball destination:(CGPoint)destination
+{
+	CGFloat realMoveDuration = [ball moveDuration];
+	
+	CGFloat pi = (arc4random() % 2 == 0) ? -M_PI : M_PI;
+	NSUInteger rotationCount = arc4random() % 5;
+	
+	SKAction *oneRevolution = [SKAction repeatAction:[SKAction rotateByAngle:pi*2 duration:rotationCount] count:5];
+    SKAction *actionMove = [SKAction moveTo:destination duration:realMoveDuration];
+	
+	return [SKAction group:@[oneRevolution, actionMove]];
 }
 
 -(void)update:(CFTimeInterval)currentTime
@@ -217,16 +231,12 @@
 {
 	DBNSLog(@"%s", __func__);
 	
-	@synchronized(self.scoreLabel)
-	{
-		NSInteger integerValue = [self.scoreLabel.text integerValue];
-		++integerValue;
+	++_score;
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
 		
-		dispatch_async(dispatch_get_main_queue(), ^{
-			
-			self.scoreLabel.text = [NSString stringWithFormat:@"%@", @(integerValue)];
-		});
-	}
+		self.scoreLabel.text = [NSString stringWithFormat:@"%@", @(_score)];
+	});
 	
 	[ball removeAllActions];
 	
@@ -235,9 +245,7 @@
 	
 	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -(self.frame.size.width) : (self.frame.size.width)), ball.position.y);
 	
-	CGFloat realMoveDuration = [ball moveDuration];
-    SKAction *actionMove = [SKAction moveTo:realDest duration:realMoveDuration];
-	
+	SKAction *actionMove = [self actionBall:ball destination:realDest];
     [ball runAction:[SKAction sequence:@[actionMove]]];
 	
 	[pillow deactivateObject];
@@ -245,16 +253,12 @@
 
 - (void)wasFallStart
 {
-	@synchronized(self.scoreLabel)
-	{
-		NSInteger integerValue = [self.scoreLabel.text integerValue];
-		--integerValue;
+	--_score;
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
 		
-		dispatch_async(dispatch_get_main_queue(), ^{
-			
-			self.scoreLabel.text = [NSString stringWithFormat:@"%@", @(integerValue)];
-		});
-	}
+		self.scoreLabel.text = [NSString stringWithFormat:@"%@", @(_score)];
+	});
 }
 
 @end

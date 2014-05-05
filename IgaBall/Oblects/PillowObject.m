@@ -64,6 +64,13 @@
 	CGFloat offset = arc4random() % 100 / 10000.f;
 	_activationDuration -= offset;
 	
+	if (arc4random() % 5 == 0)
+	{
+		_activationDuration += 0.2;
+	}
+	
+	_activationDuration = MAX(_activationDuration, 0.3);
+	
 	[self runAction:
 	 [SKAction sequence:@[
 						  [SKAction waitForDuration:_activationDuration],
