@@ -24,17 +24,28 @@
     if (self = [super initWithSize:size])
 	{
         /* Setup your scene here */
+        
+        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+        
 		self.viewController = controller;
 		self.name = NSStringFromClass([self class]);
 		
 		self.backgroundColor = [UIColor colorWithRed:110.f/255.f green:170.f/255.f blue:220.f/255.f alpha:1.f];
 		
-		SKTexture *texture = texture = [SKTexture textureWithImageNamed:@"GameName"];
-		
+        SKTexture *texture = nil;
+		if (isIPhone)
+		{
+			texture = [SKTexture textureWithImageNamed:@"GameName-iPhone"];
+		}
+		else
+		{
+			texture = [SKTexture textureWithImageNamed:@"GameName"];
+		}
+        
         SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:texture.size];
 		
         bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame) + 200);
+                                       CGRectGetMidY(self.frame) + (isIPhone ? 60 : 200));
         
         [self addChild:bgImage];
 		

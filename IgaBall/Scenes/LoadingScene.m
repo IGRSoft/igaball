@@ -26,23 +26,37 @@
 	{
         /* Setup your scene here */
 		
+        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+        
 		self.viewController = controller;
 		self.name = NSStringFromClass([self class]);
 		
 		SKTexture *texture = nil;
-		if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+		if (isIPhone)
 		{
-			texture = [SKTexture textureWithImageNamed:@"LaunchImage-700"];
+            BOOL isIPhone5 = (([[UIScreen mainScreen] bounds].size.height - 568.f)? NO : YES);
+            NSString *imgName = [NSString stringWithFormat:@"LaunchImage-700%@", isIPhone5 ? @"-568h" : @""];
+			texture = [SKTexture textureWithImageNamed:imgName];
 		}
 		else
 		{
 			texture = [SKTexture textureWithImageNamed:@"LaunchImage-700-Landscape"];
 		}
 
-        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:texture.size];
+        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:size];
 
-        bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
+        if (isIPhone)
+        {
+            bgImage.zRotation = M_PI / 2;
+            
+            bgImage.position = CGPointMake(CGRectGetMidY(self.frame),
+                                           CGRectGetMidX(self.frame));
+        }
+        else
+        {
+            bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
+                                           CGRectGetMidY(self.frame));
+        }
         
         [self addChild:bgImage];
     }

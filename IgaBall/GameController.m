@@ -149,10 +149,14 @@ static NSString * const kUseSound = @"UseSound";
 
 - (void)setupSoundButton:(BOOL)useSound
 {
-	UIImage *img = [UIImage imageNamed:@"SoundOn"];
+    BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+    
+    NSString *imgName = [NSString stringWithFormat:@"SoundOn%@", isIPhone ? @"-iPhone" : @""];
+	UIImage *img = [UIImage imageNamed:imgName];
 	if (!useSound)
 	{
-		img = [UIImage imageNamed:@"SoundOff"];
+        imgName = [NSString stringWithFormat:@"SoundOff%@", isIPhone ? @"-iPhone" : @""];
+		img = [UIImage imageNamed:imgName];
 	}
 	
 	[self.btnSound setImage:img forState:UIControlStateNormal];
