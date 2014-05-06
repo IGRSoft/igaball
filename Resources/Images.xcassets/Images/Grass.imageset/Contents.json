@@ -1,12 +1,21 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "filename" : "Grass-iPhone@2x.png"
+    },
+    {
+      "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "Grass.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "ipad",
       "scale" : "2x",
       "filename" : "Grass@2x.png"
     }

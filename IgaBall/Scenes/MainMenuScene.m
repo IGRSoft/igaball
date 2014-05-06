@@ -8,10 +8,11 @@
 
 #import "MainMenuScene.h"
 #import "GameController.h"
+#import "Constants.h"
 
 @interface MainMenuScene ()
 
-@property (nonatomic, weak) GameController *viewController;
+@property (weak) GameController *viewController;
 
 @end
 
@@ -32,16 +33,9 @@
 		
 		self.backgroundColor = [UIColor colorWithRed:110.f/255.f green:170.f/255.f blue:220.f/255.f alpha:1.f];
 		
-        SKTexture *texture = nil;
-		if (isIPhone)
-		{
-			texture = [SKTexture textureWithImageNamed:@"GameName-iPhone"];
-		}
-		else
-		{
-			texture = [SKTexture textureWithImageNamed:@"GameName"];
-		}
-        
+		NSString *imgName = [NSString stringWithFormat:@"GameName"];
+        SKTexture *texture = [SKTexture textureWithImageNamed:imgName];
+		
         SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:texture.size];
 		
         bgImage.position = CGPointMake(CGRectGetMidX(self.frame),

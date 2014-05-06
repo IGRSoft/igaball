@@ -1,12 +1,21 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "filename" : "Ball0-iPhone.png"
+    },
+    {
+      "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "Ball0.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "ipad",
       "scale" : "2x",
       "filename" : "Ball0@2x.png"
     }

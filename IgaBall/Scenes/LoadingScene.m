@@ -12,7 +12,7 @@
 
 @interface LoadingScene ()
 
-	@property (nonatomic, weak) GameController *viewController;
+@property (weak) GameController *viewController;
 
 @end
 

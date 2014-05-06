@@ -15,10 +15,11 @@
 
 @interface GameScene () <SKPhysicsContactDelegate, PillowObjectDelegate>
 
-@property (nonatomic, weak) GameController *viewController;
-@property (nonatomic, strong) SKLabelNode  *scoreLabel;
-@property (nonatomic, assign) BOOL isGameOver;
-@property (nonatomic, assign) NSInteger score;
+@property (weak) GameController *viewController;
+@property (strong) SKLabelNode  *scoreLabel;
+@property (assign) BOOL isGameOver;
+@property (assign) NSInteger score;
+@property (assign) CGFloat borderOffset;
 
 @end
 
@@ -47,6 +48,8 @@
 		self.backgroundColor = [UIColor colorWithRed:210.f/255.f green:170.f/255.f blue:220.f/255.f alpha:1.f];
 		
 		SKTexture *texture = [SKTexture textureWithImageNamed:@"Grass"];
+		self.borderOffset = texture.size.width * 2;
+		
         SKSpriteNode *grassRight = [SKSpriteNode spriteNodeWithTexture:texture size:texture.size];
 		
         grassRight.position = CGPointMake(self.frame.size.width - texture.size.width * 0.5f,
@@ -121,11 +124,12 @@
 
 - (void)addPillowToFrame:(CGRect)rect rotate:(BOOL)rotate
 {
+	CGFloat iPhoneScale = 0.5;
 	for (NSUInteger i = 0 ; i < PILLOWCOUNT ; ++i)
 	{
 		PillowObject *pillow = [[PillowObject alloc] init];
-		pillow.position = CGPointMake(CGRectGetMidX(rect) + (rotate ? 15 : -15),
-									  OFFSET_Y * i + pillow.size.height * (i + 1));
+		pillow.position = CGPointMake(CGRectGetMidX(rect) + (rotate ? (15*iPhoneScale) : -(15*iPhoneScale)),
+									  OFFSET_Y*iPhoneScale * i + pillow.size.height * (i + 1));
 		
 		pillow.delegate = self;
 		
@@ -144,14 +148,15 @@
 	BallObject *ball = [[BallObject alloc] init];
 	
 	CGFloat screeCentre = CGRectGetMidX(self.frame);
-	CGFloat minPos = screeCentre - 200;
-	CGFloat offset = arc4random() % 200;
+	NSInteger screeWidth = self.frame.size.width - self.borderOffset * 2;
+	CGFloat minPos = self.borderOffset;
+	CGFloat offset = arc4random() % screeWidth;
 	ball.position = CGPointMake(minPos + offset,
 								point.y);
 	
 	[self addChild:ball];
 	
-	BallDiraction ballDiraction = arc4random() % 2;
+	BallDiraction ballDiraction = ball.position.x > screeCentre ? BallDiractionLeft : BallDiractionRight;
 	
 	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -(screeCentre * 2.f) : (screeCentre * 2.f)), ball.position.y);
 	

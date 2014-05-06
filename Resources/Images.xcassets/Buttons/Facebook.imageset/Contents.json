@@ -1,12 +1,21 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "filename" : "social-facebook-iPhone-1.png"
+    },
+    {
+      "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "social-facebook.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "ipad",
       "scale" : "2x",
       "filename" : "social-facebook@2x.png"
     }

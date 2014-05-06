@@ -11,8 +11,8 @@
 
 @interface PillowObject ()
 
-@property (nonatomic) SKTexture *texture;
-@property (nonatomic, assign) CGFloat activationDuration;
+@property () SKTexture *texture;
+@property (assign) CGFloat activationDuration;
 
 @end
 

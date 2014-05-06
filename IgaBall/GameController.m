@@ -15,13 +15,13 @@
 
 @interface GameController () <ADBannerViewDelegate>
 
-@property (nonatomic) AVAudioPlayer * backgroundMusicPlayer;
-@property (weak, nonatomic) IBOutlet UIButton *btnFacebook;
-@property (weak, nonatomic) IBOutlet UIButton *btnTwitter;
-@property (weak, nonatomic) IBOutlet UIButton *btnSound;
-@property (weak, nonatomic) IBOutlet UIButton *btnPlay;
-@property (weak, nonatomic) IBOutlet ADBannerView *adBannerTop;
-@property (weak, nonatomic) IBOutlet ADBannerView *adBannerBottom;
+@property () AVAudioPlayer * backgroundMusicPlayer;
+@property (weak) IBOutlet UIButton *btnFacebook;
+@property (weak) IBOutlet UIButton *btnTwitter;
+@property (weak) IBOutlet UIButton *btnSound;
+@property (weak) IBOutlet UIButton *btnPlay;
+@property (weak) IBOutlet ADBannerView *adBannerTop;
+@property (weak) IBOutlet ADBannerView *adBannerBottom;
 
 - (IBAction)onTouchFacebook:(id)sender;
 - (IBAction)onTouchTwitter:(id)sender;
@@ -149,14 +149,10 @@ static NSString * const kUseSound = @"UseSound";
 
 - (void)setupSoundButton:(BOOL)useSound
 {
-    BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
-    
-    NSString *imgName = [NSString stringWithFormat:@"SoundOn%@", isIPhone ? @"-iPhone" : @""];
-	UIImage *img = [UIImage imageNamed:imgName];
+	UIImage *img = [UIImage imageNamed:@"SoundOn"];
 	if (!useSound)
 	{
-        imgName = [NSString stringWithFormat:@"SoundOff%@", isIPhone ? @"-iPhone" : @""];
-		img = [UIImage imageNamed:imgName];
+		img = [UIImage imageNamed:@"SoundOff"];
 	}
 	
 	[self.btnSound setImage:img forState:UIControlStateNormal];

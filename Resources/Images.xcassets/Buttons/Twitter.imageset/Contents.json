@@ -1,12 +1,21 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "filename" : "social-twitter-iPhone.png"
+    },
+    {
+      "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "social-twitter.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "ipad",
       "scale" : "2x",
       "filename" : "social-twitter@2x.png"
     }

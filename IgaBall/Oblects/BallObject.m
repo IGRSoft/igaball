@@ -11,7 +11,7 @@
 
 @interface BallObject () <SKPhysicsContactDelegate>
 
-@property (nonatomic) SKTexture *texture;
+@property () SKTexture *texture;
 
 @end
 
@@ -24,7 +24,7 @@
 	{
 		NSUInteger ballId = arc4random() % ballsCount;
 		NSString *ballName = [NSString stringWithFormat:@"Ball%@", @(ballId)];
-		
+				
 		_texture = [SKTexture textureWithImageNamed:ballName];
         SKSpriteNode *node = [SKSpriteNode spriteNodeWithTexture:_texture size:_texture.size];
 		
