@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhM-Uo-mqQ" userLabel="facebook">
-                                <rect key="frame" x="20" y="640" width="128" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhM-Uo-mqQ" userLabel="facebook">
+                                <rect key="frame" x="20" y="630" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Facebook">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -26,8 +26,8 @@
                                     <action selector="onTouchFacebook:" destination="BV1-FR-VrT" eventType="touchUpInside" id="P2j-Si-U9y"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S72-1T-Dij" userLabel="twitter">
-                                <rect key="frame" x="156" y="640" width="128" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S72-1T-Dij" userLabel="twitter">
+                                <rect key="frame" x="156" y="630" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Twitter">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -36,7 +36,18 @@
                                     <action selector="onTouchTwitter:" destination="BV1-FR-VrT" eventType="touchUpInside" id="wch-tj-7LQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1E-Mi-282" userLabel="sound">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywc-Hq-3Ws" userLabel="twitter">
+                                <rect key="frame" x="292" y="630" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="GameCenter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTouchGameCenter:" destination="BV1-FR-VrT" eventType="touchUpInside" id="b1E-MO-VUV"/>
+                                    <action selector="onTouchTwitter:" destination="BV1-FR-VrT" eventType="touchUpInside" id="c9q-fn-4jN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1E-Mi-282" userLabel="sound">
                                 <rect key="frame" x="940" y="684" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="SoundOn">
@@ -46,7 +57,7 @@
                                     <action selector="onTouchSound:" destination="BV1-FR-VrT" eventType="touchUpInside" id="CRc-P5-0Ac"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vz-qj-Tjg" userLabel="play">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vz-qj-Tjg" userLabel="play">
                                 <rect key="frame" x="384" y="256" width="256" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Play">
@@ -56,22 +67,46 @@
                                     <action selector="onTouchPlay:" destination="BV1-FR-VrT" eventType="touchUpInside" id="9vY-qt-VNH"/>
                                 </connections>
                             </button>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kfb-Uq-xZf" userLabel="Banner Bottom">
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="kfb-Uq-xZf" userLabel="Banner Bottom">
                                 <rect key="frame" x="128" y="702" width="768" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="KFJ-Xl-hVg"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BV1-FR-VrT" id="j37-fz-jse"/>
                                 </connections>
                             </adBannerView>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4kw-Ls-hKY" userLabel="Banner Top">
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="4kw-Ls-hKY" userLabel="Banner Top">
                                 <rect key="frame" x="128" y="0.0" width="768" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="W2U-Uj-OM1"/>
+                                    <constraint firstAttribute="width" constant="768" id="YH3-NJ-qUV"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BV1-FR-VrT" id="We7-bf-b8a"/>
                                 </connections>
                             </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="C1E-Mi-282" secondAttribute="trailing" constant="20" id="50k-Lc-xNZ"/>
+                            <constraint firstItem="3vz-qj-Tjg" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="5gQ-ku-tJl"/>
+                            <constraint firstAttribute="centerX" secondItem="kfb-Uq-xZf" secondAttribute="centerX" id="AJV-If-rzb"/>
+                            <constraint firstItem="4kw-Ls-hKY" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="AXf-Wc-gxj"/>
+                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="Ywc-Hq-3Ws" secondAttribute="bottom" constant="10" id="BPi-Zi-3Yy"/>
+                            <constraint firstItem="4kw-Ls-hKY" firstAttribute="leading" secondItem="kfb-Uq-xZf" secondAttribute="leading" id="Dyy-ru-bgl"/>
+                            <constraint firstItem="Ywc-Hq-3Ws" firstAttribute="leading" secondItem="S72-1T-Dij" secondAttribute="trailing" constant="8" id="KZk-Ri-ALF"/>
+                            <constraint firstItem="S72-1T-Dij" firstAttribute="leading" secondItem="NhM-Uo-mqQ" secondAttribute="trailing" constant="8" id="LQj-fO-cCR"/>
+                            <constraint firstAttribute="centerX" secondItem="3vz-qj-Tjg" secondAttribute="centerX" id="QRb-Z8-biQ"/>
+                            <constraint firstItem="NhM-Uo-mqQ" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" constant="20" id="Suv-KR-PF2"/>
+                            <constraint firstAttribute="centerX" secondItem="4kw-Ls-hKY" secondAttribute="centerX" id="TqJ-yT-lzc"/>
+                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="NhM-Uo-mqQ" secondAttribute="bottom" constant="10" id="U3V-Ml-99O"/>
+                            <constraint firstAttribute="bottom" secondItem="kfb-Uq-xZf" secondAttribute="bottom" id="UfK-vP-4uQ"/>
+                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="C1E-Mi-282" secondAttribute="bottom" constant="20" id="kOI-H2-qyl"/>
+                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="S72-1T-Dij" secondAttribute="bottom" constant="10" id="nKX-22-QBQ"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -83,6 +118,7 @@
                         <outlet property="adBannerBottom" destination="kfb-Uq-xZf" id="X5t-I1-45F"/>
                         <outlet property="adBannerTop" destination="4kw-Ls-hKY" id="xrh-WC-oDo"/>
                         <outlet property="btnFacebook" destination="NhM-Uo-mqQ" id="q6r-e6-wYa"/>
+                        <outlet property="btnGameCenter" destination="Ywc-Hq-3Ws" id="web-DK-d99"/>
                         <outlet property="btnPlay" destination="3vz-qj-Tjg" id="tEV-ma-EMb"/>
                         <outlet property="btnSound" destination="C1E-Mi-282" id="Knj-N9-UlK"/>
                         <outlet property="btnTwitter" destination="S72-1T-Dij" id="Kj7-ac-ivI"/>
@@ -94,6 +130,7 @@
     </scenes>
     <resources>
         <image name="Facebook" width="128" height="128"/>
+        <image name="GameCenter" width="128" height="128"/>
         <image name="Play" width="256" height="256"/>
         <image name="SoundOn" width="64" height="64"/>
         <image name="Twitter" width="128" height="128"/>

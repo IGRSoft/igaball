@@ -9,24 +9,30 @@
 #import "GameController.h"
 #import "LoadingScene.h"
 #import "GameScene.h"
+#import "Constants.h"
 
 @import iAd;
 @import AVFoundation;
+@import GameKit;
 
-@interface GameController () <ADBannerViewDelegate>
+@interface GameController () <ADBannerViewDelegate, GKGameCenterControllerDelegate>
 
 @property () AVAudioPlayer * backgroundMusicPlayer;
 @property (weak) IBOutlet UIButton *btnFacebook;
 @property (weak) IBOutlet UIButton *btnTwitter;
 @property (weak) IBOutlet UIButton *btnSound;
 @property (weak) IBOutlet UIButton *btnPlay;
+@property (weak) IBOutlet UIButton *btnGameCenter;
 @property (weak) IBOutlet ADBannerView *adBannerTop;
 @property (weak) IBOutlet ADBannerView *adBannerBottom;
+
+@property (assign) BOOL authenticated;
 
 - (IBAction)onTouchFacebook:(id)sender;
 - (IBAction)onTouchTwitter:(id)sender;
 - (IBAction)onTouchSound:(id)sender;
 - (IBAction)onTouchPlay:(id)sender;
+- (IBAction)onTouchGameCenter:(id)sender;
 
 @end
 
@@ -59,6 +65,10 @@ static NSString * const kUseSound = @"UseSound";
     
     // Present the scene.
     [skView presentScene:scene];
+    
+    // Game Center
+    self.authenticated = NO;
+    [self authenticatePlayer];
 }
 
 - (BOOL)shouldAutorotate
@@ -147,6 +157,11 @@ static NSString * const kUseSound = @"UseSound";
 	[self playMusic:@"game"];
 }
 
+- (IBAction)onTouchGameCenter:(id)sender
+{
+    [self showLeaderboard:kLeaderboardID];
+}
+
 - (void)setupSoundButton:(BOOL)useSound
 {
 	UIImage *img = [UIImage imageNamed:@"SoundOn"];
@@ -164,6 +179,7 @@ static NSString * const kUseSound = @"UseSound";
 	[self.btnTwitter setHidden:YES];
 	[self.btnSound setHidden:YES];
 	[self.btnPlay setHidden:YES];
+    [self.btnGameCenter setHidden:YES];
 	
 	[self.adBannerTop setHidden:YES];
 	[self.adBannerBottom setHidden:YES];
@@ -175,7 +191,8 @@ static NSString * const kUseSound = @"UseSound";
 	[self.btnTwitter setHidden:NO];
 	[self.btnSound setHidden:NO];
 	[self.btnPlay setHidden:NO];
-	
+	[self.btnGameCenter setHidden:NO];
+    
 	[self.adBannerTop setHidden:NO];
 }
 
@@ -201,6 +218,67 @@ static NSString * const kUseSound = @"UseSound";
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner
 {
     DBNSLog(@"%s", __func__);
+}
+
+#pragma mark - Game Cetner
+
+- (void) authenticatePlayer
+{
+	GKLocalPlayer *player = [GKLocalPlayer localPlayer];
+    
+    void (^authBlock)(UIViewController *, NSError *) = ^(UIViewController *viewController, NSError *error) {
+        
+        if (viewController)
+        {
+            [self presentViewController:viewController animated:YES completion:nil];
+        }
+        
+        if ([[GKLocalPlayer localPlayer] isAuthenticated])
+        {
+            self.authenticated = YES;
+        }
+        
+        if (error)
+        {
+            self.authenticated = NO;
+        }
+        
+    };
+    
+    [player setAuthenticateHandler:authBlock];
+}
+
+#pragma mark - Leaderboard
+- (void)reportScore:(long long)aScore forLeaderboard:(NSString*)leaderboardId
+{
+    if (self.authenticated)
+    {
+        GKScore* score = [[GKScore alloc] initWithLeaderboardIdentifier:leaderboardId];
+        score.value = aScore;
+        [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
+            if (error) {
+                // handle error
+            }
+        }];
+    }
+}
+
+- (void)showLeaderboard:(NSString*)leaderboardId
+{
+    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    if (gameCenterController != nil)
+    {
+        gameCenterController.gameCenterDelegate = self;
+        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
+        gameCenterController.leaderboardIdentifier = leaderboardId;
+        
+        [self presentViewController:gameCenterController animated:YES completion:nil];
+    }
+}
+
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

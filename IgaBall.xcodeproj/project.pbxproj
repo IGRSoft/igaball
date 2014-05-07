@@ -33,6 +33,7 @@
 		A5B1770B1908FA54000C9921 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B177041908FA54000C9921 /* Main_iPhone.storyboard */; };
 		A5B1770C1908FA54000C9921 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B177061908FA54000C9921 /* Images.xcassets */; };
 		A5B1770E1908FA54000C9921 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B177081908FA54000C9921 /* InfoPlist.strings */; };
+		A5B6E311191A2956000B967D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6E310191A2956000B967D /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		A5B177051908FA54000C9921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		A5B177061908FA54000C9921 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A5B177091908FA54000C9921 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A5B6E310191A2956000B967D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5B6E311191A2956000B967D /* GameKit.framework in Frameworks */,
 				A5556F55190C58930078C4C9 /* AdSupport.framework in Frameworks */,
 				A5556F56190C58930078C4C9 /* iAd.framework in Frameworks */,
 				A54FCAD71908F926009B5255 /* CoreGraphics.framework in Frameworks */,
@@ -136,6 +139,7 @@
 		A54FCAD31908F926009B5255 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5B6E310191A2956000B967D /* GameKit.framework */,
 				A5556F53190C58930078C4C9 /* AdSupport.framework */,
 				A5556F54190C58930078C4C9 /* iAd.framework */,
 				A54FCAD41908F926009B5255 /* Foundation.framework */,

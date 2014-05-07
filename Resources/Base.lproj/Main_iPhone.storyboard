@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Game Controller-->
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGp-iO-0KS" userLabel="facebook">
-                                <rect key="frame" x="20" y="256" width="64" height="64"/>
+                                <rect key="frame" x="20" y="246" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Facebook">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,13 +27,24 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9d-40-YDf" userLabel="twitter">
-                                <rect key="frame" x="92" y="256" width="64" height="64"/>
+                                <rect key="frame" x="92" y="246" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Twitter">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onTouchTwitter:" destination="LVB-YS-i5n" eventType="touchUpInside" id="R7Q-ve-Ak2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOG-Qa-flx" userLabel="twitter">
+                                <rect key="frame" x="164" y="246" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="GameCenter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTouchGameCenter:" destination="LVB-YS-i5n" eventType="touchUpInside" id="j59-P0-8sc"/>
+                                    <action selector="onTouchTwitter:" destination="LVB-YS-i5n" eventType="touchUpInside" id="aBe-i3-a5p"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pef-YV-oJW" userLabel="sound">
@@ -80,16 +91,18 @@
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="Pef-YV-oJW" secondAttribute="bottom" constant="20" id="1nq-nT-PFs"/>
                             <constraint firstItem="wnc-XY-nRm" firstAttribute="leading" secondItem="TCE-9g-7vh" secondAttribute="leading" id="7IX-3a-dED"/>
                             <constraint firstItem="wnc-XY-nRm" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" id="G50-qG-B2E"/>
-                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="i9d-40-YDf" secondAttribute="bottom" id="MNc-yp-Nvs"/>
+                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="i9d-40-YDf" secondAttribute="bottom" constant="10" id="MNc-yp-Nvs"/>
                             <constraint firstAttribute="centerX" secondItem="TCE-9g-7vh" secondAttribute="centerX" id="Tn3-aq-E5c"/>
-                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="ZGp-iO-0KS" secondAttribute="bottom" id="aGm-AN-zNj"/>
+                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="ZGp-iO-0KS" secondAttribute="bottom" constant="10" id="aGm-AN-zNj"/>
                             <constraint firstItem="TCE-9g-7vh" firstAttribute="top" secondItem="RUa-zm-dIm" secondAttribute="bottom" constant="8" symbolic="YES" id="cWJ-Lt-PCg"/>
+                            <constraint firstItem="GOG-Qa-flx" firstAttribute="top" secondItem="i9d-40-YDf" secondAttribute="top" id="h56-kf-hm0"/>
                             <constraint firstAttribute="centerX" secondItem="wnc-XY-nRm" secondAttribute="centerX" id="k91-Po-XR5"/>
                             <constraint firstItem="ZGp-iO-0KS" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leading" constant="20" id="me8-GY-ISj"/>
                             <constraint firstAttribute="centerX" secondItem="RUa-zm-dIm" secondAttribute="centerX" id="n3F-pu-NzO"/>
                             <constraint firstAttribute="trailing" secondItem="Pef-YV-oJW" secondAttribute="trailing" constant="20" id="pPE-Y0-jm4"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="TCE-9g-7vh" secondAttribute="bottom" id="qDC-oV-tvT"/>
                             <constraint firstItem="i9d-40-YDf" firstAttribute="leading" secondItem="ZGp-iO-0KS" secondAttribute="trailing" constant="8" id="tXr-aN-pOe"/>
+                            <constraint firstItem="GOG-Qa-flx" firstAttribute="leading" secondItem="i9d-40-YDf" secondAttribute="trailing" constant="8" id="ybv-3a-EgQ"/>
                             <constraint firstItem="RUa-zm-dIm" firstAttribute="top" secondItem="wnc-XY-nRm" secondAttribute="bottom" constant="84" id="zwp-Gs-X36"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -99,6 +112,7 @@
                         <outlet property="adBannerBottom" destination="TCE-9g-7vh" id="63S-lJ-Yok"/>
                         <outlet property="adBannerTop" destination="wnc-XY-nRm" id="rVl-6q-7QH"/>
                         <outlet property="btnFacebook" destination="ZGp-iO-0KS" id="irj-Z1-xHc"/>
+                        <outlet property="btnGameCenter" destination="GOG-Qa-flx" id="CaA-tB-1h7"/>
                         <outlet property="btnPlay" destination="RUa-zm-dIm" id="dhT-V6-gEK"/>
                         <outlet property="btnSound" destination="Pef-YV-oJW" id="R0z-La-3NV"/>
                         <outlet property="btnTwitter" destination="i9d-40-YDf" id="JoA-ix-NAB"/>
@@ -110,6 +124,7 @@
     </scenes>
     <resources>
         <image name="Facebook" width="64" height="64"/>
+        <image name="GameCenter" width="64" height="64"/>
         <image name="Play" width="128" height="128"/>
         <image name="SoundOn" width="32" height="32"/>
         <image name="Twitter" width="64" height="64"/>

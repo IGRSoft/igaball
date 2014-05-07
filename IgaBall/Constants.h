@@ -28,4 +28,6 @@ typedef NS_ENUM(NSUInteger, GameScheme)
 	GameScheme2	= 0x1 << 0,
 };
 
+#define kLeaderboardID @"com.igrsoft.LeaderboardList"
+
 #endif
