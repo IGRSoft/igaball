@@ -13,6 +13,8 @@
 
 @property () SKTexture *texture;
 @property (assign) CGFloat activationDuration;
+@property () SKEmitterNode *particleNode;
+@property () SKSpriteNode *pillowNode;
 
 @end
 
@@ -24,14 +26,22 @@
 	if (self != nil)
 	{
 		_texture = [SKTexture textureWithImageNamed:@"Pillow"];
-        SKSpriteNode *node = [SKSpriteNode spriteNodeWithTexture:_texture size:_texture.size];
-		node.name = NSStringFromClass([PillowObject class]);
+        _pillowNode = [SKSpriteNode spriteNodeWithTexture:_texture size:_texture.size];
+		_pillowNode.name = NSStringFromClass([PillowObject class]);
 		
-		self.alpha = 0.5f;
+		_pillowNode.alpha = 0.f;
 		
 		self.activationDuration = defaultDuration / 2.f;
 		
-		[self addChild:node];
+		[self addChild:self.pillowNode];
+        
+        NSString *particlePath = [[NSBundle mainBundle] pathForResource:@"PillowParticle" ofType:@"sks"];
+        
+        _particleNode = [NSKeyedUnarchiver unarchiveObjectWithFile:particlePath];
+        _particleNode.position = CGPointZero;
+        _particleNode.name = NSStringFromClass([PillowObject class]);
+        
+        [self addChild:self.particleNode];
 	}
 	
 	return self;
@@ -49,8 +59,9 @@
 		return;
 	}
 	
-	self.alpha = 1.f;
-	
+	_pillowNode.alpha = 1.f;
+	_particleNode.alpha = 0.f;
+    
 	SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_texture.size];
 	physicsBody.dynamic = NO;
 	physicsBody.categoryBitMask = pillowCategory;
@@ -86,7 +97,8 @@
 		 }
 		 
 		 self.physicsBody = nil;
-		 self.alpha = 0.5f;
+         _pillowNode.alpha = 0.f;
+         _particleNode.alpha = 1.f;
 		 
 	 }]
 						  ]]
@@ -101,7 +113,9 @@
 	}
 	
 	self.physicsBody = nil;
-	self.alpha = 0.5f;
+	
+    _pillowNode.alpha = 0.f;
+    _particleNode.alpha = 1.f;
 }
 
 @end
