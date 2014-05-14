@@ -18,7 +18,7 @@
         controller.score = score;
         
         // 1
-        self.backgroundColor = [SKColor colorWithRed:0.437 green:0.738 blue:0.863 alpha:1.000];
+        self.backgroundColor = [SKColor colorWithRed:120.f/255.f green:190.f/255.f blue:225.f/255.f alpha:1.000];
 		
         // 2
         NSString * message = [NSString stringWithFormat:@"Your Score: %@", @(score)];

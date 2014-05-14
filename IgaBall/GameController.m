@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "MainMenuScene.h"
 #import "GameOverScene.h"
+#import "InfoScene.h"
 
 @import iAd;
 @import AVFoundation;
@@ -26,6 +27,7 @@
 @property (weak) IBOutlet UIButton *btnSound;
 @property (weak) IBOutlet UIButton *btnPlay;
 @property (weak) IBOutlet UIButton *btnGameCenter;
+@property (weak) IBOutlet UIButton *btnInfo;
 @property (weak) IBOutlet ADBannerView *adBannerTop;
 @property (weak) IBOutlet ADBannerView *adBannerBottom;
 @property (weak) IBOutlet UIView *gameOverView;
@@ -37,6 +39,7 @@
 - (IBAction)onTouchSound:(id)sender;
 - (IBAction)onTouchPlay:(id)sender;
 - (IBAction)onTouchGameCenter:(id)sender;
+- (IBAction)onTouchInfo:(id)sender;
 
 - (IBAction)onTouchStopGame:(id)sender;
 - (IBAction)onTouchTryAgain:(id)sender;
@@ -200,6 +203,16 @@ static NSString * const kUseSound = @"UseSound";
     [self shareText:msg forServiceType:SLServiceTypeTwitter];
 }
 
+- (IBAction)onTouchInfo:(id)sender
+{
+    [self hideAllControlls];
+    
+    SKView * skView = (SKView *)self.view;
+    SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
+    SKScene * scene = [[InfoScene alloc] initWithSize:skView.bounds.size controller:self];
+    [skView presentScene:scene transition:reveal];
+}
+
 - (void)shareText:(NSString *)text forServiceType:(NSString *)serviceType
 {
     SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:serviceType];
@@ -226,7 +239,8 @@ static NSString * const kUseSound = @"UseSound";
 	[self.btnSound setHidden:YES];
 	[self.btnPlay setHidden:YES];
     [self.btnGameCenter setHidden:YES];
-	
+	[self.btnInfo setHidden:YES];
+    
 	[self.adBannerTop setHidden:YES];
 	[self.adBannerBottom setHidden:YES];
     
@@ -247,6 +261,7 @@ static NSString * const kUseSound = @"UseSound";
 	[self.btnSound setHidden:NO];
 	[self.btnPlay setHidden:NO];
 	[self.btnGameCenter setHidden:NO];
+    [self.btnInfo setHidden:NO];
     
 	[self.adBannerTop setHidden:NO];
 }

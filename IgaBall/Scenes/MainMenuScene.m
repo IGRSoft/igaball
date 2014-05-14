@@ -31,7 +31,7 @@
 		self.viewController = controller;
 		self.name = NSStringFromClass([self class]);
 		
-		self.backgroundColor = [UIColor colorWithRed:110.f/255.f green:170.f/255.f blue:220.f/255.f alpha:1.f];
+		self.backgroundColor = [SKColor colorWithRed:120.f/255.f green:190.f/255.f blue:225.f/255.f alpha:1.000];
 		
 		NSString *imgName = [NSString stringWithFormat:@"GameName"];
         SKTexture *texture = [SKTexture textureWithImageNamed:imgName];

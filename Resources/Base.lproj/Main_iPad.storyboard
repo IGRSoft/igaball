@@ -48,13 +48,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1E-Mi-282" userLabel="sound">
-                                <rect key="frame" x="940" y="684" width="64" height="64"/>
+                                <rect key="frame" x="868" y="684" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="SoundOn">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onTouchSound:" destination="BV1-FR-VrT" eventType="touchUpInside" id="CRc-P5-0Ac"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZD-qG-vlw" userLabel="sound">
+                                <rect key="frame" x="940" y="684" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Info">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTouchInfo:" destination="BV1-FR-VrT" eventType="touchUpInside" id="dM7-am-F3s"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vz-qj-Tjg" userLabel="play">
@@ -136,13 +146,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.47058823529411764" green="0.74509803921568629" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="C1E-Mi-282" secondAttribute="trailing" constant="20" id="50k-Lc-xNZ"/>
+                            <constraint firstItem="DZD-qG-vlw" firstAttribute="leading" secondItem="C1E-Mi-282" secondAttribute="trailing" constant="8" id="2fg-ya-xRR"/>
                             <constraint firstItem="3vz-qj-Tjg" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="5gQ-ku-tJl"/>
                             <constraint firstAttribute="centerX" secondItem="kfb-Uq-xZf" secondAttribute="centerX" id="AJV-If-rzb"/>
                             <constraint firstItem="4kw-Ls-hKY" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="AXf-Wc-gxj"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="Ywc-Hq-3Ws" secondAttribute="bottom" constant="10" id="BPi-Zi-3Yy"/>
+                            <constraint firstAttribute="trailing" secondItem="DZD-qG-vlw" secondAttribute="trailing" constant="20" id="CP5-FR-ayF"/>
                             <constraint firstItem="4kw-Ls-hKY" firstAttribute="leading" secondItem="kfb-Uq-xZf" secondAttribute="leading" id="Dyy-ru-bgl"/>
                             <constraint firstItem="Ywc-Hq-3Ws" firstAttribute="leading" secondItem="S72-1T-Dij" secondAttribute="trailing" constant="8" id="KZk-Ri-ALF"/>
                             <constraint firstItem="S72-1T-Dij" firstAttribute="leading" secondItem="NhM-Uo-mqQ" secondAttribute="trailing" constant="8" id="LQj-fO-cCR"/>
@@ -151,6 +162,7 @@
                             <constraint firstAttribute="centerX" secondItem="4kw-Ls-hKY" secondAttribute="centerX" id="TqJ-yT-lzc"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="NhM-Uo-mqQ" secondAttribute="bottom" constant="10" id="U3V-Ml-99O"/>
                             <constraint firstAttribute="bottom" secondItem="kfb-Uq-xZf" secondAttribute="bottom" id="UfK-vP-4uQ"/>
+                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="DZD-qG-vlw" secondAttribute="bottom" constant="20" id="fKd-q5-yl6"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="C1E-Mi-282" secondAttribute="bottom" constant="20" id="kOI-H2-qyl"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="S72-1T-Dij" secondAttribute="bottom" constant="10" id="nKX-22-QBQ"/>
                         </constraints>
@@ -166,6 +178,7 @@
                         <outlet property="adBannerTop" destination="4kw-Ls-hKY" id="xrh-WC-oDo"/>
                         <outlet property="btnFacebook" destination="NhM-Uo-mqQ" id="q6r-e6-wYa"/>
                         <outlet property="btnGameCenter" destination="Ywc-Hq-3Ws" id="web-DK-d99"/>
+                        <outlet property="btnInfo" destination="DZD-qG-vlw" id="uFy-uO-A15"/>
                         <outlet property="btnPlay" destination="3vz-qj-Tjg" id="tEV-ma-EMb"/>
                         <outlet property="btnSound" destination="C1E-Mi-282" id="Knj-N9-UlK"/>
                         <outlet property="btnTwitter" destination="S72-1T-Dij" id="Kj7-ac-ivI"/>
@@ -180,6 +193,7 @@
         <image name="Facebook" width="128" height="128"/>
         <image name="FacebookScore" width="128" height="128"/>
         <image name="GameCenter" width="128" height="128"/>
+        <image name="Info" width="64" height="64"/>
         <image name="Play" width="256" height="256"/>
         <image name="SoundOn" width="64" height="64"/>
         <image name="StopGame" width="128" height="128"/>

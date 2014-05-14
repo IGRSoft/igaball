@@ -46,7 +46,7 @@
 		self.viewController = controller;
 		self.name = NSStringFromClass([self class]);
 		
-		self.backgroundColor = [SKColor colorWithRed:0.437 green:0.738 blue:0.863 alpha:1.000];
+		self.backgroundColor = [SKColor colorWithRed:120.f/255.f green:190.f/255.f blue:225.f/255.f alpha:1.000];
 		
 		SKTexture *texture = [SKTexture textureWithImageNamed:@"Grass"];
 		self.borderOffset = texture.size.width * 2;
@@ -265,6 +265,8 @@
     [ball runAction:[SKAction sequence:@[actionMove]]];
 	
 	[pillow deactivateObject];
+    
+    [self runAction:[SKAction playSoundFileNamed:@"pop.m4a" waitForCompletion:NO]];
 }
 
 - (void)wasFallStart
