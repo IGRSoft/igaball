@@ -12,6 +12,6 @@
 
 @interface GameOverScene : SKScene
 
-- (id)initWithSize:(CGSize)size controller:(GameController *)controller score:(NSUInteger)score;
+- (id)initWithSize:(CGSize)size controller:(GameController *)controller score:(NSInteger)score;
 
 @end

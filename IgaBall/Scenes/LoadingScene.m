@@ -7,7 +7,6 @@
 //
 
 #import "LoadingScene.h"
-#import "MainMenuScene.h"
 #import "GameController.h"
 
 @interface LoadingScene ()
@@ -66,9 +65,7 @@
 						  [SKAction waitForDuration:1.0],
 						  [SKAction runBlock:^{
 		 
-		 SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
-		 SKScene * myScene = [[MainMenuScene alloc] initWithSize:self.size controller:self.viewController];
-		 [self.view presentScene:myScene transition: reveal];
+         [self.viewController setupMainMenu];
 	 }]
 						  ]]
 	 ];

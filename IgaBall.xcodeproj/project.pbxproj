@@ -29,6 +29,7 @@
 		A5556F64190D1C8A0078C4C9 /* PillowObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A5556F63190D1C8A0078C4C9 /* PillowObject.m */; };
 		A573C0A119210BB100D50372 /* PillowParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A573C09F19210BB100D50372 /* PillowParticle.sks */; };
 		A573C0A419210C4300D50372 /* PillowParticle.png in Resources */ = {isa = PBXBuildFile; fileRef = A573C0A319210C4300D50372 /* PillowParticle.png */; };
+		A58E5C81192376AD004F95BC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58E5C80192376AD004F95BC /* Social.framework */; };
 		A5974A5819100E0C009BD12A /* BallObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A5974A5719100E0C009BD12A /* BallObject.m */; };
 		A5974A6319102D12009BD12A /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5974A6219102D12009BD12A /* GameOverScene.m */; };
 		A5B1770A1908FA54000C9921 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B177021908FA54000C9921 /* Main_iPad.storyboard */; };
@@ -81,6 +82,7 @@
 		A5556F65190D1F140078C4C9 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		A573C09F19210BB100D50372 /* PillowParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PillowParticle.sks; sourceTree = "<group>"; };
 		A573C0A319210C4300D50372 /* PillowParticle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PillowParticle.png; sourceTree = "<group>"; };
+		A58E5C80192376AD004F95BC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A5974A5619100E0C009BD12A /* BallObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallObject.h; sourceTree = "<group>"; };
 		A5974A5719100E0C009BD12A /* BallObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallObject.m; sourceTree = "<group>"; };
 		A5974A6119102D12009BD12A /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A58E5C81192376AD004F95BC /* Social.framework in Frameworks */,
 				A5B6E311191A2956000B967D /* GameKit.framework in Frameworks */,
 				A5556F55190C58930078C4C9 /* AdSupport.framework in Frameworks */,
 				A5556F56190C58930078C4C9 /* iAd.framework in Frameworks */,
@@ -143,6 +146,7 @@
 		A54FCAD31908F926009B5255 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A58E5C80192376AD004F95BC /* Social.framework */,
 				A5B6E310191A2956000B967D /* GameKit.framework */,
 				A5556F53190C58930078C4C9 /* AdSupport.framework */,
 				A5556F54190C58930078C4C9 /* iAd.framework */,

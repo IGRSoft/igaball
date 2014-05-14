@@ -10,10 +10,13 @@
 #import "LoadingScene.h"
 #import "GameScene.h"
 #import "Constants.h"
+#import "MainMenuScene.h"
+#import "GameOverScene.h"
 
 @import iAd;
 @import AVFoundation;
 @import GameKit;
+@import Social;
 
 @interface GameController () <ADBannerViewDelegate, GKGameCenterControllerDelegate>
 
@@ -25,6 +28,7 @@
 @property (weak) IBOutlet UIButton *btnGameCenter;
 @property (weak) IBOutlet ADBannerView *adBannerTop;
 @property (weak) IBOutlet ADBannerView *adBannerBottom;
+@property (weak) IBOutlet UIView *gameOverView;
 
 @property (assign) BOOL authenticated;
 
@@ -33,6 +37,11 @@
 - (IBAction)onTouchSound:(id)sender;
 - (IBAction)onTouchPlay:(id)sender;
 - (IBAction)onTouchGameCenter:(id)sender;
+
+- (IBAction)onTouchStopGame:(id)sender;
+- (IBAction)onTouchTryAgain:(id)sender;
+- (IBAction)onTouchShareScoreToFacebook:(id)sender;
+- (IBAction)onTouchShareScoreToTwitter:(id)sender;
 
 @end
 
@@ -69,6 +78,8 @@ static NSString * const kUseSound = @"UseSound";
     // Game Center
     self.authenticated = NO;
     [self authenticatePlayer];
+    
+    self.score = 0;
 }
 
 - (BOOL)shouldAutorotate
@@ -114,12 +125,14 @@ static NSString * const kUseSound = @"UseSound";
 
 - (IBAction)onTouchFacebook:(id)sender
 {
-	
+	NSString *msg = @"I foung excellent game IgaBall, You can find it in iTunes Store: http://igrsoft.com";
+    [self shareText:msg forServiceType:SLServiceTypeTwitter];
 }
 
 - (IBAction)onTouchTwitter:(id)sender
 {
-	
+	NSString *msg = @"I foung excellent game IgaBall, You can find it in iTunes Store: http://igrsoft.com";
+    [self shareText:msg forServiceType:SLServiceTypeTwitter];
 }
 
 - (IBAction)onTouchSound:(id)sender
@@ -143,6 +156,8 @@ static NSString * const kUseSound = @"UseSound";
 
 - (IBAction)onTouchPlay:(id)sender
 {
+    self.score = 0;
+    
 	[self hideAllControlls];
 	
 	SKView * skView = (SKView *)self.view;
@@ -155,11 +170,42 @@ static NSString * const kUseSound = @"UseSound";
     [skView presentScene:scene];
 	
 	[self playMusic:@"game"];
+    [self.adBannerBottom setHidden:NO];
 }
 
 - (IBAction)onTouchGameCenter:(id)sender
 {
     [self showLeaderboard:kLeaderboardID];
+}
+
+- (IBAction)onTouchStopGame:(id)sender
+{
+    [self setupMainMenu];
+}
+
+- (IBAction)onTouchTryAgain:(id)sender
+{
+    [self onTouchPlay:sender];
+}
+
+- (IBAction)onTouchShareScoreToFacebook:(id)sender
+{
+    NSString *msg = [NSString stringWithFormat:@"My Score in IgaBall is %@! How mach can you get http://igrsoft.com", @(self.score)];
+    [self shareText:msg forServiceType:SLServiceTypeFacebook];
+}
+
+- (IBAction)onTouchShareScoreToTwitter:(id)sender
+{
+    NSString *msg = [NSString stringWithFormat:@"My Score in IgaBall is %@! How mach can you get http://igrsoft.com", @(self.score)];
+    [self shareText:msg forServiceType:SLServiceTypeTwitter];
+}
+
+- (void)shareText:(NSString *)text forServiceType:(NSString *)serviceType
+{
+    SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:serviceType];
+    
+    [tweetSheet setInitialText:text];
+    [self presentViewController:tweetSheet animated:YES completion:nil];
 }
 
 - (void)setupSoundButton:(BOOL)useSound
@@ -183,10 +229,19 @@ static NSString * const kUseSound = @"UseSound";
 	
 	[self.adBannerTop setHidden:YES];
 	[self.adBannerBottom setHidden:YES];
+    
+    [self.gameOverView setHidden:YES];
 }
 
 - (void)setupMainMenu
 {
+    SKView * skView = (SKView *)self.view;
+    SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
+    SKScene * scene = [[MainMenuScene alloc] initWithSize:skView.bounds.size controller:self];
+    [skView presentScene:scene transition:reveal];
+    
+    [self hideAllControlls];
+    
 	[self.btnFacebook setHidden:NO];
 	[self.btnTwitter setHidden:NO];
 	[self.btnSound setHidden:NO];
@@ -194,6 +249,21 @@ static NSString * const kUseSound = @"UseSound";
 	[self.btnGameCenter setHidden:NO];
     
 	[self.adBannerTop setHidden:NO];
+}
+
+- (void)setupGameOver
+{
+    SKView * skView = (SKView *)self.view;
+    SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
+    SKScene * scene = [[GameOverScene alloc] initWithSize:skView.bounds.size controller:self score:self.score];
+    [skView presentScene:scene transition:reveal];
+    
+    [self playMusic:@"main"];
+    
+    [self hideAllControlls];
+    
+	[self.gameOverView setHidden:NO];
+    [self.adBannerTop setHidden:NO];
 }
 
 #pragma mark - iAD
@@ -242,7 +312,6 @@ static NSString * const kUseSound = @"UseSound";
         {
             self.authenticated = NO;
         }
-        
     };
     
     [player setAuthenticateHandler:authBlock];

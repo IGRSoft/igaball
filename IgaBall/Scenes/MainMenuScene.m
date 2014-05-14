@@ -42,16 +42,6 @@
                                        CGRectGetMidY(self.frame) + (isIPhone ? 60 : 200));
         
         [self addChild:bgImage];
-		
-		[self runAction:
-		 [SKAction sequence:@[
-							  [SKAction waitForDuration:0.2],
-							  [SKAction runBlock:^{
-			 
-			 [self.viewController setupMainMenu];
-		 }]
-							  ]]
-		 ];
     }
 	
     return self;

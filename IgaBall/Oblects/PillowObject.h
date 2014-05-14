@@ -19,7 +19,7 @@
 @property (nonatomic, weak) id <PillowObjectDelegate> delegate;
 
 - (CGSize)size;
-- (void)activateObject;
+- (void)activateObjectWitDuration:(BOOL)withDuration;
 - (void)deactivateObject;
 
 @end

@@ -11,15 +11,15 @@
 #import "PillowObject.h"
 #import "BallObject.h"
 #import "Constants.h"
-#import "GameOverScene.h"
 
 @interface GameScene () <SKPhysicsContactDelegate, PillowObjectDelegate>
 
 @property (weak) GameController *viewController;
 @property (strong) SKLabelNode  *scoreLabel;
 @property (assign) BOOL isGameOver;
-@property (assign) NSInteger score;
+@property (nonatomic, assign) NSInteger score;
 @property (assign) CGFloat borderOffset;
+@property (strong) NSMutableArray *bals;
 
 @end
 
@@ -40,12 +40,13 @@
 		self.physicsWorld.contactDelegate = self;
 		
 		self.isGameOver = NO;
-		self.score = 0;
-		
+		self.score = -1;
+		self.bals = [NSMutableArray array];
+        
 		self.viewController = controller;
 		self.name = NSStringFromClass([self class]);
 		
-		self.backgroundColor = [UIColor colorWithRed:210.f/255.f green:170.f/255.f blue:220.f/255.f alpha:1.f];
+		self.backgroundColor = [SKColor colorWithRed:0.437 green:0.738 blue:0.863 alpha:1.000];
 		
 		SKTexture *texture = [SKTexture textureWithImageNamed:@"Grass"];
 		self.borderOffset = texture.size.width * 2;
@@ -57,7 +58,7 @@
 	
         [self addChild:grassRight];
 		
-		[self addPillowToFrame:grassRight.frame rotate:NO];
+		[self addPillowToFrame:grassRight.frame rotate:YES];
 		
 		SKSpriteNode *grassLeft = [SKSpriteNode spriteNodeWithTexture:texture size:texture.size];
 		grassLeft.zRotation = M_PI;
@@ -66,7 +67,7 @@
         
         [self addChild:grassLeft];
 		
-		[self addPillowToFrame:grassLeft.frame rotate:YES];
+		[self addPillowToFrame:grassLeft.frame rotate:NO];
 		
 		
 		//Add offscreen Collision
@@ -98,6 +99,8 @@
         self.scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),
 											   self.frame.size.height - 50.f);
         [self addChild:self.scoreLabel];
+        
+        self.score = 0;
     }
 	
     return self;
@@ -118,18 +121,26 @@
 	{
         NSLog(@"Pillow was touched!");
         PillowObject *pillow = (PillowObject *)node.parent;
-		[pillow activateObject];
+		[pillow activateObjectWitDuration:YES];
     }
 }
 
 - (void)addPillowToFrame:(CGRect)rect rotate:(BOOL)rotate
 {
-	CGFloat iPhoneScale = 0.5;
+	CGFloat iPhoneScale = 1.f;
+    CGFloat yOffset = 90.f;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        iPhoneScale = 0.5f;
+        yOffset = 0.f;
+    }
+    
 	for (NSUInteger i = 0 ; i < PILLOWCOUNT ; ++i)
 	{
 		PillowObject *pillow = [[PillowObject alloc] init];
-		pillow.position = CGPointMake(CGRectGetMidX(rect) + (rotate ? (15*iPhoneScale) : -(15*iPhoneScale)),
-									  OFFSET_Y*iPhoneScale * i + pillow.size.height * (i + 1));
+		pillow.position = CGPointMake(CGRectGetMidX(rect) + (rotate ? -(15*iPhoneScale) : (15*iPhoneScale)),
+									  yOffset + OFFSET_Y*iPhoneScale * i + pillow.size.height * (i + 1));
 		
 		pillow.delegate = self;
 		
@@ -147,16 +158,22 @@
 {
 	BallObject *ball = [[BallObject alloc] init];
 	
-	CGFloat screeCentre = CGRectGetMidX(self.frame);
-	NSInteger screeWidth = self.frame.size.width - self.borderOffset * 2;
+    NSInteger screeWidth = self.frame.size.width - self.borderOffset * 2;
 	CGFloat minPos = self.borderOffset;
 	CGFloat offset = arc4random() % screeWidth;
 	ball.position = CGPointMake(minPos + offset,
 								point.y);
-	
+    
 	[self addChild:ball];
 	
-	BallDiraction ballDiraction = ball.position.x > screeCentre ? BallDiractionLeft : BallDiractionRight;
+    [self.bals addObject:ball];
+}
+
+- (void)startMoveBall:(BallObject *)ball
+{
+    CGFloat screeCentre = CGRectGetMidX(self.frame);
+    
+    BallDiraction ballDiraction = ball.position.x > screeCentre ? BallDiractionLeft : BallDiractionRight;
 	
 	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -(screeCentre * 2.f) : (screeCentre * 2.f)), ball.position.y);
 	
@@ -167,10 +184,9 @@
 - (SKAction *)actionGameOver
 {
 	return [SKAction runBlock:^{
-		// 5
-		SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
-		GameOverScene *gameOverScene = [[GameOverScene alloc] initWithSize:self.size controller:self.viewController score:[self.scoreLabel.text integerValue]];
-		[self.view presentScene:gameOverScene transition: reveal];
+		
+        self.viewController.score = self.score;
+        [self.viewController setupGameOver];
 	}];
 }
 
@@ -236,13 +252,8 @@
 {
 	DBNSLog(@"%s", __func__);
 	
-	++_score;
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		
-		self.scoreLabel.text = [NSString stringWithFormat:@"%@", @(_score)];
-	});
-	
+	++self.score;
+    
 	[ball removeAllActions];
 	
 	CGFloat screeCentre = CGRectGetMidX(self.frame);
@@ -258,9 +269,24 @@
 
 - (void)wasFallStart
 {
-	--_score;
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
+	--self.score;
+}
+
+- (void)setScore:(NSInteger)score
+{
+    if (score < self.bals.count && _score < score)
+    {
+        BallObject *newBall = self.bals[score];
+        
+        if (!newBall.hasActions)
+        {
+            [self startMoveBall:newBall];
+        }
+    }
+    
+    _score = score;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
 		
 		self.scoreLabel.text = [NSString stringWithFormat:@"%@", @(_score)];
 	});

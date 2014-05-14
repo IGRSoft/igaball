@@ -41,6 +41,11 @@
         _particleNode.position = CGPointZero;
         _particleNode.name = NSStringFromClass([PillowObject class]);
         
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        {
+            [_particleNode setScale:0.6];
+        }
+        
         [self addChild:self.particleNode];
 	}
 	
@@ -52,7 +57,7 @@
 	return _texture.size;
 }
 
-- (void)activateObject
+- (void)activateObjectWitDuration:(BOOL)withDuration
 {
 	if (self.physicsBody)
 	{
@@ -62,7 +67,8 @@
 	_pillowNode.alpha = 1.f;
 	_particleNode.alpha = 0.f;
     
-	SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_texture.size];
+    CGSize size = CGSizeMake(_texture.size.width * 2.f, _texture.size.height);
+	SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];
 	physicsBody.dynamic = NO;
 	physicsBody.categoryBitMask = pillowCategory;
 	physicsBody.contactTestBitMask = ballCategory;
@@ -72,37 +78,40 @@
 	
 	// deactivate Object after 1.5s or less
 	
-	CGFloat offset = arc4random() % 100 / 10000.f;
-	_activationDuration -= offset;
-	
-	if (arc4random() % 5 == 0)
-	{
-		_activationDuration += 0.2;
-	}
-	
-	_activationDuration = MAX(_activationDuration, 0.3);
-	
-	[self runAction:
-	 [SKAction sequence:@[
-						  [SKAction waitForDuration:_activationDuration],
-						  [SKAction runBlock:^{
-		 
-		 // there are no colision
-		 if (self.physicsBody)
-		 {
-			 if (self.delegate && [self.delegate respondsToSelector:@selector(wasFallStart)])
-			 {
-				 [self.delegate wasFallStart];
-			 }
-		 }
-		 
-		 self.physicsBody = nil;
-         _pillowNode.alpha = 0.f;
-         _particleNode.alpha = 1.f;
-		 
-	 }]
-						  ]]
-	 ];
+    if (withDuration)
+    {
+        CGFloat offset = arc4random() % 100 / 10000.f;
+        _activationDuration -= offset;
+        
+        if (arc4random() % 5 == 0)
+        {
+            _activationDuration += 0.2;
+        }
+        
+        _activationDuration = MAX(_activationDuration, 0.3);
+        
+        [self runAction:
+         [SKAction sequence:@[
+                              [SKAction waitForDuration:_activationDuration],
+                              [SKAction runBlock:^{
+             
+             // there are no colision
+             if (self.physicsBody)
+             {
+                 if (self.delegate && [self.delegate respondsToSelector:@selector(wasFallStart)])
+                 {
+                     [self.delegate wasFallStart];
+                 }
+             }
+             
+             self.physicsBody = nil;
+             _pillowNode.alpha = 0.f;
+             _particleNode.alpha = 1.f;
+             
+         }]
+                              ]]
+         ];
+    }
 }
 
 - (void)deactivateObject

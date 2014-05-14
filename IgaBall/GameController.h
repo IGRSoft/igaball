@@ -13,5 +13,8 @@
 - (void)playMusic:(NSString *)name;
 
 - (void)setupMainMenu;
+- (void)setupGameOver;
+
+@property (assign) NSInteger score;
 
 @end
