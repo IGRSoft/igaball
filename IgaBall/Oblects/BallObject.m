@@ -52,18 +52,18 @@
 
 - (CGFloat)moveDuration
 {
-	CGFloat offset = arc4random() % 200 / 10000.f;
+	CGFloat offset = arc4random() % 500 / 10000.f;
 
 	_moveDuration -= offset;
 	
-	if (arc4random() % 6 == 0)
+	if (arc4random() % 5 == 0)
 	{
-		_moveDuration += 0.1;
+		_moveDuration += 0.2;
 	}
 	
-	if (arc4random() % 9 == 0)
+	if (arc4random() % 3 == 0)
 	{
-		_moveDuration -= 0.1;
+		_moveDuration -= 0.2;
 	}
 	
 	_moveDuration = MAX(_moveDuration, 0.3);

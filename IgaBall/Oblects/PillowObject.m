@@ -31,7 +31,7 @@
 		
 		_pillowNode.alpha = 0.f;
 		
-		self.activationDuration = defaultDuration / 2.f;
+		self.activationDuration = defaultDuration / 3.f;
 		
 		[self addChild:self.pillowNode];
         

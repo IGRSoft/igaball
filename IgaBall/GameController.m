@@ -163,15 +163,12 @@ static NSString * const kUseSound = @"UseSound";
     
 	[self hideAllControlls];
 	
-	SKView * skView = (SKView *)self.view;
-	
-	// Create and configure the scene.
+    // Create and configure the scene.
+    SKView * skView = (SKView *)self.view;
+    SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
     SKScene * scene = [[GameScene alloc] initWithSize:skView.bounds.size controller:self];
-    scene.scaleMode = SKSceneScaleModeResizeFill;
-    
-    // Present the scene.
-    [skView presentScene:scene];
-	
+    [skView presentScene:scene transition:reveal];
+    	
 	[self playMusic:@"game"];
     [self.adBannerBottom setHidden:NO];
 }
