@@ -101,30 +101,7 @@ static NSString * const kUseSound = @"UseSound";
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)playMusic:(NSString *)name
-{
-	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	if (![ud objectForKey:kUseSound])
-	{
-		[ud setBool:YES forKey:kUseSound];
-		[ud synchronize];
-	}
-	
-	if (![ud boolForKey:kUseSound])
-	{
-		return;
-	}
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		
-		NSError *error;
-		NSURL * backgroundMusicURL = [[NSBundle mainBundle] URLForResource:name withExtension:@"m4a"];
-		self.backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicURL error:&error];
-		self.backgroundMusicPlayer.numberOfLoops = -1;
-		[self.backgroundMusicPlayer prepareToPlay];
-		[self.backgroundMusicPlayer play];
-	});
-}
+#pragma mark - Actions
 
 - (IBAction)onTouchFacebook:(id)sender
 {
@@ -210,6 +187,35 @@ static NSString * const kUseSound = @"UseSound";
     [skView presentScene:scene transition:reveal];
 }
 
+#pragma mark - Sound
+
+- (void)playMusic:(NSString *)name
+{
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	if (![ud objectForKey:kUseSound])
+	{
+		[ud setBool:YES forKey:kUseSound];
+		[ud synchronize];
+	}
+	
+	if (![ud boolForKey:kUseSound])
+	{
+		return;
+	}
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		
+		NSError *error;
+		NSURL * backgroundMusicURL = [[NSBundle mainBundle] URLForResource:name withExtension:@"m4a"];
+		self.backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicURL error:&error];
+		self.backgroundMusicPlayer.numberOfLoops = -1;
+		[self.backgroundMusicPlayer prepareToPlay];
+		[self.backgroundMusicPlayer play];
+	});
+}
+
+#pragma mark - Social
+
 - (void)shareText:(NSString *)text forServiceType:(NSString *)serviceType
 {
     SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:serviceType];
@@ -217,6 +223,8 @@ static NSString * const kUseSound = @"UseSound";
     [tweetSheet setInitialText:text];
     [self presentViewController:tweetSheet animated:YES completion:nil];
 }
+
+#pragma mark - Controlls
 
 - (void)setupSoundButton:(BOOL)useSound
 {
@@ -243,6 +251,8 @@ static NSString * const kUseSound = @"UseSound";
     
     [self.gameOverView setHidden:YES];
 }
+
+#pragma mark - Scenes
 
 - (void)setupMainMenu
 {
@@ -278,30 +288,6 @@ static NSString * const kUseSound = @"UseSound";
     [self.adBannerTop setHidden:NO];
 }
 
-#pragma mark - iAD
-
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-	DBNSLog(@"%s", __func__);
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-    DBNSLog(@"%s", __func__);
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
-{
-    DBNSLog(@"%s", __func__);
-	
-    return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner
-{
-    DBNSLog(@"%s", __func__);
-}
-
 #pragma mark - Game Cetner
 
 - (void) authenticatePlayer
@@ -330,6 +316,7 @@ static NSString * const kUseSound = @"UseSound";
 }
 
 #pragma mark - Leaderboard
+
 - (void)reportScore:(long long)aScore forLeaderboard:(NSString*)leaderboardId
 {
     if (self.authenticated)

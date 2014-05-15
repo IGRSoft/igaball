@@ -67,8 +67,7 @@
 	_pillowNode.alpha = 1.f;
 	_particleNode.alpha = 0.f;
     
-    CGSize size = CGSizeMake(_texture.size.width * 2.f, _texture.size.height);
-	SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];
+	SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_texture.size];
 	physicsBody.dynamic = NO;
 	physicsBody.categoryBitMask = pillowCategory;
 	physicsBody.contactTestBitMask = ballCategory;
