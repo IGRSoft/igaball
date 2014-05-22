@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BV1-FR-VrT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -44,7 +44,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onTouchGameCenter:" destination="BV1-FR-VrT" eventType="touchUpInside" id="b1E-MO-VUV"/>
-                                    <action selector="onTouchTwitter:" destination="BV1-FR-VrT" eventType="touchUpInside" id="c9q-fn-4jN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1E-Mi-282" userLabel="sound">
@@ -92,7 +91,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="W2U-Uj-OM1"/>
-                                    <constraint firstAttribute="width" constant="768" id="YH3-NJ-qUV"/>
+                                    <constraint firstAttribute="width" constant="480" id="YH3-NJ-qUV"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BV1-FR-VrT" id="We7-bf-b8a"/>
@@ -150,7 +149,7 @@
                         <constraints>
                             <constraint firstItem="DZD-qG-vlw" firstAttribute="leading" secondItem="C1E-Mi-282" secondAttribute="trailing" constant="8" id="2fg-ya-xRR"/>
                             <constraint firstItem="3vz-qj-Tjg" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="5gQ-ku-tJl"/>
-                            <constraint firstAttribute="centerX" secondItem="kfb-Uq-xZf" secondAttribute="centerX" id="AJV-If-rzb"/>
+                            <constraint firstAttribute="centerX" secondItem="kfb-Uq-xZf" secondAttribute="centerX" constant="144" id="AJV-If-rzb"/>
                             <constraint firstItem="4kw-Ls-hKY" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="AXf-Wc-gxj"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="Ywc-Hq-3Ws" secondAttribute="bottom" constant="10" id="BPi-Zi-3Yy"/>
                             <constraint firstAttribute="trailing" secondItem="DZD-qG-vlw" secondAttribute="trailing" constant="20" id="CP5-FR-ayF"/>
@@ -159,7 +158,7 @@
                             <constraint firstItem="S72-1T-Dij" firstAttribute="leading" secondItem="NhM-Uo-mqQ" secondAttribute="trailing" constant="8" id="LQj-fO-cCR"/>
                             <constraint firstAttribute="centerX" secondItem="3vz-qj-Tjg" secondAttribute="centerX" id="QRb-Z8-biQ"/>
                             <constraint firstItem="NhM-Uo-mqQ" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" constant="20" id="Suv-KR-PF2"/>
-                            <constraint firstAttribute="centerX" secondItem="4kw-Ls-hKY" secondAttribute="centerX" id="TqJ-yT-lzc"/>
+                            <constraint firstAttribute="centerX" secondItem="4kw-Ls-hKY" secondAttribute="centerX" constant="144" id="TqJ-yT-lzc"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="NhM-Uo-mqQ" secondAttribute="bottom" constant="10" id="U3V-Ml-99O"/>
                             <constraint firstAttribute="bottom" secondItem="kfb-Uq-xZf" secondAttribute="bottom" id="UfK-vP-4uQ"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="DZD-qG-vlw" secondAttribute="bottom" constant="20" id="fKd-q5-yl6"/>

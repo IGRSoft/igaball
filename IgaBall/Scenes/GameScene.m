@@ -185,8 +185,7 @@
 {
 	return [SKAction runBlock:^{
 		
-        self.viewController.score = self.score;
-        [self.viewController setupGameOver];
+        [self.viewController setupGameOverWithScore:_score];
 	}];
 }
 

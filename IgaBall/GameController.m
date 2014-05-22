@@ -32,7 +32,7 @@
 @property (weak) IBOutlet ADBannerView *adBannerBottom;
 @property (weak) IBOutlet UIView *gameOverView;
 
-@property (assign) BOOL authenticated;
+@property (assign) BOOL reShowLeaderboard;
 
 - (IBAction)onTouchFacebook:(id)sender;
 - (IBAction)onTouchTwitter:(id)sender;
@@ -66,7 +66,8 @@ static NSString * const kUseSound = @"UseSound";
 	
 	//Sound
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	BOOL useSound = [ud boolForKey:kUseSound];
+    
+	BOOL useSound = [ud objectForKey:kUseSound] ? [ud boolForKey:kUseSound] : YES;
 	[self setupSoundButton:useSound];
 	
 	[self playMusic:@"main"];
@@ -79,7 +80,7 @@ static NSString * const kUseSound = @"UseSound";
     [skView presentScene:scene];
     
     // Game Center
-    self.authenticated = NO;
+    self.reShowLeaderboard = NO;
     [self authenticatePlayer];
     
     self.score = 0;
@@ -273,11 +274,13 @@ static NSString * const kUseSound = @"UseSound";
 	[self.adBannerTop setHidden:NO];
 }
 
-- (void)setupGameOver
+- (void)setupGameOverWithScore:(NSInteger)score
 {
+    _score = score;
+    
     SKView * skView = (SKView *)self.view;
     SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
-    SKScene * scene = [[GameOverScene alloc] initWithSize:skView.bounds.size controller:self score:self.score];
+    SKScene * scene = [[GameOverScene alloc] initWithSize:skView.bounds.size controller:self score:_score];
     [skView presentScene:scene transition:reveal];
     
     [self playMusic:@"main"];
@@ -286,29 +289,33 @@ static NSString * const kUseSound = @"UseSound";
     
 	[self.gameOverView setHidden:NO];
     [self.adBannerTop setHidden:NO];
+    
+    [self reportScore:_score forLeaderboard:kLeaderboardID];
 }
 
 #pragma mark - Game Cetner
 
-- (void) authenticatePlayer
+- (void)authenticatePlayer
 {
+    __weak GameController *weakSelf = self;
 	GKLocalPlayer *player = [GKLocalPlayer localPlayer];
     
     void (^authBlock)(UIViewController *, NSError *) = ^(UIViewController *viewController, NSError *error) {
         
         if (viewController)
         {
-            [self presentViewController:viewController animated:YES completion:nil];
+            [weakSelf presentViewController:viewController animated:YES completion:nil];
         }
         
         if ([[GKLocalPlayer localPlayer] isAuthenticated])
         {
-            self.authenticated = YES;
-        }
-        
-        if (error)
-        {
-            self.authenticated = NO;
+            if (weakSelf.reShowLeaderboard)
+            {
+                [weakSelf showLeaderboard:kLeaderboardID];
+            }
+            
+            weakSelf.reShowLeaderboard = NO;
+            
         }
     };
     
@@ -317,14 +324,15 @@ static NSString * const kUseSound = @"UseSound";
 
 #pragma mark - Leaderboard
 
-- (void)reportScore:(long long)aScore forLeaderboard:(NSString*)leaderboardId
+- (void)reportScore:(NSInteger)aScore forLeaderboard:(NSString*)leaderboardId
 {
-    if (self.authenticated)
+    if ([[GKLocalPlayer localPlayer] isAuthenticated] && aScore > 0)
     {
         GKScore* score = [[GKScore alloc] initWithLeaderboardIdentifier:leaderboardId];
         score.value = aScore;
         [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
-            if (error) {
+            if (error)
+            {
                 // handle error
             }
         }];
@@ -333,20 +341,36 @@ static NSString * const kUseSound = @"UseSound";
 
 - (void)showLeaderboard:(NSString*)leaderboardId
 {
-    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
-    if (gameCenterController != nil)
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    if (!localPlayer.isAuthenticated)
     {
-        gameCenterController.gameCenterDelegate = self;
-        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
-        gameCenterController.leaderboardIdentifier = leaderboardId;
-        
-        [self presentViewController:gameCenterController animated:YES completion:nil];
+        self.reShowLeaderboard = YES;
+        [self authenticatePlayer];
+    }
+    else
+    {
+        GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+        if (gameCenterController != nil)
+        {
+            gameCenterController.gameCenterDelegate = self;
+            gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
+            gameCenterController.leaderboardIdentifier = leaderboardId;
+            
+            [self presentViewController:gameCenterController animated:YES completion:nil];
+        }
     }
 }
 
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (self.reShowLeaderboard)
+    {
+        [self showLeaderboard:kLeaderboardID];
+    }
+    
+    self.reShowLeaderboard = NO;
 }
 
 @end
