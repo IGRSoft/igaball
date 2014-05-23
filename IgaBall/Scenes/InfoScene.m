@@ -27,51 +27,47 @@
         self.backgroundColor = [SKColor colorWithRed:120.f/255.f green:190.f/255.f blue:225.f/255.f alpha:1.000];
 		
         // 2
+        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+        CGFloat titleFontSize = isIPhone ? 20.f : 30.f;
+        CGFloat textFontSize = isIPhone ? 15.f : 25.f;
+        CGFloat yOffset = isIPhone ? 10.f : 20.f;
+        
         SKLabelNode *labelBack = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         labelBack.text = @"Touch anywhere to go back";
-        labelBack.fontSize = 20;
+        labelBack.fontSize = textFontSize;
         labelBack.fontColor = [SKColor whiteColor];
         
         SKAction *pulseText = [SKAction sequence:@[
-                                                   [SKAction fadeAlphaTo:0.5 duration:1],
-                                                   [SKAction fadeAlphaTo:1 duration:1],
+                                                   [SKAction fadeAlphaTo:0.5 duration:0.7],
+                                                   [SKAction fadeAlphaTo:1 duration:0.7],
                                                    ]];
         
         [labelBack runAction:[SKAction repeatActionForever:pulseText]];
         
-        labelBack.position = CGPointMake(self.size.width/2, 40);
+        labelBack.position = CGPointMake(self.size.width/2, yOffset * 2);
         [self addChild:labelBack];
         
+        // 3
         SKLabelNode *labelCopyrights = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         labelCopyrights.text = @"IGR Software © 2014";
-        labelCopyrights.fontSize = 20;
+        labelCopyrights.fontSize = titleFontSize;
         labelCopyrights.fontColor = [SKColor whiteColor];
         
-        labelCopyrights.position = CGPointMake(self.size.width/2, 120);
+        labelCopyrights.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.size.height - labelCopyrights.frame.size.height - yOffset * 2);
         [self addChild:labelCopyrights];
-        
-        // 3
-        NSString *imgName = [NSString stringWithFormat:@"GameName"];
-        SKTexture *texture = [SKTexture textureWithImageNamed:imgName];
-		
-        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:texture.size];
-		
-        bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       self.frame.size.height - texture.size.height * 0.5 - 20);
-        [self addChild:bgImage];
         
         // 4
         SKLabelNode *labelDeveloperTitle = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        labelDeveloperTitle.text = @"Developer:";
-        labelDeveloperTitle.fontSize = 25;
+        labelDeveloperTitle.text = @"Develop:";
+        labelDeveloperTitle.fontSize = titleFontSize;
         labelDeveloperTitle.fontColor = [SKColor whiteColor];
         
-        labelDeveloperTitle.position = CGPointMake(CGRectGetMidX(self.frame), bgImage.position.y - bgImage.size.height);
+        labelDeveloperTitle.position = CGPointMake(CGRectGetMidX(self.frame), labelCopyrights.position.y - labelCopyrights.frame.size.height - yOffset * 3);
         [self addChild:labelDeveloperTitle];
         
         SKLabelNode *labelDeveloper = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         labelDeveloper.text = @"Vitalii Parovishnyk (Korich)";
-        labelDeveloper.fontSize = 25;
+        labelDeveloper.fontSize = textFontSize;
         labelDeveloper.fontColor = [SKColor whiteColor];
         
         labelDeveloper.position = CGPointMake(CGRectGetMidX(self.frame), labelDeveloperTitle.position.y - labelDeveloperTitle.frame.size.height);
@@ -79,16 +75,16 @@
         
         // 5
         SKLabelNode *labelDesignerTitle = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        labelDesignerTitle.text = @"Designer:";
-        labelDesignerTitle.fontSize = 25;
+        labelDesignerTitle.text = @"Design:";
+        labelDesignerTitle.fontSize = titleFontSize;
         labelDesignerTitle.fontColor = [SKColor whiteColor];
         
-        labelDesignerTitle.position = CGPointMake(CGRectGetMidX(self.frame), labelDeveloper.position.y - labelDeveloper.frame.size.height - 20.f);
+        labelDesignerTitle.position = CGPointMake(CGRectGetMidX(self.frame), labelDeveloper.position.y - labelDeveloper.frame.size.height - yOffset);
         [self addChild:labelDesignerTitle];
         
         SKLabelNode *labelDesigner = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         labelDesigner.text = @"Andrey Chaika";
-        labelDesigner.fontSize = 25;
+        labelDesigner.fontSize = textFontSize;
         labelDesigner.fontColor = [SKColor whiteColor];
         
         labelDesigner.position = CGPointMake(CGRectGetMidX(self.frame), labelDesignerTitle.position.y - labelDesignerTitle.frame.size.height);
@@ -97,27 +93,19 @@
         // 6
         SKLabelNode *labelSoundTitle = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         labelSoundTitle.text = @"Sound:";
-        labelSoundTitle.fontSize = 25;
+        labelSoundTitle.fontSize = titleFontSize;
         labelSoundTitle.fontColor = [SKColor whiteColor];
         
-        labelSoundTitle.position = CGPointMake(CGRectGetMidX(self.frame), labelDesigner.position.y - labelDesigner.frame.size.height - 20.f);
+        labelSoundTitle.position = CGPointMake(CGRectGetMidX(self.frame), labelDesigner.position.y - labelDesigner.frame.size.height - yOffset);
         [self addChild:labelSoundTitle];
         
         SKLabelNode *labelSound1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        labelSound1.text = @"yd";
-        labelSound1.fontSize = 25;
+        labelSound1.text = @"Vitalii Parovishnyk (Korich)";
+        labelSound1.fontSize = textFontSize;
         labelSound1.fontColor = [SKColor whiteColor];
         
         labelSound1.position = CGPointMake(CGRectGetMidX(self.frame), labelSoundTitle.position.y - labelSoundTitle.frame.size.height);
         [self addChild:labelSound1];
-        
-        SKLabelNode *labelSound2 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        labelSound2.text = @"Independent.nu";
-        labelSound2.fontSize = 25;
-        labelSound2.fontColor = [SKColor whiteColor];
-        
-        labelSound2.position = CGPointMake(CGRectGetMidX(self.frame), labelSound1.position.y - labelSound1.frame.size.height);
-        [self addChild:labelSound2];
         
         [UIView animateWithDuration:1.0f
                               delay:0.0f
