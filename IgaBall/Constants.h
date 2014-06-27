@@ -30,4 +30,6 @@ typedef NS_ENUM(NSUInteger, GameScheme)
 
 #define kLeaderboardID @"com.igrsoft.IgaBallLeaderboard"
 
+#define DEFAULT_BG_COLOR [SKColor colorWithRed:115.f/255.f green:170.f/255.f blue:215.f/255.f alpha:1.000]
+
 #endif

@@ -8,6 +8,7 @@
 
 #import "InfoScene.h"
 #import "GameController.h"
+#import "Constants.h"
 
 @interface InfoScene ()
 
@@ -24,7 +25,7 @@
     {
         self.viewController = controller;
         // 1
-        self.backgroundColor = [SKColor colorWithRed:120.f/255.f green:190.f/255.f blue:225.f/255.f alpha:1.000];
+        self.backgroundColor = DEFAULT_BG_COLOR;
 		
         // 2
         BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;

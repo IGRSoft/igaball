@@ -8,6 +8,7 @@
 
 #import "GameOverScene.h"
 #import "GameController.h"
+#import "Constants.h"
 
 @implementation GameOverScene
 
@@ -18,7 +19,7 @@
         controller.score = score;
         
         // 1
-        self.backgroundColor = [SKColor colorWithRed:120.f/255.f green:190.f/255.f blue:225.f/255.f alpha:1.000];
+        self.backgroundColor = DEFAULT_BG_COLOR;
 		
         // 2
         NSString * message = [NSString stringWithFormat:@"Your Score: %@", @(score)];
