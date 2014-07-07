@@ -10,11 +10,9 @@
 
 @interface GameController : UIViewController
 
-- (void)playMusic:(NSString *)name;
-
 - (void)setupMainMenu;
-- (void)setupGameOverWithScore:(NSInteger)score;
+- (void)setupGameOverWithScore:(NSInteger)aScore;
 
-@property (assign) NSInteger score;
+@property (assign, readonly) NSInteger score;
 
 @end

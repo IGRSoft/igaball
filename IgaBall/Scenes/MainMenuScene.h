@@ -6,12 +6,8 @@
 //  Copyright (c) 2014 IGR Software. All rights reserved.
 //
 
-#import <SpriteKit/SpriteKit.h>
+#import "BaseScene.h"
 
-@class GameController;
-
-@interface MainMenuScene : SKScene
-
-- (id)initWithSize:(CGSize)size controller:(GameController *)controller;
+@interface MainMenuScene : BaseScene
 
 @end

@@ -7,14 +7,12 @@
 //
 
 #import "GameScene.h"
-#import "GameController.h"
 #import "PillowObject.h"
 #import "BallObject.h"
 #import "Constants.h"
 
 @interface GameScene () <SKPhysicsContactDelegate, PillowObjectDelegate>
 
-@property (weak) GameController *viewController;
 @property (strong) SKLabelNode  *scoreLabel;
 @property (assign) BOOL isGameOver;
 @property (nonatomic, assign) NSInteger score;
@@ -28,11 +26,11 @@
 
 @implementation GameScene
 
-- (id)initWithSize:(CGSize)size controller:(GameController *)controller
+- (id)initWithSize:(CGSize)aSize gameController:(GameController *)gGameController
 {
-	DBNSLog(@"%s", __func__);
-	
-    if (self = [super initWithSize:size])
+    DBNSLog(@"%s", __func__);
+    
+    if (self = [super initWithSize:aSize gameController:gGameController])
 	{
         /* Setup your scene here */
 		
@@ -43,7 +41,6 @@
 		self.score = -1;
 		self.bals = [NSMutableArray array];
         
-		self.viewController = controller;
 		self.name = NSStringFromClass([self class]);
 		
 		self.backgroundColor = DEFAULT_BG_COLOR;
@@ -183,9 +180,10 @@
 
 - (SKAction *)actionGameOver
 {
+    __weak GameScene *weakSelf = self;
 	return [SKAction runBlock:^{
 		
-        [self.viewController setupGameOverWithScore:_score];
+        [weakSelf.gameController setupGameOverWithScore:_score];
 	}];
 }
 

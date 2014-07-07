@@ -20,8 +20,6 @@
 		A54FCB001908F926009B5255 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAD81908F926009B5255 /* UIKit.framework */; };
 		A54FCB081908F926009B5255 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A54FCB061908F926009B5255 /* InfoPlist.strings */; };
 		A54FCB0A1908F926009B5255 /* IgaBallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A54FCB091908F926009B5255 /* IgaBallTests.m */; };
-		A5556F45190C2FEC0078C4C9 /* game.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A5556F43190C2FEC0078C4C9 /* game.m4a */; };
-		A5556F46190C2FEC0078C4C9 /* main.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A5556F44190C2FEC0078C4C9 /* main.m4a */; };
 		A5556F55190C58930078C4C9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5556F53190C58930078C4C9 /* AdSupport.framework */; };
 		A5556F56190C58930078C4C9 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5556F54190C58930078C4C9 /* iAd.framework */; };
 		A5556F5E190D1C310078C4C9 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5556F59190D1C310078C4C9 /* GameScene.m */; };
@@ -39,6 +37,10 @@
 		A5B1770C1908FA54000C9921 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B177061908FA54000C9921 /* Images.xcassets */; };
 		A5B1770E1908FA54000C9921 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B177081908FA54000C9921 /* InfoPlist.strings */; };
 		A5B6E311191A2956000B967D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6E310191A2956000B967D /* GameKit.framework */; };
+		A5E754AD196B2AC2006E4E47 /* BaseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E754AC196B2AC2006E4E47 /* BaseScene.m */; };
+		A5E754B1196B382A006E4E47 /* game.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A5E754AE196B382A006E4E47 /* game.m4a */; };
+		A5E754B2196B382A006E4E47 /* gameover.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A5E754AF196B382A006E4E47 /* gameover.m4a */; };
+		A5E754B3196B382A006E4E47 /* main.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A5E754B0196B382A006E4E47 /* main.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +72,6 @@
 		A54FCB051908F926009B5255 /* IgaBallTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IgaBallTests-Info.plist"; sourceTree = "<group>"; };
 		A54FCB071908F926009B5255 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A54FCB091908F926009B5255 /* IgaBallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IgaBallTests.m; sourceTree = "<group>"; };
-		A5556F43190C2FEC0078C4C9 /* game.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = game.m4a; sourceTree = "<group>"; };
-		A5556F44190C2FEC0078C4C9 /* main.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.m4a; sourceTree = "<group>"; };
 		A5556F53190C58930078C4C9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		A5556F54190C58930078C4C9 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		A5556F58190D1C310078C4C9 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
@@ -97,6 +97,11 @@
 		A5B177061908FA54000C9921 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A5B177091908FA54000C9921 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5B6E310191A2956000B967D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		A5E754AB196B2AC2006E4E47 /* BaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScene.h; sourceTree = "<group>"; };
+		A5E754AC196B2AC2006E4E47 /* BaseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScene.m; sourceTree = "<group>"; };
+		A5E754AE196B382A006E4E47 /* game.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = game.m4a; sourceTree = "<group>"; };
+		A5E754AF196B382A006E4E47 /* gameover.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameover.m4a; sourceTree = "<group>"; };
+		A5E754B0196B382A006E4E47 /* main.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,9 +215,10 @@
 		A5556F42190C2FEC0078C4C9 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				A5E754AE196B382A006E4E47 /* game.m4a */,
+				A5E754AF196B382A006E4E47 /* gameover.m4a */,
+				A5E754B0196B382A006E4E47 /* main.m4a */,
 				A523794F1934C1E1007D34CC /* pop.m4a */,
-				A5556F43190C2FEC0078C4C9 /* game.m4a */,
-				A5556F44190C2FEC0078C4C9 /* main.m4a */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -230,6 +236,8 @@
 				A5974A6219102D12009BD12A /* GameOverScene.m */,
 				A58E5C82192392A4004F95BC /* InfoScene.h */,
 				A58E5C83192392A4004F95BC /* InfoScene.m */,
+				A5E754AB196B2AC2006E4E47 /* BaseScene.h */,
+				A5E754AC196B2AC2006E4E47 /* BaseScene.m */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -339,11 +347,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5B1770E1908FA54000C9921 /* InfoPlist.strings in Resources */,
-				A5556F46190C2FEC0078C4C9 /* main.m4a in Resources */,
 				A5B1770C1908FA54000C9921 /* Images.xcassets in Resources */,
+				A5E754B1196B382A006E4E47 /* game.m4a in Resources */,
+				A5E754B3196B382A006E4E47 /* main.m4a in Resources */,
 				A5B1770A1908FA54000C9921 /* Main_iPad.storyboard in Resources */,
+				A5E754B2196B382A006E4E47 /* gameover.m4a in Resources */,
 				A573C0A119210BB100D50372 /* PillowParticle.sks in Resources */,
-				A5556F45190C2FEC0078C4C9 /* game.m4a in Resources */,
 				A52379501934C1E1007D34CC /* pop.m4a in Resources */,
 				A5B1770B1908FA54000C9921 /* Main_iPhone.storyboard in Resources */,
 				A573C0A419210C4300D50372 /* PillowParticle.png in Resources */,
@@ -375,6 +384,7 @@
 				A5556F5F190D1C310078C4C9 /* LoadingScene.m in Sources */,
 				A5556F60190D1C310078C4C9 /* MainMenuScene.m in Sources */,
 				A54FCAE31908F926009B5255 /* main.m in Sources */,
+				A5E754AD196B2AC2006E4E47 /* BaseScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,6 +33,7 @@
 @property (weak) IBOutlet UIView *gameOverView;
 
 @property (assign) BOOL reShowLeaderboard;
+@property (assign, readwrite) NSInteger score;
 
 - (IBAction)onTouchFacebook:(id)sender;
 - (IBAction)onTouchTwitter:(id)sender;
@@ -49,6 +50,8 @@
 @end
 
 static NSString * const kUseSound = @"UseSound";
+const CGFloat fadeDuration = 0.5;
+
 
 @implementation GameController
 
@@ -70,14 +73,13 @@ static NSString * const kUseSound = @"UseSound";
 	BOOL useSound = [ud objectForKey:kUseSound] ? [ud boolForKey:kUseSound] : YES;
 	[self setupSoundButton:useSound];
 	
-	[self playMusic:@"main"];
-	
     // Create and configure the scene.
-    SKScene * scene = [[LoadingScene alloc] initWithSize:skView.bounds.size controller:self];
+    SKScene * scene = [[LoadingScene alloc] initWithSize:skView.bounds.size gameController:self];
     scene.scaleMode = SKSceneScaleModeResizeFill;
     
     // Present the scene.
-    [skView presentScene:scene];
+    SKTransition *reveal = [SKTransition fadeWithDuration:fadeDuration];
+    [skView presentScene:scene transition:reveal];
     
     // Game Center
     self.reShowLeaderboard = NO;
@@ -143,12 +145,17 @@ static NSString * const kUseSound = @"UseSound";
 	
     // Create and configure the scene.
     SKView * skView = (SKView *)self.view;
-    SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
-    SKScene * scene = [[GameScene alloc] initWithSize:skView.bounds.size controller:self];
+    SKScene * scene = [[GameScene alloc] initWithSize:skView.bounds.size gameController:self];
+    
+    SKTransition *reveal = [SKTransition fadeWithDuration:fadeDuration];
     [skView presentScene:scene transition:reveal];
     	
 	[self playMusic:@"game"];
-    [self.adBannerBottom setHidden:NO];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fadeDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.adBannerBottom setHidden:NO];
+    });
 }
 
 - (IBAction)onTouchGameCenter:(id)sender
@@ -183,14 +190,19 @@ static NSString * const kUseSound = @"UseSound";
     [self hideAllControlls];
     
     SKView * skView = (SKView *)self.view;
-    SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
-    SKScene * scene = [[InfoScene alloc] initWithSize:skView.bounds.size controller:self];
+    SKScene * scene = [[InfoScene alloc] initWithSize:skView.bounds.size gameController:self];
+    
+    SKTransition *reveal = [SKTransition fadeWithDuration:fadeDuration];
     [skView presentScene:scene transition:reveal];
 }
 
 #pragma mark - Sound
+- (void)playMusic:(NSString *)aName
+{
+    [self playMusic:aName loopCount:-1];
+}
 
-- (void)playMusic:(NSString *)name
+- (void)playMusic:(NSString *)aName loopCount:(NSInteger)aLoopCount
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	if (![ud objectForKey:kUseSound])
@@ -204,12 +216,18 @@ static NSString * const kUseSound = @"UseSound";
 		return;
 	}
 	
+    NSURL *backgroundMusicURL = [[NSBundle mainBundle] URLForResource:aName withExtension:@"m4a"];
+    if ([self.backgroundMusicPlayer.url isEqual:backgroundMusicURL])
+    {
+        return;
+    }
+    
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
 		NSError *error;
-		NSURL * backgroundMusicURL = [[NSBundle mainBundle] URLForResource:name withExtension:@"m4a"];
+		
 		self.backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicURL error:&error];
-		self.backgroundMusicPlayer.numberOfLoops = -1;
+		self.backgroundMusicPlayer.numberOfLoops = aLoopCount;
 		[self.backgroundMusicPlayer prepareToPlay];
 		[self.backgroundMusicPlayer play];
 	});
@@ -217,11 +235,11 @@ static NSString * const kUseSound = @"UseSound";
 
 #pragma mark - Social
 
-- (void)shareText:(NSString *)text forServiceType:(NSString *)serviceType
+- (void)shareText:(NSString *)aText forServiceType:(NSString *)aServiceType
 {
-    SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:serviceType];
+    SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:aServiceType];
     
-    [tweetSheet setInitialText:text];
+    [tweetSheet setInitialText:aText];
     [self presentViewController:tweetSheet animated:YES completion:nil];
 }
 
@@ -257,38 +275,48 @@ static NSString * const kUseSound = @"UseSound";
 
 - (void)setupMainMenu
 {
-    SKView * skView = (SKView *)self.view;
-    SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
-    SKScene * scene = [[MainMenuScene alloc] initWithSize:skView.bounds.size controller:self];
-    [skView presentScene:scene transition:reveal];
-    
     [self hideAllControlls];
     
-	[self.btnFacebook setHidden:NO];
-	[self.btnTwitter setHidden:NO];
-	[self.btnSound setHidden:NO];
-	[self.btnPlay setHidden:NO];
-	[self.btnGameCenter setHidden:NO];
-    [self.btnInfo setHidden:NO];
-    
-	[self.adBannerTop setHidden:NO];
-}
-
-- (void)setupGameOverWithScore:(NSInteger)score
-{
-    _score = score;
-    
     SKView * skView = (SKView *)self.view;
-    SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
-    SKScene * scene = [[GameOverScene alloc] initWithSize:skView.bounds.size controller:self score:_score];
+    SKScene * scene = [[MainMenuScene alloc] initWithSize:skView.bounds.size gameController:self];
+
+    SKTransition *reveal = [SKTransition fadeWithDuration:fadeDuration];
     [skView presentScene:scene transition:reveal];
     
     [self playMusic:@"main"];
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fadeDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.btnFacebook setHidden:NO];
+        [self.btnTwitter setHidden:NO];
+        [self.btnSound setHidden:NO];
+        [self.btnPlay setHidden:NO];
+        [self.btnGameCenter setHidden:NO];
+        [self.btnInfo setHidden:NO];
+        
+        [self.adBannerTop setHidden:NO];
+    });
+}
+
+- (void)setupGameOverWithScore:(NSInteger)aScore
+{
     [self hideAllControlls];
     
-	[self.gameOverView setHidden:NO];
-    [self.adBannerTop setHidden:NO];
+    _score = aScore;
+    
+    SKView * skView = (SKView *)self.view;
+    SKScene * scene = [[GameOverScene alloc] initWithSize:skView.bounds.size gameController:self];
+    
+    SKTransition *reveal = [SKTransition fadeWithDuration:fadeDuration];
+    [skView presentScene:scene transition:reveal];
+    
+    [self playMusic:@"gameover" loopCount:0];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fadeDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.gameOverView setHidden:NO];
+        [self.adBannerTop setHidden:NO];
+    });
     
     [self reportScore:_score forLeaderboard:kLeaderboardID];
 }
@@ -324,11 +352,11 @@ static NSString * const kUseSound = @"UseSound";
 
 #pragma mark - Leaderboard
 
-- (void)reportScore:(NSInteger)aScore forLeaderboard:(NSString*)leaderboardId
+- (void)reportScore:(NSInteger)aScore forLeaderboard:(NSString*)aLeaderboardId
 {
     if ([[GKLocalPlayer localPlayer] isAuthenticated] && aScore > 0)
     {
-        GKScore* score = [[GKScore alloc] initWithLeaderboardIdentifier:leaderboardId];
+        GKScore* score = [[GKScore alloc] initWithLeaderboardIdentifier:aLeaderboardId];
         score.value = aScore;
         [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
             if (error)
@@ -339,7 +367,7 @@ static NSString * const kUseSound = @"UseSound";
     }
 }
 
-- (void)showLeaderboard:(NSString*)leaderboardId
+- (void)showLeaderboard:(NSString*)aLeaderboardId
 {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
     if (!localPlayer.isAuthenticated)
@@ -354,14 +382,14 @@ static NSString * const kUseSound = @"UseSound";
         {
             gameCenterController.gameCenterDelegate = self;
             gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
-            gameCenterController.leaderboardIdentifier = leaderboardId;
+            gameCenterController.leaderboardIdentifier = aLeaderboardId;
             
             [self presentViewController:gameCenterController animated:YES completion:nil];
         }
     }
 }
 
-- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)aGameCenterViewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     
@@ -371,6 +399,12 @@ static NSString * const kUseSound = @"UseSound";
     }
     
     self.reShowLeaderboard = NO;
+}
+
+#pragma mark - AD
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+
 }
 
 @end

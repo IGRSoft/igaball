@@ -7,23 +7,20 @@
 //
 
 #import "InfoScene.h"
-#import "GameController.h"
 #import "Constants.h"
 
 @interface InfoScene ()
-
-@property (weak) GameController *viewController;
 
 @end
 
 @implementation InfoScene
 
-
-- (id)initWithSize:(CGSize)size controller:(GameController *)controller
+- (id)initWithSize:(CGSize)aSize gameController:(GameController *)gGameController
 {
-    if (self = [super initWithSize:size])
+    DBNSLog(@"%s", __func__);
+    
+    if (self = [super initWithSize:aSize gameController:gGameController])
     {
-        self.viewController = controller;
         // 1
         self.backgroundColor = DEFAULT_BG_COLOR;
 		
@@ -31,7 +28,7 @@
         BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
         CGFloat titleFontSize = isIPhone ? 20.f : 30.f;
         CGFloat textFontSize = isIPhone ? 15.f : 25.f;
-        CGFloat yOffset = isIPhone ? 10.f : 20.f;
+        CGFloat yOffset = isIPhone ? 10.f : 30.f;
         
         SKLabelNode *labelBack = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         labelBack.text = @"Touch anywhere to go back";
@@ -84,7 +81,7 @@
         [self addChild:labelDesignerTitle];
         
         SKLabelNode *labelDesigner = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        labelDesigner.text = @"Andrey Chaika";
+        labelDesigner.text = @"Oksana Ralko";
         labelDesigner.fontSize = textFontSize;
         labelDesigner.fontColor = [SKColor whiteColor];
         
@@ -101,7 +98,7 @@
         [self addChild:labelSoundTitle];
         
         SKLabelNode *labelSound1 = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        labelSound1.text = @"Vitalii Parovishnyk (Korich)";
+        labelSound1.text = @"Lucky Lion Studios";
         labelSound1.fontSize = textFontSize;
         labelSound1.fontColor = [SKColor whiteColor];
         
@@ -127,7 +124,7 @@
 //handle touch events
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.viewController setupMainMenu];
+    [self.gameController setupMainMenu];
 }
 
 @end

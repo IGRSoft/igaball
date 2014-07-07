@@ -7,28 +7,24 @@
 //
 
 #import "MainMenuScene.h"
-#import "GameController.h"
 #import "Constants.h"
 
 @interface MainMenuScene ()
-
-@property (weak) GameController *viewController;
 
 @end
 
 @implementation MainMenuScene
 
-- (id)initWithSize:(CGSize)size controller:(GameController *)controller
+- (id)initWithSize:(CGSize)aSize gameController:(GameController *)gGameController
 {
-	DBNSLog(@"%s", __func__);
-	
-    if (self = [super initWithSize:size])
+    DBNSLog(@"%s", __func__);
+    
+    if (self = [super initWithSize:aSize gameController:gGameController])
 	{
         /* Setup your scene here */
         
         BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
         
-		self.viewController = controller;
 		self.name = NSStringFromClass([self class]);
 		
 		self.backgroundColor = DEFAULT_BG_COLOR;

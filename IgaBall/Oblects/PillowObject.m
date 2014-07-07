@@ -89,26 +89,25 @@
         
         _activationDuration = MAX(_activationDuration, 0.3);
         
-        [self runAction:
-         [SKAction sequence:@[
-                              [SKAction waitForDuration:_activationDuration],
-                              [SKAction runBlock:^{
-             
-             // there are no colision
-             if (self.physicsBody)
-             {
-                 if (self.delegate && [self.delegate respondsToSelector:@selector(wasFallStart)])
-                 {
-                     [self.delegate wasFallStart];
-                 }
-             }
-             
-             self.physicsBody = nil;
-             _pillowNode.alpha = 0.f;
-             _particleNode.alpha = 1.f;
-             
-         }]
-                              ]]
+        __weak PillowObject *weakSelf = self;
+        [self runAction: [SKAction sequence:@[
+                                              [SKAction waitForDuration:_activationDuration],
+                                              [SKAction runBlock:^{
+            
+                        // there are no colision
+                        if (weakSelf.physicsBody)
+                        {
+                            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(wasFallStart)])
+                            {
+                                [weakSelf.delegate wasFallStart];
+                            }
+                        }
+                        
+                        weakSelf.physicsBody = nil;
+                        weakSelf.pillowNode.alpha = 0.f;
+                        weakSelf.particleNode.alpha = 1.f;
+                    }]
+                                              ]]
          ];
     }
 }

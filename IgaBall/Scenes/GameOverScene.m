@@ -7,22 +7,21 @@
 //
 
 #import "GameOverScene.h"
-#import "GameController.h"
 #import "Constants.h"
 
 @implementation GameOverScene
 
-- (id)initWithSize:(CGSize)size controller:(GameController *)controller score:(NSInteger)score
+- (id)initWithSize:(CGSize)aSize gameController:(GameController *)gGameController
 {
-    if (self = [super initWithSize:size]) {
-		
-        controller.score = score;
-        
+    DBNSLog(@"%s", __func__);
+    
+    if (self = [super initWithSize:aSize gameController:gGameController])
+	{
         // 1
         self.backgroundColor = DEFAULT_BG_COLOR;
 		
         // 2
-        NSString * message = [NSString stringWithFormat:@"Your Score: %@", @(score)];
+        NSString * message = [NSString stringWithFormat:@"Your Score: %@", @(gGameController.score)];
 		
         // 3
         SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];

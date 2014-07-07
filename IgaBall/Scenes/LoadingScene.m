@@ -7,27 +7,23 @@
 //
 
 #import "LoadingScene.h"
-#import "GameController.h"
 
 @interface LoadingScene ()
-
-@property (weak) GameController *viewController;
 
 @end
 
 @implementation LoadingScene
 
-- (id)initWithSize:(CGSize)size controller:(GameController *)controller
+- (id)initWithSize:(CGSize)aSize gameController:(GameController *)gGameController
 {
-	DBNSLog(@"%s", __func__);
-	
-    if (self = [super initWithSize:size])
+    DBNSLog(@"%s", __func__);
+    
+    if (self = [super initWithSize:aSize gameController:gGameController])
 	{
         /* Setup your scene here */
 		
         BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
         
-		self.viewController = controller;
 		self.name = NSStringFromClass([self class]);
 		
 		SKTexture *texture = nil;
@@ -42,7 +38,7 @@
 			texture = [SKTexture textureWithImageNamed:@"LaunchImage-700-Landscape"];
 		}
 
-        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:size];
+        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
 
         if (isIPhone)
         {
@@ -60,12 +56,13 @@
         [self addChild:bgImage];
     }
 	
+    __weak LoadingScene *weakSelf = self;
 	[self runAction:
 	 [SKAction sequence:@[
 						  [SKAction waitForDuration:1.0],
 						  [SKAction runBlock:^{
 		 
-         [self.viewController setupMainMenu];
+         [weakSelf.gameController setupMainMenu];
 	 }]
 						  ]]
 	 ];

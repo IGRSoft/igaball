@@ -6,12 +6,8 @@
 //  Copyright (c) 2014 IGR Software. All rights reserved.
 //
 
-#import <SpriteKit/SpriteKit.h>
+#import "BaseScene.h"
 
-@class GameController;
-
-@interface LoadingScene : SKScene
-
-- (id)initWithSize:(CGSize)size controller:(GameController *)controller;
+@interface LoadingScene : BaseScene
 
 @end
