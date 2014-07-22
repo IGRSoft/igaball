@@ -69,6 +69,10 @@
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="wnc-XY-nRm">
                                 <rect key="frame" x="124" y="0.0" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="NVf-sK-eLu"/>
+                                    <constraint firstAttribute="height" constant="50" id="yDA-py-CA4"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="LVB-YS-i5n" id="S0h-rq-Rel"/>
                                 </connections>
@@ -76,6 +80,10 @@
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="TCE-9g-7vh">
                                 <rect key="frame" x="124" y="270" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Zdk-3D-g1x"/>
+                                    <constraint firstAttribute="height" constant="50" id="wnM-hb-5Vk"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="LVB-YS-i5n" id="Fb5-Cz-ecZ"/>
                                 </connections>
@@ -153,26 +161,22 @@
                         <constraints>
                             <constraint firstItem="Pef-YV-oJW" firstAttribute="top" secondItem="Pmg-uF-B6r" secondAttribute="bottom" constant="19" id="0DI-JF-Uef"/>
                             <constraint firstItem="Pmg-uF-B6r" firstAttribute="centerX" secondItem="RUa-zm-dIm" secondAttribute="centerX" id="3Gi-fe-dax"/>
-                            <constraint firstItem="TCE-9g-7vh" firstAttribute="top" secondItem="RUa-zm-dIm" secondAttribute="bottom" constant="8" symbolic="YES" id="7sw-rs-pjv"/>
+                            <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="TCE-9g-7vh" secondAttribute="bottom" id="526-ag-I22"/>
                             <constraint firstItem="i9d-40-YDf" firstAttribute="leading" secondItem="ZGp-iO-0KS" secondAttribute="trailing" constant="8" symbolic="YES" id="9dX-p7-TI7"/>
-                            <constraint firstItem="TCE-9g-7vh" firstAttribute="trailing" secondItem="wnc-XY-nRm" secondAttribute="trailing" id="GyX-mM-rhb"/>
+                            <constraint firstAttribute="centerX" secondItem="TCE-9g-7vh" secondAttribute="centerX" id="DNH-pv-D66"/>
+                            <constraint firstItem="TCE-9g-7vh" firstAttribute="top" secondItem="RUa-zm-dIm" secondAttribute="bottom" constant="8" symbolic="YES" id="GqM-Ja-qJ7"/>
                             <constraint firstItem="ZGp-iO-0KS" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leading" constant="20" symbolic="YES" id="Hjj-eo-wzs"/>
                             <constraint firstItem="GOG-Qa-flx" firstAttribute="leading" secondItem="i9d-40-YDf" secondAttribute="trailing" constant="8" symbolic="YES" id="I2L-Xi-5oG"/>
-                            <constraint firstItem="Pmg-uF-B6r" firstAttribute="top" secondItem="wnc-XY-nRm" secondAttribute="bottom" constant="96" id="Khh-zo-0f8"/>
                             <constraint firstAttribute="trailing" secondItem="Pmg-uF-B6r" secondAttribute="trailing" id="Rbn-bB-X9D"/>
                             <constraint firstItem="Pef-YV-oJW" firstAttribute="top" secondItem="qXs-71-w0E" secondAttribute="top" id="SWc-c8-O4Q"/>
                             <constraint firstItem="i9d-40-YDf" firstAttribute="top" secondItem="ZGp-iO-0KS" secondAttribute="top" id="ShX-gR-GnX"/>
-                            <constraint firstItem="Pef-YV-oJW" firstAttribute="leading" secondItem="TCE-9g-7vh" secondAttribute="trailing" constant="32" id="T9d-Ku-VIG"/>
                             <constraint firstItem="qXs-71-w0E" firstAttribute="leading" secondItem="Pef-YV-oJW" secondAttribute="trailing" constant="8" symbolic="YES" id="UBH-uh-FWU"/>
-                            <constraint firstAttribute="bottom" secondItem="TCE-9g-7vh" secondAttribute="bottom" id="WCX-Bv-tSQ"/>
                             <constraint firstAttribute="bottom" secondItem="Pef-YV-oJW" secondAttribute="bottom" constant="20" symbolic="YES" id="Yec-G2-EY1"/>
                             <constraint firstAttribute="trailing" secondItem="qXs-71-w0E" secondAttribute="trailing" constant="20" symbolic="YES" id="eSZ-Ts-0BH"/>
-                            <constraint firstItem="wnc-XY-nRm" firstAttribute="leading" secondItem="TCE-9g-7vh" secondAttribute="leading" id="fug-v3-Eit"/>
                             <constraint firstItem="Pmg-uF-B6r" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leading" id="gNL-Oi-glW"/>
-                            <constraint firstItem="wnc-XY-nRm" firstAttribute="top" secondItem="bdc-N1-crn" secondAttribute="top" id="gqU-WU-ufg"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="ZGp-iO-0KS" secondAttribute="bottom" constant="10" id="oAR-qW-ONZ"/>
-                            <constraint firstItem="RUa-zm-dIm" firstAttribute="top" secondItem="wnc-XY-nRm" secondAttribute="bottom" constant="84" id="oMq-WP-RPw"/>
-                            <constraint firstItem="TCE-9g-7vh" firstAttribute="centerX" secondItem="Pmg-uF-B6r" secondAttribute="centerX" id="tH9-Sg-xDY"/>
+                            <constraint firstAttribute="centerX" secondItem="wnc-XY-nRm" secondAttribute="centerX" id="sH2-pA-o39"/>
+                            <constraint firstItem="wnc-XY-nRm" firstAttribute="top" secondItem="TvN-0d-DFh" secondAttribute="bottom" id="t0U-vo-nyd"/>
                             <constraint firstItem="GOG-Qa-flx" firstAttribute="top" secondItem="i9d-40-YDf" secondAttribute="top" id="vEm-9Z-6nU"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>

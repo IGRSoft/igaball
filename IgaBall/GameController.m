@@ -62,8 +62,11 @@ const CGFloat fadeDuration = 0.5;
 
     // Configure the view.
     SKView * skView = (SKView *)self.view;
+    
+#if DEBUG
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
+#endif
     
 	//Controlls
 	[self hideAllControlls];

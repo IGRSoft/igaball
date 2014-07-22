@@ -79,8 +79,8 @@ NSString *const ShadowEffectNodeKey = @"ShadowEffectNodeKey";
     
     // Set defaults
     self.fontColor = [UIColor whiteColor];
-    _offset = CGPointMake(2, -2);
-    _blurRadius = 5;
+    _offset = CGPointMake(1, -1);
+    _blurRadius = 3;
     _shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
     
     // Set observers

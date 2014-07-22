@@ -27,8 +27,8 @@
 		
         // 2
         BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
-        CGFloat titleFontSize = isIPhone ? 30.f : 50.f;
-        CGFloat textFontSize = isIPhone ? 25.f : 35.f;
+        CGFloat titleFontSize = isIPhone ? 25.f : 50.f;
+        CGFloat textFontSize = isIPhone ? 20.f : 35.f;
         CGFloat yOffset = isIPhone ? 10.f : 30.f;
         
         SKLabelNode *labelBack = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
