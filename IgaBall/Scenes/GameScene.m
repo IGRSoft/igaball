@@ -10,14 +10,20 @@
 #import "PillowObject.h"
 #import "BallObject.h"
 #import "Constants.h"
+#import "ShadowLabelNode.h"
 
 @interface GameScene () <SKPhysicsContactDelegate, PillowObjectDelegate>
 
-@property (strong) SKLabelNode  *scoreLabel;
+@property () SKLabelNode  *scoreLabel;
+@property () SKShapeNode  *scoreBorder;
+
 @property (assign) BOOL isGameOver;
 @property (nonatomic, assign) NSInteger score;
 @property (assign) CGFloat borderOffset;
-@property (strong) NSMutableArray *bals;
+
+@property (assign) BOOL useSound;
+
+@property () NSMutableArray *bals;
 
 @end
 
@@ -33,7 +39,9 @@
     if (self = [super initWithSize:aSize gameController:gGameController])
 	{
         /* Setup your scene here */
-		
+		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        self.useSound = ![ud boolForKey:kUseSound];
+        
 		self.physicsWorld.gravity = CGVectorMake(0,0);
 		self.physicsWorld.contactDelegate = self;
 		
@@ -89,12 +97,22 @@
 		[self addChild:offScreenNodeLeft];
 		
 		// Add Score
-		self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        self.scoreLabel.text = @"0";
-        self.scoreLabel.fontSize = 20;
-        self.scoreLabel.fontColor = [SKColor blackColor];
+        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+        
+        self.scoreBorder = [SKShapeNode node];
+        self.scoreBorder.lineWidth = 5;
+        self.scoreBorder.strokeColor = [UIColor whiteColor];
+        self.scoreBorder.position = CGPointMake(CGRectGetMidX(self.frame),
+											   self.frame.size.height - 47.f);
+        
+        [self addChild:self.scoreBorder];
+        
+        CGFloat titleFontSize = isIPhone ? 30.f : 50.f;
+        
+		self.scoreLabel = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
+        self.scoreLabel.fontSize = titleFontSize;
         self.scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-											   self.frame.size.height - 50.f);
+											   self.frame.size.height - 100.f);
         [self addChild:self.scoreLabel];
         
         self.score = 0;
@@ -263,7 +281,10 @@
 	
 	[pillow deactivateObject];
     
-    [self runAction:[SKAction playSoundFileNamed:@"pop.m4a" waitForCompletion:NO]];
+    if (self.useSound)
+    {
+        [self runAction:[SKAction playSoundFileNamed:@"pop.m4a" waitForCompletion:NO]];
+    }
 }
 
 - (void)wasFallStart
@@ -288,6 +309,24 @@
     dispatch_async(dispatch_get_main_queue(), ^{
 		
 		self.scoreLabel.text = [NSString stringWithFormat:@"%@", @(_score)];
+        
+        CGFloat height = 70.f;
+        CGFloat width = 70.f;
+        
+        if (score >= 1000)
+        {
+            width = 130;
+        }
+        else if (score >= 100)
+        {
+            width = 110;
+        }
+        else if (score >= 10)
+        {
+            width = 90;
+        }
+        
+        [self.scoreBorder setPath:CGPathCreateWithRoundedRect(CGRectMake(-(width*0.5), -height, width, height), (height*0.5), (height*0.5), nil)];
 	});
 }
 

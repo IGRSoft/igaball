@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5199451197EA445009684C4 /* Sniglet.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5199450197EA445009684C4 /* Sniglet.ttf */; };
+		A5199459197EAAE7009684C4 /* ShadowLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A5199458197EAAE7009684C4 /* ShadowLabelNode.m */; };
 		A52379501934C1E1007D34CC /* pop.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A523794F1934C1E1007D34CC /* pop.m4a */; };
 		A54FCAD51908F926009B5255 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAD41908F926009B5255 /* Foundation.framework */; };
 		A54FCAD71908F926009B5255 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAD61908F926009B5255 /* CoreGraphics.framework */; };
@@ -54,6 +56,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A5199450197EA445009684C4 /* Sniglet.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sniglet.ttf; sourceTree = "<group>"; };
+		A5199457197EAAE7009684C4 /* ShadowLabelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowLabelNode.h; sourceTree = "<group>"; };
+		A5199458197EAAE7009684C4 /* ShadowLabelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowLabelNode.m; sourceTree = "<group>"; };
 		A523794F1934C1E1007D34CC /* pop.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop.m4a; sourceTree = "<group>"; };
 		A54FCAD11908F926009B5255 /* IgaBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IgaBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A54FCAD41908F926009B5255 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -133,6 +138,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A519944F197EA445009684C4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A5199450197EA445009684C4 /* Sniglet.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A5199456197EAAE7009684C4 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				A5199457197EAAE7009684C4 /* ShadowLabelNode.h */,
+				A5199458197EAAE7009684C4 /* ShadowLabelNode.m */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		A54FCAC81908F926009B5255 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +194,7 @@
 		A54FCADC1908F926009B5255 /* IgaBall */ = {
 			isa = PBXGroup;
 			children = (
+				A5199456197EAAE7009684C4 /* CustomView */,
 				A5556F61190D1C670078C4C9 /* Oblects */,
 				A5556F57190D1C310078C4C9 /* Scenes */,
 				A54FCAE51908F926009B5255 /* AppDelegate.h */,
@@ -256,6 +279,7 @@
 		A5B177011908FA54000C9921 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A519944F197EA445009684C4 /* Fonts */,
 				A5556F42190C2FEC0078C4C9 /* Sound */,
 				A5B177021908FA54000C9921 /* Main_iPad.storyboard */,
 				A5B177041908FA54000C9921 /* Main_iPhone.storyboard */,
@@ -348,6 +372,7 @@
 			files = (
 				A5B1770E1908FA54000C9921 /* InfoPlist.strings in Resources */,
 				A5B1770C1908FA54000C9921 /* Images.xcassets in Resources */,
+				A5199451197EA445009684C4 /* Sniglet.ttf in Resources */,
 				A5E754B1196B382A006E4E47 /* game.m4a in Resources */,
 				A5E754B3196B382A006E4E47 /* main.m4a in Resources */,
 				A5B1770A1908FA54000C9921 /* Main_iPad.storyboard in Resources */,
@@ -382,6 +407,7 @@
 				A5556F5E190D1C310078C4C9 /* GameScene.m in Sources */,
 				A58E5C84192392A4004F95BC /* InfoScene.m in Sources */,
 				A5556F5F190D1C310078C4C9 /* LoadingScene.m in Sources */,
+				A5199459197EAAE7009684C4 /* ShadowLabelNode.m in Sources */,
 				A5556F60190D1C310078C4C9 /* MainMenuScene.m in Sources */,
 				A54FCAE31908F926009B5255 /* main.m in Sources */,
 				A5E754AD196B2AC2006E4E47 /* BaseScene.m in Sources */,

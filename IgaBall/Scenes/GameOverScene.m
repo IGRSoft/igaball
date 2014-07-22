@@ -8,6 +8,7 @@
 
 #import "GameOverScene.h"
 #import "Constants.h"
+#import "ShadowLabelNode.h"
 
 @implementation GameOverScene
 
@@ -24,10 +25,12 @@
         NSString * message = [NSString stringWithFormat:@"Your Score: %@", @(gGameController.score)];
 		
         // 3
-        SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+        CGFloat titleFontSize = isIPhone ? 30.f : 50.f;
+        
+        SKLabelNode *label = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
         label.text = message;
-        label.fontSize = 40;
-        label.fontColor = [SKColor blackColor];
+        label.fontSize = titleFontSize;
         
         CGFloat yOffset = 100.f;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)

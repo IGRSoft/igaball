@@ -77,7 +77,7 @@
                                 </connections>
                             </button>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="kfb-Uq-xZf" userLabel="Banner Bottom">
-                                <rect key="frame" x="272" y="702" width="480" height="66"/>
+                                <rect key="frame" x="128" y="702" width="768" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="5xU-VL-6Sg"/>
@@ -87,10 +87,10 @@
                                 </connections>
                             </adBannerView>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="4kw-Ls-hKY" userLabel="Banner Top">
-                                <rect key="frame" x="272" y="0.0" width="480" height="66"/>
+                                <rect key="frame" x="128" y="0.0" width="768" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="480" id="TCe-yl-9Qz"/>
+                                    <constraint firstAttribute="width" constant="768" id="TCe-yl-9Qz"/>
                                     <constraint firstAttribute="height" constant="66" id="q1E-X7-ZO5"/>
                                 </constraints>
                                 <connections>

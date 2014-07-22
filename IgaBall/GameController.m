@@ -51,7 +51,6 @@
 
 @end
 
-static NSString * const kUseSound = @"UseSound";
 const CGFloat fadeDuration = 0.5;
 
 
