@@ -35,6 +35,8 @@
 @property (assign) BOOL reShowLeaderboard;
 @property (assign, readwrite) NSInteger score;
 
+@property () NSArray *achievementDescriptions;
+
 - (IBAction)onTouchFacebook:(id)sender;
 - (IBAction)onTouchTwitter:(id)sender;
 - (IBAction)onTouchSound:(id)sender;
@@ -304,6 +306,15 @@ const CGFloat fadeDuration = 0.5;
     
     _score = aScore;
     
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	NSInteger totalBits = ![ud integerForKey:kUserDefaultsTotalBits];
+    totalBits += aScore;
+    
+	[ud setInteger:totalBits forKey:kUserDefaultsTotalBits];
+	[ud synchronize];
+    
+    [self reportAchievementsWithScore:aScore];
+    
     SKView * skView = (SKView *)self.view;
     SKScene * scene = [[GameOverScene alloc] initWithSize:skView.bounds.size gameController:self];
     
@@ -340,6 +351,13 @@ const CGFloat fadeDuration = 0.5;
             if (weakSelf.reShowLeaderboard)
             {
                 [weakSelf showLeaderboard:kLeaderboardID];
+            }
+            else
+            {
+                [GKAchievementDescription loadAchievementDescriptionsWithCompletionHandler:^(NSArray *descriptions, NSError *error) {
+                    
+                    weakSelf.achievementDescriptions = [[NSArray alloc] initWithArray:descriptions];
+                }];
             }
             
             weakSelf.reShowLeaderboard = NO;
@@ -389,6 +407,98 @@ const CGFloat fadeDuration = 0.5;
     }
 }
 
+#pragma mark - Achievement
+
+- (void)reportAchievementsWithScore:(CGFloat)aScore
+{
+    NSMutableArray* achievements = [NSMutableArray array];
+    
+    GKAchievement* achievement = nil;
+    
+    for (GKAchievementDescription *achievementDescription in self.achievementDescriptions)
+    {
+        achievement = [[GKAchievement alloc] initWithIdentifier:achievementDescription.identifier];
+        CGFloat neededResult = [self neededResultForAchievement:achievementDescription.identifier];
+        
+        if (neededResult < 0)
+        {
+            continue;
+        }
+        
+        achievement.percentComplete = MIN(aScore / neededResult * 100, 100);
+        
+        if (achievement.completed)
+        {
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            BOOL isDone = ![ud boolForKey:achievementDescription.identifier];
+            
+            if (!isDone)
+            {
+                [GKNotificationBanner showBannerWithTitle:achievementDescription.title message:achievementDescription.achievedDescription completionHandler:^{
+                    
+                }];
+                
+                [ud setBool:YES forKey:achievementDescription.identifier];
+                [ud synchronize];
+            }
+        }
+        
+        [achievements addObject:achievement];
+    }
+    
+    [self reportAchievement:achievements];   //Try to send achievement
+}
+
+
+- (void)reportAchievement:(NSArray *)anAchievements
+{
+    [GKAchievement reportAchievements:anAchievements withCompletionHandler:^(NSError *error) {
+    	if (error != nil) {
+        	NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
+}
+
+- (CGFloat)neededResultForAchievement:(NSString *)anAchievement
+{
+    CGFloat count = -1.f;
+    
+    if ([anAchievement isEqualToString:kAchievement10ID])
+    {
+        count = 10.f;
+    }
+    else if ([anAchievement isEqualToString:kAchievement25ID])
+    {
+        count = 25.f;
+    }
+    else if ([anAchievement isEqualToString:kAchievement50ID])
+    {
+        count = 50.f;
+    }
+    else if ([anAchievement isEqualToString:kAchievement75ID])
+    {
+        count = 75.f;
+    }
+    else if ([anAchievement isEqualToString:kAchievement100ID])
+    {
+        count = 100.f;
+    }
+    else if ([anAchievement isEqualToString:kAchievement200ID])
+    {
+        count = 200.f;
+    }
+    else if ([anAchievement isEqualToString:kAchievement1000ID])
+    {
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        NSInteger totalBits = ![ud integerForKey:kUserDefaultsTotalBits];
+        
+        count = 10000.f - totalBits;
+    }
+    
+    return count;
+    
+}
+
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)aGameCenterViewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -402,6 +512,7 @@ const CGFloat fadeDuration = 0.5;
 }
 
 #pragma mark - AD
+
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
 

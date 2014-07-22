@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -166,7 +166,7 @@
                             <constraint firstItem="Pef-YV-oJW" firstAttribute="top" secondItem="Pmg-uF-B6r" secondAttribute="bottom" constant="19" id="azq-rK-FHB"/>
                             <constraint firstItem="Pef-YV-oJW" firstAttribute="top" secondItem="qXs-71-w0E" secondAttribute="top" id="brn-os-8KK"/>
                             <constraint firstItem="Pef-YV-oJW" firstAttribute="leading" secondItem="TCE-9g-7vh" secondAttribute="trailing" constant="32" id="d2I-0c-0ng"/>
-                            <constraint firstItem="Pmg-uF-B6r" firstAttribute="centerX" secondItem="TCE-9g-7vh" secondAttribute="centerX" id="eQR-T3-zcv"/>
+                            <constraint firstItem="TCE-9g-7vh" firstAttribute="centerX" secondItem="Pmg-uF-B6r" secondAttribute="centerX" id="eQR-T3-zcv"/>
                             <constraint firstItem="TCE-9g-7vh" firstAttribute="top" secondItem="RUa-zm-dIm" secondAttribute="bottom" constant="8" symbolic="YES" id="gJy-DD-eDa"/>
                             <constraint firstAttribute="trailing" secondItem="qXs-71-w0E" secondAttribute="trailing" constant="20" symbolic="YES" id="rST-CZ-bCN"/>
                             <constraint firstItem="RUa-zm-dIm" firstAttribute="top" secondItem="wnc-XY-nRm" secondAttribute="bottom" constant="84" id="suk-dd-RlC"/>

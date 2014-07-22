@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BV1-FR-VrT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -77,27 +77,27 @@
                                 </connections>
                             </button>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="kfb-Uq-xZf" userLabel="Banner Bottom">
-                                <rect key="frame" x="128" y="702" width="480" height="66"/>
+                                <rect key="frame" x="272" y="702" width="480" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="KFJ-Xl-hVg"/>
+                                    <constraint firstAttribute="height" constant="66" id="5xU-VL-6Sg"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BV1-FR-VrT" id="j37-fz-jse"/>
                                 </connections>
                             </adBannerView>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="4kw-Ls-hKY" userLabel="Banner Top">
-                                <rect key="frame" x="128" y="0.0" width="480" height="66"/>
+                                <rect key="frame" x="272" y="0.0" width="480" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="W2U-Uj-OM1"/>
-                                    <constraint firstAttribute="width" constant="480" id="YH3-NJ-qUV"/>
+                                    <constraint firstAttribute="width" constant="480" id="TCe-yl-9Qz"/>
+                                    <constraint firstAttribute="height" constant="66" id="q1E-X7-ZO5"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BV1-FR-VrT" id="We7-bf-b8a"/>
                                 </connections>
                             </adBannerView>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJf-88-2Kd" userLabel="GameOver View">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJf-88-2Kd" userLabel="GameOver View">
                                 <rect key="frame" x="0.0" y="394" width="1024" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -148,22 +148,27 @@
                         <color key="backgroundColor" red="0.47058823529411764" green="0.74509803921568629" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="DZD-qG-vlw" firstAttribute="leading" secondItem="C1E-Mi-282" secondAttribute="trailing" constant="8" id="2fg-ya-xRR"/>
+                            <constraint firstItem="4kw-Ls-hKY" firstAttribute="centerX" secondItem="hJf-88-2Kd" secondAttribute="centerX" id="4x3-XP-p8k"/>
                             <constraint firstItem="3vz-qj-Tjg" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="5gQ-ku-tJl"/>
-                            <constraint firstAttribute="centerX" secondItem="kfb-Uq-xZf" secondAttribute="centerX" constant="144" id="AJV-If-rzb"/>
-                            <constraint firstItem="4kw-Ls-hKY" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="AXf-Wc-gxj"/>
+                            <constraint firstItem="4kw-Ls-hKY" firstAttribute="trailing" secondItem="kfb-Uq-xZf" secondAttribute="trailing" id="98B-Hq-TTF"/>
+                            <constraint firstItem="4kw-Ls-hKY" firstAttribute="leading" secondItem="kfb-Uq-xZf" secondAttribute="leading" id="Awe-3i-TXU"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="Ywc-Hq-3Ws" secondAttribute="bottom" constant="10" id="BPi-Zi-3Yy"/>
+                            <constraint firstItem="hJf-88-2Kd" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="BQ9-Aq-hrS"/>
                             <constraint firstAttribute="trailing" secondItem="DZD-qG-vlw" secondAttribute="trailing" constant="20" id="CP5-FR-ayF"/>
-                            <constraint firstItem="4kw-Ls-hKY" firstAttribute="leading" secondItem="kfb-Uq-xZf" secondAttribute="leading" id="Dyy-ru-bgl"/>
+                            <constraint firstAttribute="bottom" secondItem="kfb-Uq-xZf" secondAttribute="bottom" id="F5I-q4-QNL"/>
                             <constraint firstItem="Ywc-Hq-3Ws" firstAttribute="leading" secondItem="S72-1T-Dij" secondAttribute="trailing" constant="8" id="KZk-Ri-ALF"/>
                             <constraint firstItem="S72-1T-Dij" firstAttribute="leading" secondItem="NhM-Uo-mqQ" secondAttribute="trailing" constant="8" id="LQj-fO-cCR"/>
+                            <constraint firstItem="4kw-Ls-hKY" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="QC3-VF-kgL"/>
                             <constraint firstAttribute="centerX" secondItem="3vz-qj-Tjg" secondAttribute="centerX" id="QRb-Z8-biQ"/>
+                            <constraint firstItem="hJf-88-2Kd" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" constant="394" id="SgX-k1-bKL"/>
                             <constraint firstItem="NhM-Uo-mqQ" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" constant="20" id="Suv-KR-PF2"/>
-                            <constraint firstAttribute="centerX" secondItem="4kw-Ls-hKY" secondAttribute="centerX" constant="144" id="TqJ-yT-lzc"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="NhM-Uo-mqQ" secondAttribute="bottom" constant="10" id="U3V-Ml-99O"/>
-                            <constraint firstAttribute="bottom" secondItem="kfb-Uq-xZf" secondAttribute="bottom" id="UfK-vP-4uQ"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="DZD-qG-vlw" secondAttribute="bottom" constant="20" id="fKd-q5-yl6"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="C1E-Mi-282" secondAttribute="bottom" constant="20" id="kOI-H2-qyl"/>
                             <constraint firstItem="aVg-JY-jeM" firstAttribute="top" secondItem="S72-1T-Dij" secondAttribute="bottom" constant="10" id="nKX-22-QBQ"/>
+                            <constraint firstItem="4kw-Ls-hKY" firstAttribute="centerX" secondItem="3vz-qj-Tjg" secondAttribute="centerX" id="t8e-Bm-NIi"/>
+                            <constraint firstItem="kfb-Uq-xZf" firstAttribute="centerX" secondItem="hJf-88-2Kd" secondAttribute="centerX" id="wCJ-6J-jIR"/>
+                            <constraint firstItem="Ywc-Hq-3Ws" firstAttribute="top" secondItem="hJf-88-2Kd" secondAttribute="bottom" constant="73" id="zxA-A5-XEN"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>

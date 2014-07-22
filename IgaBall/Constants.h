@@ -30,6 +30,18 @@ typedef NS_ENUM(NSUInteger, GameScheme)
 
 #define kLeaderboardID @"com.igrsoft.IgaBallLeaderboard"
 
+#define kAchievement10ID   @"10points"
+#define kAchievement25ID   @"25points"
+#define kAchievement50ID   @"50points"
+#define kAchievement75ID   @"75points"
+#define kAchievement100ID  @"100points"
+#define kAchievement200ID  @"200points"
+#define kAchievement1000ID @"1000points"
+
+#define kAchievementCount  7
+
+#define kUserDefaultsTotalBits @"TotalBits"
+
 #define DEFAULT_BG_COLOR [SKColor colorWithRed:115.f/255.f green:170.f/255.f blue:215.f/255.f alpha:1.000]
 
 #endif
