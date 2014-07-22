@@ -40,7 +40,7 @@
 	{
         /* Setup your scene here */
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        self.useSound = ![ud boolForKey:kUseSound];
+        self.useSound = [ud boolForKey:kUseSound];
         
 		self.physicsWorld.gravity = CGVectorMake(0,0);
 		self.physicsWorld.contactDelegate = self;
@@ -283,7 +283,9 @@
     
     if (self.useSound)
     {
-        [self runAction:[SKAction playSoundFileNamed:@"pop.m4a" waitForCompletion:NO]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self runAction:[SKAction playSoundFileNamed:@"pop.m4a" waitForCompletion:NO]];
+        });
     }
 }
 
@@ -326,7 +328,9 @@
             width = 90;
         }
         
-        [self.scoreBorder setPath:CGPathCreateWithRoundedRect(CGRectMake(-(width*0.5), -height, width, height), (height*0.5), (height*0.5), nil)];
+        CGPathRef path = CGPathCreateWithRoundedRect(CGRectMake(-(width*0.5), -height, width, height), (height*0.5), (height*0.5), nil);
+        [self.scoreBorder setPath:path];
+        CGPathRelease(path);
 	});
 }
 
