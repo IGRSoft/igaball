@@ -28,7 +28,7 @@
 @end
 
 #define PILLOWCOUNT 3
-#define OFFSET_Y	40
+#define OFFSET_Y	0
 
 @implementation GameScene
 
@@ -38,7 +38,39 @@
     
     if (self = [super initWithSize:aSize gameController:gGameController])
 	{
-        /* Setup your scene here */
+        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+        
+		self.name = NSStringFromClass([self class]);
+		
+		SKTexture *texture = nil;
+		if (isIPhone)
+		{
+            BOOL isIPhone5 = (([[UIScreen mainScreen] bounds].size.height - 568.f)? NO : YES);
+            NSString *imgName = [NSString stringWithFormat:@"bg_game%@", isIPhone5 ? @"-568h" : @""];
+			texture = [SKTexture textureWithImageNamed:imgName];
+		}
+		else
+		{
+			texture = [SKTexture textureWithImageNamed:@"bg_game"];
+		}
+        
+        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
+        
+        if (isIPhone)
+        {
+            bgImage.zRotation = M_PI / 2;
+            
+            bgImage.position = CGPointMake(CGRectGetMidY(self.frame),
+                                           CGRectGetMidX(self.frame));
+        }
+        else
+        {
+            bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
+                                           CGRectGetMidY(self.frame));
+        }
+        
+        [self addChild:bgImage];
+        
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         self.useSound = [ud boolForKey:kUseSound];
         
@@ -53,42 +85,34 @@
 		
 		self.backgroundColor = DEFAULT_BG_COLOR;
 		
-		SKTexture *texture = [SKTexture textureWithImageNamed:@"Grass"];
-		self.borderOffset = texture.size.width * 2;
-		
-        SKSpriteNode *grassRight = [SKSpriteNode spriteNodeWithTexture:texture size:texture.size];
-		
-        grassRight.position = CGPointMake(self.frame.size.width - texture.size.width * 0.5f,
-                                       CGRectGetMidY(self.frame));
-	
-        [self addChild:grassRight];
-		
-		[self addPillowToFrame:grassRight.frame rotate:YES];
-		
-		SKSpriteNode *grassLeft = [SKSpriteNode spriteNodeWithTexture:texture size:texture.size];
-		grassLeft.zRotation = M_PI;
-        grassLeft.position = CGPointMake(texture.size.width * 0.5f,
-										  CGRectGetMidY(self.frame));
+		self.borderOffset = 50.f;
         
-        [self addChild:grassLeft];
+        CGPoint borderPoint = CGPointMake(self.frame.size.width - self.borderOffset,
+                                       CGRectGetMidY(self.frame));
+        CGRect borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
+        
+        SKSpriteNode *offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:borderRect.size];
+		offScreenNodeRight.position = CGPointMake(borderPoint.x + self.borderOffset,
+												  borderPoint.y);
+        
+		[self addPillowToFrame:borderRect rotate:YES];
+        
+        borderPoint = CGPointMake(self.borderOffset * 0.5,
+                                  CGRectGetMidY(self.frame));
+        borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
 		
-		[self addPillowToFrame:grassLeft.frame rotate:NO];
-		
+        SKSpriteNode *offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:borderRect.size];
+		offScreenNodeLeft.position = CGPointMake(borderPoint.x - self.borderOffset,
+												 borderPoint.y);
+        
+		[self addPillowToFrame:borderRect rotate:NO];
 		
 		//Add offscreen Collision
-		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:texture.size];
+		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:borderRect.size];
 		physicsBody.dynamic = NO;
 		physicsBody.categoryBitMask = offScreenCategory;
 		physicsBody.contactTestBitMask = ballCategory;
 		physicsBody.collisionBitMask = 0;
-		
-		SKSpriteNode *offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:texture.size];
-		offScreenNodeRight.position = CGPointMake(grassRight.position.x + grassRight.size.width,
-												  grassRight.position.y);
-		
-		SKSpriteNode *offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:texture.size];
-		offScreenNodeLeft.position = CGPointMake(grassLeft.position.x - grassLeft.size.width,
-												 grassLeft.position.y);
 		
 		offScreenNodeRight.physicsBody = [physicsBody copy];
 		[self addChild:offScreenNodeRight];
@@ -97,8 +121,6 @@
 		[self addChild:offScreenNodeLeft];
 		
 		// Add Score
-        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
-        
         self.scoreBorder = [SKShapeNode node];
         self.scoreBorder.lineWidth = 5;
         self.scoreBorder.strokeColor = [UIColor whiteColor];
@@ -143,7 +165,7 @@
 - (void)addPillowToFrame:(CGRect)rect rotate:(BOOL)rotate
 {
 	CGFloat iPhoneScale = 1.f;
-    CGFloat yOffset = 90.f;
+    CGFloat yOffset = 20.f;
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
@@ -155,7 +177,7 @@
 	{
 		PillowObject *pillow = [[PillowObject alloc] init];
 		pillow.position = CGPointMake(CGRectGetMidX(rect) + (rotate ? -(15*iPhoneScale) : (15*iPhoneScale)),
-									  yOffset + OFFSET_Y*iPhoneScale * i + pillow.size.height * (i + 1));
+									  yOffset + OFFSET_Y*iPhoneScale * i + pillow.size.height * (i + 1) - pillow.size.height * 0.5);
 		
 		pillow.delegate = self;
 		
@@ -173,7 +195,7 @@
 {
 	BallObject *ball = [[BallObject alloc] init];
 	
-    NSInteger screeWidth = self.frame.size.width - self.borderOffset * 2;
+    NSInteger screeWidth = self.frame.size.width - self.borderOffset * 4;
 	CGFloat minPos = self.borderOffset;
 	CGFloat offset = arc4random() % screeWidth;
 	ball.position = CGPointMake(minPos + offset,
@@ -181,7 +203,7 @@
     
 	[self addChild:ball];
 	
-    [self.bals addObject:ball];
+    //[self.bals addObject:ball];
 }
 
 - (void)startMoveBall:(BallObject *)ball

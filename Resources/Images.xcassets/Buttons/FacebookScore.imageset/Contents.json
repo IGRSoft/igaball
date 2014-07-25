@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "FacebookScore-iPhone.png"
+      "filename" : "facebook_button2.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "FacebookScore.png"
+      "filename" : "facebook_button2-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "FacebookScore@2x.png"
+      "filename" : "facebook_button2@2x.png"
     }
   ],
   "info" : {

@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "Pillow-iPhone@2x.png"
+      "filename" : "swimboard.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "Pillow.png"
+      "filename" : "swimboard-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "Pillow@2x.png"
+      "filename" : "swimboard@2x.png"
     }
   ],
   "info" : {

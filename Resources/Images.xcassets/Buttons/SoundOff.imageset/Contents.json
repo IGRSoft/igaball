@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "sound-off-iPhone.png"
+      "filename" : "no_sound_icon.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "sound-off.png"
+      "filename" : "no_sound_icon-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "sound-off@2x.png"
+      "filename" : "no_sound_icon@2x.png"
     }
   ],
   "info" : {

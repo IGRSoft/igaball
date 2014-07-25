@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "TryAgain-iPhone.png"
+      "filename" : "reset_game_button.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "TryAgain.png"
+      "filename" : "reset_game_button-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "TryAgain@2x.png"
+      "filename" : "reset_game_button@2x.png"
     }
   ],
   "info" : {

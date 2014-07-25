@@ -199,16 +199,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Facebook" width="64" height="64"/>
-        <image name="FacebookScore" width="64" height="64"/>
-        <image name="GameCenter" width="64" height="64"/>
-        <image name="Info" width="32" height="32"/>
-        <image name="Play" width="128" height="128"/>
-        <image name="SoundOn" width="32" height="32"/>
-        <image name="StopGame" width="64" height="64"/>
-        <image name="TryAgain" width="64" height="64"/>
-        <image name="TwittScore" width="64" height="64"/>
-        <image name="Twitter" width="64" height="64"/>
+        <image name="Facebook" width="142" height="171"/>
+        <image name="FacebookScore" width="96" height="160"/>
+        <image name="GameCenter" width="80" height="95"/>
+        <image name="Info" width="34" height="35"/>
+        <image name="Play" width="128" height="140"/>
+        <image name="SoundOn" width="34" height="35"/>
+        <image name="StopGame" width="96" height="160"/>
+        <image name="TryAgain" width="96" height="160"/>
+        <image name="TwittScore" width="96" height="160"/>
+        <image name="Twitter" width="80" height="95"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>

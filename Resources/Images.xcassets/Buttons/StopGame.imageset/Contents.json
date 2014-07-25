@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "StopGame-iPhone.png"
+      "filename" : "close_game_button.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "StopGame.png"
+      "filename" : "close_game_button-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "StopGame@2x.png"
+      "filename" : "close_game_button@2x.png"
     }
   ],
   "info" : {

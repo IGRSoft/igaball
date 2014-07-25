@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "Twitter-iPhone.png"
+      "filename" : "twitter_button.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "Twitter.png"
+      "filename" : "twitter_button-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "Twitter@2x.png"
+      "filename" : "twitter_button@2x.png"
     }
   ],
   "info" : {

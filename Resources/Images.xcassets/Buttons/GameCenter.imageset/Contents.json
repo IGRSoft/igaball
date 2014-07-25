@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "Game-Center-iPhone.png"
+      "filename" : "app_center_button.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "Game-Center.png"
+      "filename" : "app_center_button-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "Game-Center@2x.png"
+      "filename" : "app_center_button@2x.png"
     }
   ],
   "info" : {

@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "Play-iPhone.png"
+      "filename" : "play_button.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "Play.png"
+      "filename" : "play_button-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "Play@2x.png"
+      "filename" : "play_button@2x.png"
     }
   ],
   "info" : {

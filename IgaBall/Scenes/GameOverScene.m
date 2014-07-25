@@ -32,10 +32,10 @@
         label.text = message;
         label.fontSize = titleFontSize;
         
-        CGFloat yOffset = 100.f;
+        CGFloat yOffset = 200.f;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
         {
-            yOffset = 50.f;
+            yOffset = 100.f;
         }
         
         label.position = CGPointMake(self.size.width/2, self.size.height/2 + yOffset);
