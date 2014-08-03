@@ -19,26 +19,35 @@
     if (self = [super initWithSize:aSize gameController:gGameController])
 	{
         // 1
-        self.backgroundColor = DEFAULT_BG_COLOR;
+        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+        		
+		SKTexture *texture = [SKTexture textureWithImageNamed:@"bg_gameover"];
+		SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
+        
+        bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
+                                       CGRectGetMidY(self.frame));
+        
+        bgImage.zPosition = kPositionZBGImage;
+        [self addChild:bgImage];
 		
         // 2
         NSString * message = [NSString stringWithFormat:@"Your Score: %@", @(gGameController.score)];
 		
         // 3
-        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
         CGFloat titleFontSize = isIPhone ? 30.f : 50.f;
         
-        SKLabelNode *label = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
+        ShadowLabelNode *label = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
         label.text = message;
         label.fontSize = titleFontSize;
         
-        CGFloat yOffset = 200.f;
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        CGFloat yOffset = 180.f;
+        if (isIPhone)
         {
-            yOffset = 100.f;
+            yOffset = 60.f;
         }
         
         label.position = CGPointMake(self.size.width/2, self.size.height/2 + yOffset);
+        label.zPosition = kPositionZLabels;
         [self addChild:label];
     }
     

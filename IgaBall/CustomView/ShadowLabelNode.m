@@ -81,7 +81,7 @@ NSString *const ShadowEffectNodeKey = @"ShadowEffectNodeKey";
     self.fontColor = [UIColor whiteColor];
     _offset = CGPointMake(1, -1);
     _blurRadius = 3;
-    _shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
+    _shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.99];
     
     // Set observers
     for (NSString *keyPath in @[@"text", @"fontName", @"fontSize", @"verticalAlignmentMode", @"horizontalAlignmentMode", @"fontColor"])

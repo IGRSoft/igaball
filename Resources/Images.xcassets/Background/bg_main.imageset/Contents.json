@@ -6,22 +6,24 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "bg_main-iphone@2x.png"
     },
     {
       "idiom" : "iphone",
+      "filename" : "bg_main-iphone-568h@2x.png",
       "subtype" : "retina4",
       "scale" : "2x"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "start_screen_bg.png"
+      "filename" : "bg_main.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "start_screen_bg@2x.png"
+      "filename" : "bg_main@2x.png"
     }
   ],
   "info" : {

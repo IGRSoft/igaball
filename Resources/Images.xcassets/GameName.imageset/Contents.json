@@ -7,17 +7,17 @@
     {
       "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "GameName-iPhone@2x.png"
+      "filename" : "Logo.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "1x",
-      "filename" : "GameName.png"
+      "filename" : "Logo-1.png"
     },
     {
       "idiom" : "ipad",
       "scale" : "2x",
-      "filename" : "GameName@2x.png"
+      "filename" : "Logo@2x.png"
     }
   ],
   "info" : {

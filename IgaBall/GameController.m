@@ -13,15 +13,14 @@
 #import "MainMenuScene.h"
 #import "GameOverScene.h"
 #import "InfoScene.h"
+#import "SoundMaster.h"
 
 @import iAd;
-@import AVFoundation;
 @import GameKit;
 @import Social;
 
 @interface GameController () <ADBannerViewDelegate, GKGameCenterControllerDelegate>
 
-@property () AVAudioPlayer * backgroundMusicPlayer;
 @property (weak) IBOutlet UIButton *btnFacebook;
 @property (weak) IBOutlet UIButton *btnTwitter;
 @property (weak) IBOutlet UIButton *btnSound;
@@ -112,13 +111,13 @@ const CGFloat fadeDuration = 0.5;
 
 - (IBAction)onTouchFacebook:(id)sender
 {
-	NSString *msg = @"I foung excellent game IgaBall, You can find it in iTunes Store: http://igrsoft.com";
+	NSString *msg = @"I have found excellent game - IgaBall, You can find it in iTunes Store: http://igrsoft.com";
     [self shareText:msg forServiceType:SLServiceTypeTwitter];
 }
 
 - (IBAction)onTouchTwitter:(id)sender
 {
-	NSString *msg = @"I foung excellent game IgaBall, You can find it in iTunes Store: http://igrsoft.com";
+	NSString *msg = @"I have found excellent game - IgaBall, You can find it in iTunes Store: http://igrsoft.com";
     [self shareText:msg forServiceType:SLServiceTypeTwitter];
 }
 
@@ -131,7 +130,7 @@ const CGFloat fadeDuration = 0.5;
 	
 	if (!useSound)
 	{
-		[self.backgroundMusicPlayer stop];
+		[[SoundMaster sharedMaster] pauseMusic];
 	}
 	else
 	{
@@ -155,11 +154,6 @@ const CGFloat fadeDuration = 0.5;
     [skView presentScene:scene transition:reveal];
     	
 	[self playMusic:@"game"];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fadeDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [self.adBannerBottom setHidden:NO];
-    });
 }
 
 - (IBAction)onTouchGameCenter:(id)sender
@@ -203,10 +197,11 @@ const CGFloat fadeDuration = 0.5;
 #pragma mark - Sound
 - (void)playMusic:(NSString *)aName
 {
-    [self playMusic:aName loopCount:-1];
+    //return;
+    [self playMusic:aName loop:YES];
 }
 
-- (void)playMusic:(NSString *)aName loopCount:(NSInteger)aLoopCount
+- (void)playMusic:(NSString *)aName loop:(BOOL)aLoop
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 	if (![ud objectForKey:kUseSound])
@@ -219,22 +214,13 @@ const CGFloat fadeDuration = 0.5;
 	{
 		return;
 	}
-	
-    NSURL *backgroundMusicURL = [[NSBundle mainBundle] URLForResource:aName withExtension:@"m4a"];
-    if ([self.backgroundMusicPlayer.url isEqual:backgroundMusicURL])
-    {
-        return;
-    }
     
-	dispatch_async(dispatch_get_main_queue(), ^{
-		
-		NSError *error;
-		
-		self.backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicURL error:&error];
-		self.backgroundMusicPlayer.numberOfLoops = aLoopCount;
-		[self.backgroundMusicPlayer prepareToPlay];
-		[self.backgroundMusicPlayer play];
-	});
+    NSString *soundName = [aName stringByAppendingPathExtension:@"m4a"];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [[SoundMaster sharedMaster] playMusic:soundName loop:aLoop];
+    });
 }
 
 #pragma mark - Social
@@ -289,7 +275,7 @@ const CGFloat fadeDuration = 0.5;
     
     [self playMusic:@"main"];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fadeDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [self.btnFacebook setHidden:NO];
         [self.btnTwitter setHidden:NO];
@@ -298,7 +284,9 @@ const CGFloat fadeDuration = 0.5;
         [self.btnGameCenter setHidden:NO];
         [self.btnInfo setHidden:NO];
         
-        [self.adBannerTop setHidden:NO];
+        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+        
+        [self.adBannerTop setHidden:isIPhone];
     });
 }
 
@@ -323,9 +311,9 @@ const CGFloat fadeDuration = 0.5;
     SKTransition *reveal = [SKTransition fadeWithDuration:fadeDuration];
     [skView presentScene:scene transition:reveal];
     
-    [self playMusic:@"gameover" loopCount:0];
+    [self playMusic:@"gameover" loop:NO];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fadeDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [self.gameOverView setHidden:NO];
         [self.adBannerTop setHidden:NO];

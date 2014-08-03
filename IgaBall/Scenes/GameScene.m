@@ -7,15 +7,17 @@
 //
 
 #import "GameScene.h"
-#import "PillowObject.h"
+#import "TrampolineObject.h"
 #import "BallObject.h"
 #import "Constants.h"
 #import "ShadowLabelNode.h"
+#import "SoundMaster.h"
 
-@interface GameScene () <SKPhysicsContactDelegate, PillowObjectDelegate>
+@interface GameScene () <SKPhysicsContactDelegate, TrampolineObjectDelegate>
 
-@property () SKLabelNode  *scoreLabel;
+@property () ShadowLabelNode  *scoreLabel;
 @property () SKShapeNode  *scoreBorder;
+@property () SKShapeNode  *scoreBorderShadow;
 
 @property (assign) BOOL isGameOver;
 @property (nonatomic, assign) NSInteger score;
@@ -23,12 +25,14 @@
 
 @property (assign) BOOL useSound;
 
+@property () SKAction *collisionSound;
+
 @property () NSMutableArray *bals;
 
 @end
 
-#define PILLOWCOUNT 3
-#define OFFSET_Y	0
+#define TRAMPOLINECOUNT 3
+#define OFFSET_Y	20
 
 @implementation GameScene
 
@@ -38,37 +42,16 @@
     
     if (self = [super initWithSize:aSize gameController:gGameController])
 	{
-        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
         
-		self.name = NSStringFromClass([self class]);
-		
-		SKTexture *texture = nil;
-		if (isIPhone)
-		{
-            BOOL isIPhone5 = (([[UIScreen mainScreen] bounds].size.height - 568.f)? NO : YES);
-            NSString *imgName = [NSString stringWithFormat:@"bg_game%@", isIPhone5 ? @"-568h" : @""];
-			texture = [SKTexture textureWithImageNamed:imgName];
-		}
-		else
-		{
-			texture = [SKTexture textureWithImageNamed:@"bg_game"];
-		}
+		SKTexture *texture = [SKTexture textureWithImageNamed:@"bg_game"];
         
         SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
         
-        if (isIPhone)
-        {
-            bgImage.zRotation = M_PI / 2;
-            
-            bgImage.position = CGPointMake(CGRectGetMidY(self.frame),
-                                           CGRectGetMidX(self.frame));
-        }
-        else
-        {
-            bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
-                                           CGRectGetMidY(self.frame));
-        }
+        bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
+                                       CGRectGetMidY(self.frame));
         
+        bgImage.zPosition = kPositionZBGImage;
         [self addChild:bgImage];
         
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -80,9 +63,7 @@
 		self.isGameOver = NO;
 		self.score = -1;
 		self.bals = [NSMutableArray array];
-        
-		self.name = NSStringFromClass([self class]);
-		
+        		
 		self.backgroundColor = DEFAULT_BG_COLOR;
 		
 		self.borderOffset = 50.f;
@@ -91,21 +72,21 @@
                                        CGRectGetMidY(self.frame));
         CGRect borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
         
-        SKSpriteNode *offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:borderRect.size];
+        SKSpriteNode *offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(CGRectGetWidth(self.frame), borderRect.size.height)];
 		offScreenNodeRight.position = CGPointMake(borderPoint.x + self.borderOffset,
 												  borderPoint.y);
         
-		[self addPillowToFrame:borderRect rotate:YES];
+		[self addTrampolineToFrame:borderRect rotate:YES];
         
         borderPoint = CGPointMake(self.borderOffset * 0.5,
                                   CGRectGetMidY(self.frame));
         borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
 		
-        SKSpriteNode *offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:borderRect.size];
+        SKSpriteNode *offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(CGRectGetWidth(self.frame), borderRect.size.height)];
 		offScreenNodeLeft.position = CGPointMake(borderPoint.x - self.borderOffset,
 												 borderPoint.y);
         
-		[self addPillowToFrame:borderRect rotate:NO];
+		[self addTrampolineToFrame:borderRect rotate:NO];
 		
 		//Add offscreen Collision
 		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:borderRect.size];
@@ -121,26 +102,49 @@
 		[self addChild:offScreenNodeLeft];
 		
 		// Add Score
-        self.scoreBorder = [SKShapeNode node];
-        self.scoreBorder.lineWidth = 5;
-        self.scoreBorder.strokeColor = [UIColor whiteColor];
-        self.scoreBorder.position = CGPointMake(CGRectGetMidX(self.frame),
-											   self.frame.size.height - 47.f);
-        
-        [self addChild:self.scoreBorder];
         
         CGFloat titleFontSize = isIPhone ? 30.f : 50.f;
         
 		self.scoreLabel = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
         self.scoreLabel.fontSize = titleFontSize;
         self.scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-											   self.frame.size.height - 100.f);
+											   self.frame.size.height - (isIPhone ? 40 : 100.f));
+        self.scoreLabel.zPosition = kPositionZLabels;
         [self addChild:self.scoreLabel];
         
+        self.scoreBorder = [SKShapeNode node];
+        self.scoreBorder.lineWidth = isIPhone ? 3 : 5.f;
+        self.scoreBorder.strokeColor = [UIColor whiteColor];
+        self.scoreBorder.zPosition = kPositionZLabels;
+        
+        self.scoreBorderShadow = [self.scoreBorder copy];
+        self.scoreBorderShadow.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        self.scoreBorderShadow.glowWidth = 3;
+        self.scoreBorderShadow.position = CGPointMake(1, -1);
+        self.scoreBorderShadow.zPosition = kPositionZLabels - 1;
+        
+        [self.scoreLabel addChild:self.scoreBorder];
+        [self.scoreLabel addChild:self.scoreBorderShadow];
+        
         self.score = 0;
+        
+        self.collisionSound = [SKAction runBlock:^{
+            
+            [[SoundMaster sharedMaster] playEffect:@"pop.m4a"];
+        }];
     }
 	
     return self;
+}
+
+- (void)dealloc
+{
+    [self.scoreLabel removeAllChildren];
+    [self.scoreLabel removeFromParent];
+    for (BallObject *bal in self.bals)
+    {
+        [bal removeFromParent];
+    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -154,39 +158,46 @@
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
 	
-    if ([node.name isEqualToString:NSStringFromClass([PillowObject class])])
+    if ([node.name isEqualToString:NSStringFromClass([TrampolineObject class])])
 	{
-        NSLog(@"Pillow was touched!");
-        PillowObject *pillow = (PillowObject *)node.parent;
-		[pillow activateObjectWitDuration:YES];
+        NSLog(@"Trampoline was touched!");
+        TrampolineObject *trampoline = (TrampolineObject *)node.parent;
+		[trampoline activateObjectWitDuration:YES];
     }
 }
 
-- (void)addPillowToFrame:(CGRect)rect rotate:(BOOL)rotate
+- (void)addTrampolineToFrame:(CGRect)rect rotate:(BOOL)rotate
 {
 	CGFloat iPhoneScale = 1.f;
-    CGFloat yOffset = 20.f;
+    CGFloat yOffset = 10.f;
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+    
+    if (isIPhone)
     {
         iPhoneScale = 0.5f;
-        yOffset = 0.f;
+        yOffset = -40.f;
     }
     
-	for (NSUInteger i = 0 ; i < PILLOWCOUNT ; ++i)
+	for (NSUInteger i = 0 ; i < TRAMPOLINECOUNT ; ++i)
 	{
-		PillowObject *pillow = [[PillowObject alloc] init];
-		pillow.position = CGPointMake(CGRectGetMidX(rect) + (rotate ? -(15*iPhoneScale) : (15*iPhoneScale)),
-									  yOffset + OFFSET_Y*iPhoneScale * i + pillow.size.height * (i + 1) - pillow.size.height * 0.5);
+        CGFloat x = CGRectGetMidX(rect) + (rotate ? -15 : 15);
+        if (isIPhone)
+        {
+            x = CGRectGetMidX(rect) + (rotate ? 15 : -15);
+        }
+        
+		TrampolineObject *trampoline = [[TrampolineObject alloc] initLeftOrRight:rotate];
+		trampoline.position = CGPointMake(x,
+									  yOffset + OFFSET_Y*iPhoneScale * i + trampoline.size.height * (i + 1));
 		
-		pillow.delegate = self;
-		
-		[self addChild:pillow];
+		trampoline.delegate = self;
+		trampoline.zPosition = kPositionZTrampoline;
+		[self addChild:trampoline];
 		
 		if (rotate)
 		{
-			pillow.zRotation = M_PI;
-			[self addBallToPoint:pillow.position];
+			[self addBallToPoint:trampoline.position];
 		}
 	}
 }
@@ -196,14 +207,14 @@
 	BallObject *ball = [[BallObject alloc] init];
 	
     NSInteger screeWidth = self.frame.size.width - self.borderOffset * 4;
-	CGFloat minPos = self.borderOffset;
+	CGFloat minPos = self.borderOffset * 2;
 	CGFloat offset = arc4random() % screeWidth;
 	ball.position = CGPointMake(minPos + offset,
 								point.y);
-    
+    ball.zPosition = kPositionZBall;
 	[self addChild:ball];
 	
-    //[self.bals addObject:ball];
+    [self.bals addObject:ball];
 }
 
 - (void)startMoveBall:(BallObject *)ball
@@ -279,13 +290,13 @@
 	
     // 2
     if ((firstBody.categoryBitMask & ballCategory) != 0 &&
-        (secondBody.categoryBitMask & pillowCategory) != 0)
+        (secondBody.categoryBitMask & trampolineCategory) != 0)
     {
-        [self ball:(BallObject *)firstBody.node didCollideWithPillow:(PillowObject *)secondBody.node];
+        [self ball:(BallObject *)firstBody.node didCollideWithTrampoline:(TrampolineObject *)secondBody.node];
     }
 }
 
-- (void)ball:(BallObject *)ball didCollideWithPillow:(PillowObject *)pillow
+- (void)ball:(BallObject *)ball didCollideWithTrampoline:(TrampolineObject *)trampoline
 {
 	DBNSLog(@"%s", __func__);
 	
@@ -301,13 +312,11 @@
 	SKAction *actionMove = [self actionBall:ball destination:realDest];
     [ball runAction:[SKAction sequence:@[actionMove]]];
 	
-	[pillow deactivateObject];
+	[trampoline deactivateObject];
     
     if (self.useSound)
     {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self runAction:[SKAction playSoundFileNamed:@"pop.m4a" waitForCompletion:NO]];
-        });
+        [trampoline runAction:self.collisionSound];
     }
 }
 
@@ -334,8 +343,10 @@
 		
 		self.scoreLabel.text = [NSString stringWithFormat:@"%@", @(_score)];
         
-        CGFloat height = 70.f;
-        CGFloat width = 70.f;
+        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+        
+        CGFloat height = isIPhone ? 40.f : 70.f;
+        CGFloat width = isIPhone ? 40.f : 70.f;
         
         if (score >= 1000)
         {
@@ -350,8 +361,9 @@
             width = 90;
         }
         
-        CGPathRef path = CGPathCreateWithRoundedRect(CGRectMake(-(width*0.5), -height, width, height), (height*0.5), (height*0.5), nil);
+        CGPathRef path = CGPathCreateWithRoundedRect(CGRectMake(-(width*0.5), -(height*0.25) + self.scoreBorder.lineWidth * 0.5, width, height), (height*0.5), (height*0.5), nil);
         [self.scoreBorder setPath:path];
+        [self.scoreBorderShadow setPath:path];
         CGPathRelease(path);
 	});
 }

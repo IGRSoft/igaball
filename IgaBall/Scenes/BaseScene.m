@@ -21,6 +21,8 @@
     if (self = [super initWithSize:aSize])
 	{
         self.gameController = gGameController;
+        
+        self.name = NSStringFromClass([self class]);
     }
     
     return self;

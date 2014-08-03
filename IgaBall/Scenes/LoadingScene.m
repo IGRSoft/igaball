@@ -7,6 +7,7 @@
 //
 
 #import "LoadingScene.h"
+#import "SoundMaster.h"
 
 @interface LoadingScene ()
 
@@ -21,11 +22,13 @@
     if (self = [super initWithSize:aSize gameController:gGameController])
 	{
         /* Setup your scene here */
-		
-        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+		[[SoundMaster sharedMaster] preloadMusic:@"game.m4a"];
+        [[SoundMaster sharedMaster] preloadMusic:@"gameover.m4a"];
+        [[SoundMaster sharedMaster] preloadEffect:@"main.m4a"];
+        [[SoundMaster sharedMaster] preloadEffect:@"pop.m4a"];
         
-		self.name = NSStringFromClass([self class]);
-		
+        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+        		
 		SKTexture *texture = nil;
 		if (isIPhone)
 		{

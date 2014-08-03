@@ -31,7 +31,7 @@
 		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_texture.size.width/5];
 		physicsBody.dynamic = YES;
 		physicsBody.categoryBitMask = ballCategory;
-		physicsBody.contactTestBitMask = pillowCategory;
+		physicsBody.contactTestBitMask = trampolineCategory;
 		physicsBody.collisionBitMask = 0;
 		physicsBody.usesPreciseCollisionDetection = YES;
 		

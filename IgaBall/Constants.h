@@ -9,7 +9,7 @@
 #ifndef IgaBall_Constants_h
 #define IgaBall_Constants_h
 
-static const uint32_t pillowCategory     = 0x1 << 0;
+static const uint32_t trampolineCategory     = 0x1 << 0;
 static const uint32_t ballCategory       = 0x1 << 1;
 static const uint32_t offScreenCategory  = 0x1 << 2;
 
@@ -46,5 +46,10 @@ typedef NS_ENUM(NSUInteger, GameScheme)
 
 static NSString * const kDefaultFont = @"Sniglet";
 static NSString * const kUseSound = @"UseSound";
+
+#define kPositionZBGImage       1
+#define kPositionZBall          2
+#define kPositionZTrampoline    2
+#define kPositionZLabels        10
 
 #endif

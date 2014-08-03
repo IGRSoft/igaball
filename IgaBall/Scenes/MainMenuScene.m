@@ -23,41 +23,16 @@
 	{
         /* Setup your scene here */
 		
-        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
         
-		self.name = NSStringFromClass([self class]);
+        SKTexture *texture = [SKTexture textureWithImageNamed:@"bg_main"];
 		
-		SKTexture *texture = nil;
-		if (isIPhone)
-		{
-            BOOL isIPhone5 = (([[UIScreen mainScreen] bounds].size.height - 568.f)? NO : YES);
-            NSString *imgName = [NSString stringWithFormat:@"bg_main%@", isIPhone5 ? @"-568h" : @""];
-			texture = [SKTexture textureWithImageNamed:imgName];
-		}
-		else
-		{
-			texture = [SKTexture textureWithImageNamed:@"bg_main"];
-		}
-        
         SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
-        
-        if (isIPhone)
-        {
-            bgImage.zRotation = M_PI / 2;
-            
-            bgImage.position = CGPointMake(CGRectGetMidY(self.frame),
-                                           CGRectGetMidX(self.frame));
-        }
-        else
-        {
-            bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
-                                           CGRectGetMidY(self.frame));
-        }
+        bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
+                                       CGRectGetMidY(self.frame));
         
         [self addChild:bgImage];
         
-		self.name = NSStringFromClass([self class]);
-		
 		self.backgroundColor = DEFAULT_BG_COLOR;
 		
 		NSString *imgName = [NSString stringWithFormat:@"GameName"];
@@ -66,7 +41,7 @@
         SKSpriteNode *nameImage = [SKSpriteNode spriteNodeWithTexture:nameTexture size:nameTexture.size];
 		
         nameImage.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame) + (isIPhone ? 60 : 200));
+                                       CGRectGetMidY(self.frame) + (isIPhone ? 100 : 190));
         
         [self addChild:nameImage];
     }

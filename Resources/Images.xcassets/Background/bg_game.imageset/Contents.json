@@ -6,10 +6,12 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "pool_bg-iPhone@2x.png"
     },
     {
       "idiom" : "iphone",
+      "filename" : "pool_bg-iPhone-568h@2x.png",
       "subtype" : "retina4",
       "scale" : "2x"
     },

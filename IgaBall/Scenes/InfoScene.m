@@ -22,11 +22,20 @@
     
     if (self = [super initWithSize:aSize gameController:gGameController])
     {
-        // 1
-        self.backgroundColor = DEFAULT_BG_COLOR;
+        // 1		
+        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
 		
-        // 2
-        BOOL isIPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+		SKTexture *texture = [SKTexture textureWithImageNamed:@"bg_main"];
+        
+        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
+        bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
+                                       CGRectGetMidY(self.frame));
+        
+        bgImage.zPosition = kPositionZBGImage;
+        [self addChild:bgImage];
+        
+		self.backgroundColor = DEFAULT_BG_COLOR;
+        
         CGFloat titleFontSize = isIPhone ? 25.f : 50.f;
         CGFloat textFontSize = isIPhone ? 20.f : 35.f;
         CGFloat yOffset = isIPhone ? 10.f : 30.f;
@@ -43,6 +52,8 @@
         [labelBack runAction:[SKAction repeatActionForever:pulseText]];
         
         labelBack.position = CGPointMake(self.size.width/2, yOffset * 2);
+        
+        labelBack.zPosition = kPositionZLabels;
         [self addChild:labelBack];
         
         // 3
@@ -51,6 +62,7 @@
         labelCopyrights.fontSize = titleFontSize;
         
         labelCopyrights.position = CGPointMake(CGRectGetMidX(self.frame), self.frame.size.height - labelCopyrights.frame.size.height - yOffset * 2);
+        labelCopyrights.zPosition = kPositionZLabels;
         [self addChild:labelCopyrights];
         
         // 4
@@ -59,6 +71,7 @@
         labelDeveloperTitle.fontSize = titleFontSize;
         
         labelDeveloperTitle.position = CGPointMake(CGRectGetMidX(self.frame), labelCopyrights.position.y - labelCopyrights.frame.size.height - yOffset * 3);
+        labelDeveloperTitle.zPosition = kPositionZLabels;
         [self addChild:labelDeveloperTitle];
         
         SKLabelNode *labelDeveloper = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
@@ -66,6 +79,7 @@
         labelDeveloper.fontSize = textFontSize;
         
         labelDeveloper.position = CGPointMake(CGRectGetMidX(self.frame), labelDeveloperTitle.position.y - labelDeveloperTitle.frame.size.height);
+        labelDeveloper.zPosition = kPositionZLabels;
         [self addChild:labelDeveloper];
         
         // 5
@@ -74,6 +88,7 @@
         labelDesignerTitle.fontSize = titleFontSize;
         
         labelDesignerTitle.position = CGPointMake(CGRectGetMidX(self.frame), labelDeveloper.position.y - labelDeveloper.frame.size.height - yOffset);
+        labelDesignerTitle.zPosition = kPositionZLabels;
         [self addChild:labelDesignerTitle];
         
         SKLabelNode *labelDesigner = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
@@ -81,6 +96,7 @@
         labelDesigner.fontSize = textFontSize;
         
         labelDesigner.position = CGPointMake(CGRectGetMidX(self.frame), labelDesignerTitle.position.y - labelDesignerTitle.frame.size.height);
+        labelDesigner.zPosition = kPositionZLabels;
         [self addChild:labelDesigner];
         
         // 6
@@ -89,6 +105,7 @@
         labelSoundTitle.fontSize = titleFontSize;
         
         labelSoundTitle.position = CGPointMake(CGRectGetMidX(self.frame), labelDesigner.position.y - labelDesigner.frame.size.height - yOffset);
+        labelSoundTitle.zPosition = kPositionZLabels;
         [self addChild:labelSoundTitle];
         
         SKLabelNode *labelSound1 = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
@@ -96,6 +113,7 @@
         labelSound1.fontSize = textFontSize;
         
         labelSound1.position = CGPointMake(CGRectGetMidX(self.frame), labelSoundTitle.position.y - labelSoundTitle.frame.size.height);
+        labelSound1.zPosition = kPositionZLabels;
         [self addChild:labelSound1];
         
         [UIView animateWithDuration:1.0f
