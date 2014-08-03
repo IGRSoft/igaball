@@ -89,10 +89,18 @@
         }
         
         _activationDuration = MAX(_activationDuration, 0.3);
+        _activationDuration -= 0.1;
+        
+        SKAction *blinkAction1 = [SKAction fadeAlphaTo:0.5f duration:0.20];
+        SKAction *blinkAction2 = [SKAction fadeAlphaTo:1.f duration:0.20];
+        SKAction *blinkAction3 = [SKAction fadeAlphaTo:0.3f duration:0.10];
+        SKAction *blinkAction4 = [SKAction fadeAlphaTo:1.f duration:0.10];
         
         __weak TrampolineObject *weakSelf = self;
         [self runAction: [SKAction sequence:@[
                                               [SKAction waitForDuration:_activationDuration],
+                                              blinkAction1, blinkAction2,
+                                              blinkAction3, blinkAction4, blinkAction3, blinkAction4,
                                               [SKAction runBlock:^{
             
                         // there are no colision
