@@ -18,6 +18,10 @@
 @property () ShadowLabelNode  *scoreLabel;
 @property () SKShapeNode  *scoreBorder;
 @property () SKShapeNode  *scoreBorderShadow;
+@property () SKSpriteNode *bgImage;
+
+@property () SKSpriteNode *offScreenNodeLeft;
+@property () SKSpriteNode *offScreenNodeRight;
 
 @property (assign) BOOL isGameOver;
 @property (nonatomic, assign) NSInteger score;
@@ -28,6 +32,7 @@
 @property () SKAction *collisionSound;
 
 @property () NSMutableArray *bals;
+@property () NSMutableArray *trampolines;
 
 @end
 
@@ -46,13 +51,13 @@
         
 		SKTexture *texture = [SKTexture textureWithImageNamed:@"bg_game"];
         
-        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
+        _bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
         
-        bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
+        _bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame));
         
-        bgImage.zPosition = kPositionZBGImage;
-        [self addChild:bgImage];
+        _bgImage.zPosition = kPositionZBGImage;
+        [self addChild:_bgImage];
         
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         self.useSound = [ud boolForKey:kUseSound];
@@ -62,8 +67,10 @@
 		
 		self.isGameOver = NO;
 		self.score = -1;
+        
 		self.bals = [NSMutableArray array];
-        		
+        self.trampolines = [NSMutableArray array];
+        
 		self.backgroundColor = DEFAULT_BG_COLOR;
 		
 		self.borderOffset = 50.f;
@@ -72,8 +79,8 @@
                                        CGRectGetMidY(self.frame));
         CGRect borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
         
-        SKSpriteNode *offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(CGRectGetWidth(self.frame), borderRect.size.height)];
-		offScreenNodeRight.position = CGPointMake(borderPoint.x + self.borderOffset,
+        _offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(CGRectGetWidth(self.frame), borderRect.size.height)];
+		_offScreenNodeRight.position = CGPointMake(borderPoint.x + self.borderOffset,
 												  borderPoint.y);
         
 		[self addTrampolineToFrame:borderRect rotate:YES];
@@ -82,8 +89,8 @@
                                   CGRectGetMidY(self.frame));
         borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
 		
-        SKSpriteNode *offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(CGRectGetWidth(self.frame), borderRect.size.height)];
-		offScreenNodeLeft.position = CGPointMake(borderPoint.x - self.borderOffset,
+        _offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(CGRectGetWidth(self.frame), borderRect.size.height)];
+		_offScreenNodeLeft.position = CGPointMake(borderPoint.x - self.borderOffset,
 												 borderPoint.y);
         
 		[self addTrampolineToFrame:borderRect rotate:NO];
@@ -95,11 +102,11 @@
 		physicsBody.contactTestBitMask = ballCategory;
 		physicsBody.collisionBitMask = 0;
 		
-		offScreenNodeRight.physicsBody = [physicsBody copy];
-		[self addChild:offScreenNodeRight];
+		_offScreenNodeRight.physicsBody = [physicsBody copy];
+		[self addChild:_offScreenNodeRight];
 		
-		offScreenNodeLeft.physicsBody = [physicsBody copy];
-		[self addChild:offScreenNodeLeft];
+		_offScreenNodeLeft.physicsBody = [physicsBody copy];
+		[self addChild:_offScreenNodeLeft];
 		
 		// Add Score
         
@@ -139,14 +146,45 @@
 
 - (void)dealloc
 {
-    [self.scoreLabel removeAllChildren];
+    [self removeAllChildren];
+}
+
+- (void)clean
+{
+    [self.scoreBorder removeFromParent];
+    self.scoreBorder = nil;
+    [self.scoreBorderShadow removeFromParent];
+    self.scoreBorderShadow = nil;
     [self.scoreLabel removeFromParent];
+    self.scoreLabel = nil;
+    
     for (BallObject *bal in self.bals)
     {
+        [bal removeAllActions];
         [bal removeFromParent];
     }
+    [self.bals removeAllObjects];
     
-    [self removeAllChildren];
+    for (TrampolineObject *trampoline in self.trampolines)
+    {
+        [trampoline removeAllActions];
+        [trampoline removeFromParent];
+    }
+    [self.trampolines removeAllObjects];
+    
+    BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+    BOOL isIPhone5 = (([[UIScreen mainScreen] bounds].size.height - 568.f)? NO : YES);
+    
+    if (isIPhone && !isIPhone5)
+    {
+        [self.bgImage removeFromParent];
+        self.bgImage = nil;
+    }
+    
+    [self.offScreenNodeRight removeAllActions];
+    [self.offScreenNodeRight removeFromParent];
+    [self.offScreenNodeLeft removeAllActions];
+    [self.offScreenNodeLeft removeFromParent];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -201,6 +239,8 @@
 		{
 			[self addBallToPoint:trampoline.position];
 		}
+        
+        [self.trampolines addObject:trampoline];
 	}
 }
 
@@ -273,7 +313,9 @@
 	if (contact.bodyA.categoryBitMask == offScreenCategory || contact.bodyB.categoryBitMask == offScreenCategory)
 	{
 		[self runAction:[self actionGameOver]];
-		
+        
+        [self clean];
+        
 		self.isGameOver = YES;
 		
 		return;

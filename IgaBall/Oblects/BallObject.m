@@ -11,7 +11,7 @@
 
 @interface BallObject () <SKPhysicsContactDelegate>
 
-@property () SKTexture *texture;
+@property () CGSize objectSize;
 
 @end
 
@@ -25,10 +25,11 @@
 		NSUInteger ballId = arc4random() % ballsCount;
 		NSString *ballName = [NSString stringWithFormat:@"Ball%@", @(ballId)];
 				
-		_texture = [SKTexture textureWithImageNamed:ballName];
-        SKSpriteNode *node = [SKSpriteNode spriteNodeWithTexture:_texture size:_texture.size];
+		SKTexture *texture = [SKTexture textureWithImageNamed:ballName];
+        _objectSize = texture.size;
+        SKSpriteNode *node = [SKSpriteNode spriteNodeWithTexture:texture size:self.objectSize];
 		
-		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_texture.size.width/5];
+		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.objectSize.width / 5];
 		physicsBody.dynamic = YES;
 		physicsBody.categoryBitMask = ballCategory;
 		physicsBody.contactTestBitMask = trampolineCategory;
@@ -55,7 +56,7 @@
 
 - (CGSize)size
 {
-	return _texture.size;
+	return _objectSize;
 }
 
 - (CGFloat)moveDuration
