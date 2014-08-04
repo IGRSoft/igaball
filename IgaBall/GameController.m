@@ -173,13 +173,13 @@ const CGFloat fadeDuration = 0.5;
 
 - (IBAction)onTouchShareScoreToFacebook:(id)sender
 {
-    NSString *msg = [NSString stringWithFormat:@"My Score in IgaBall is %@! How mach can you get http://igrsoft.com", @(self.score)];
+    NSString *msg = [NSString stringWithFormat:@"My Score in IgaBall game is %@! How mach can you get http://igrsoft.com", @(self.score)];
     [self shareText:msg forServiceType:SLServiceTypeFacebook];
 }
 
 - (IBAction)onTouchShareScoreToTwitter:(id)sender
 {
-    NSString *msg = [NSString stringWithFormat:@"My Score in IgaBall is %@! How mach can you get http://igrsoft.com", @(self.score)];
+    NSString *msg = [NSString stringWithFormat:@"My Score in IgaBall game is %@! How mach can you get http://igrsoft.com", @(self.score)];
     [self shareText:msg forServiceType:SLServiceTypeTwitter];
 }
 
