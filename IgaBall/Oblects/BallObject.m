@@ -45,6 +45,14 @@
 	return self;
 }
 
+-(void)dealloc
+{
+    DBNSLog(@"DEALOC - BallObject");
+    
+    self.physicsBody = nil;
+    [self removeAllChildren];
+}
+
 - (CGSize)size
 {
 	return _texture.size;

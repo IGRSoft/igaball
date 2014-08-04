@@ -145,6 +145,8 @@
     {
         [bal removeFromParent];
     }
+    
+    [self removeAllChildren];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -350,15 +352,15 @@
         
         if (score >= 1000)
         {
-            width = 130;
+            width = isIPhone ? 100.f :130;
         }
         else if (score >= 100)
         {
-            width = 110;
+            width = isIPhone ? 80.f :110;
         }
         else if (score >= 10)
         {
-            width = 90;
+            width = isIPhone ? 60.f : 90;
         }
         
         CGPathRef path = CGPathCreateWithRoundedRect(CGRectMake(-(width*0.5), -(height*0.25) + self.scoreBorder.lineWidth * 0.5, width, height), (height*0.5), (height*0.5), nil);

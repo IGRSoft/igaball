@@ -18,7 +18,7 @@
 
 - (id)initLeftOrRight:(BOOL)aLeft;
 
-@property (nonatomic, weak) id <TrampolineObjectDelegate> delegate;
+@property (weak) id <TrampolineObjectDelegate> delegate;
 
 - (CGSize)size;
 - (void)activateObjectWitDuration:(BOOL)withDuration;

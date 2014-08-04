@@ -15,7 +15,7 @@
 @property (assign) CGFloat activationDuration;
 @property () SKEmitterNode *particleNode;
 @property () SKSpriteNode *trampolineNode;
-
+@property () SKPhysicsBody *physicsBodyTemplate;
 @end
 
 @implementation TrampolineObject
@@ -48,6 +48,12 @@
         }
         
         [self addChild:self.particleNode];
+        
+        self.physicsBodyTemplate = [SKPhysicsBody bodyWithRectangleOfSize:_texture.size];
+        self.physicsBodyTemplate.dynamic = NO;
+        self.physicsBodyTemplate.categoryBitMask = trampolineCategory;
+        self.physicsBodyTemplate.contactTestBitMask = ballCategory;
+        self.physicsBodyTemplate.collisionBitMask = 0;
 	}
 	
 	return self;
@@ -56,6 +62,15 @@
 - (CGSize)size
 {
 	return _texture.size;
+}
+
+-(void)dealloc
+{
+    DBNSLog(@"DEALOC - TrampolineObject");
+    
+    self.physicsBodyTemplate = nil;
+    [self.trampolineNode removeFromParent];
+    [self.particleNode removeFromParent];
 }
 
 - (void)activateObjectWitDuration:(BOOL)withDuration
@@ -67,14 +82,8 @@
 	
 	_trampolineNode.alpha = 1.f;
 	_particleNode.alpha = 0.f;
-    
-	SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_texture.size];
-	physicsBody.dynamic = NO;
-	physicsBody.categoryBitMask = trampolineCategory;
-	physicsBody.contactTestBitMask = ballCategory;
-	physicsBody.collisionBitMask = 0;
 	
-	self.physicsBody = physicsBody;
+	self.physicsBody = [self.physicsBodyTemplate copy];
 	
 	// deactivate Object after 1.5s or less
 	
