@@ -32,7 +32,8 @@
 		SKTexture *texture = nil;
 		if (isIPhone)
 		{
-            BOOL isIPhone5 = (([[UIScreen mainScreen] bounds].size.height - 568.f)? NO : YES);
+            CGFloat height = MAX(CGRectGetHeight([[UIScreen mainScreen] bounds]), CGRectGetWidth([[UIScreen mainScreen] bounds]));
+            BOOL isIPhone5 = (height - 568.f == 0) ? YES : NO;
             NSString *imgName = [NSString stringWithFormat:@"LaunchImage-700%@", isIPhone5 ? @"-568h" : @""];
 			texture = [SKTexture textureWithImageNamed:imgName];
 		}
