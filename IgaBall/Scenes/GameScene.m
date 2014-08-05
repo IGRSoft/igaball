@@ -70,8 +70,6 @@
         
 		self.bals = [NSMutableArray array];
         self.trampolines = [NSMutableArray array];
-        
-		self.backgroundColor = DEFAULT_BG_COLOR;
 		
 		self.borderOffset = 50.f;
         
@@ -172,14 +170,25 @@
     }
     [self.trampolines removeAllObjects];
     
-    BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-    BOOL isIPhone5 = (([[UIScreen mainScreen] bounds].size.height - 568.f)? NO : YES);
-    
-    if (isIPhone && !isIPhone5)
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]
+        && [[UIScreen mainScreen] scale] == 2.0)
+    {
+        // Retina
+        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+        BOOL isIPhone5 = (([[UIScreen mainScreen] bounds].size.height - 568.f)? NO : YES);
+        
+        if (isIPhone && !isIPhone5)
+        {
+            [self.bgImage removeFromParent];
+            self.bgImage = nil;
+        }
+    }
+    else
     {
         [self.bgImage removeFromParent];
         self.bgImage = nil;
     }
+    
     
     [self.offScreenNodeRight removeAllActions];
     [self.offScreenNodeRight removeFromParent];

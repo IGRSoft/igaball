@@ -33,9 +33,7 @@
         
         bgImage.zPosition = kPositionZBGImage;
         [self addChild:bgImage];
-        
-		self.backgroundColor = DEFAULT_BG_COLOR;
-        
+                
         CGFloat titleFontSize = isIPhone ? 25.f : 50.f;
         CGFloat textFontSize = isIPhone ? 20.f : 35.f;
         CGFloat yOffset = isIPhone ? 10.f : 30.f;

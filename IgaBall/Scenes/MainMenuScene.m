@@ -33,8 +33,6 @@
         
         [self addChild:bgImage];
         
-		self.backgroundColor = DEFAULT_BG_COLOR;
-		
 		NSString *imgName = [NSString stringWithFormat:@"GameName"];
         SKTexture *nameTexture = [SKTexture textureWithImageNamed:imgName];
 		

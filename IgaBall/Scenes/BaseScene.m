@@ -7,6 +7,7 @@
 //
 
 #import "BaseScene.h"
+#import "Constants.h"
 
 @interface BaseScene (Protected)
 
@@ -23,6 +24,8 @@
         self.gameController = gGameController;
         
         self.name = NSStringFromClass([self class]);
+        
+        self.backgroundColor = DEFAULT_BG_COLOR;
     }
     
     return self;
