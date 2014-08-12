@@ -11,11 +11,11 @@
 
 @interface TrampolineObject ()
 
-@property () SKTexture *texture;
-@property (assign) CGFloat activationDuration;
-@property () SKEmitterNode *particleNode;
-@property () SKSpriteNode *trampolineNode;
-@property () SKPhysicsBody *physicsBodyTemplate;
+@property (nonatomic) SKTexture *texture;
+@property (nonatomic, assign) CGFloat activationDuration;
+@property (nonatomic) SKEmitterNode *particleNode;
+@property (nonatomic) SKSpriteNode *trampolineNode;
+@property (nonatomic) SKPhysicsBody *physicsBodyTemplate;
 @end
 
 @implementation TrampolineObject

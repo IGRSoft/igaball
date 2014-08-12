@@ -13,6 +13,6 @@
 
 - (instancetype)initWithSize:(CGSize)aSize gameController:(GameController *)gGameController;
 
-@property (weak, readwrite) GameController *gameController;
+@property (nonatomic, weak, readwrite) GameController *gameController;
 
 @end

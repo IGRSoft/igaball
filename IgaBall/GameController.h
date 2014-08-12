@@ -13,6 +13,6 @@
 - (void)setupMainMenu;
 - (void)setupGameOverWithScore:(NSInteger)aScore;
 
-@property (assign, readonly) NSInteger score;
+@property (nonatomic, assign, readonly) NSInteger score;
 
 @end

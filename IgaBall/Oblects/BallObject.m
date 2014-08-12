@@ -11,7 +11,7 @@
 
 @interface BallObject () <SKPhysicsContactDelegate>
 
-@property () CGSize objectSize;
+@property (nonatomic) CGSize objectSize;
 
 @end
 

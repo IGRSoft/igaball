@@ -11,7 +11,7 @@
 
 @interface BaseScene (Protected)
 
-@property (weak, readwrite) GameController *gameController;
+@property (nonatomic, weak, readwrite) GameController *gameController;
 
 @end
 

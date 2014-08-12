@@ -21,20 +21,20 @@
 
 @interface GameController () <ADBannerViewDelegate, GKGameCenterControllerDelegate>
 
-@property (weak) IBOutlet UIButton *btnFacebook;
-@property (weak) IBOutlet UIButton *btnTwitter;
-@property (weak) IBOutlet UIButton *btnSound;
-@property (weak) IBOutlet UIButton *btnPlay;
-@property (weak) IBOutlet UIButton *btnGameCenter;
-@property (weak) IBOutlet UIButton *btnInfo;
-@property (weak) IBOutlet ADBannerView *adBannerTop;
-@property (weak) IBOutlet ADBannerView *adBannerBottom;
-@property (weak) IBOutlet UIView *gameOverView;
+@property (nonatomic, weak) IBOutlet UIButton *btnFacebook;
+@property (nonatomic, weak) IBOutlet UIButton *btnTwitter;
+@property (nonatomic, weak) IBOutlet UIButton *btnSound;
+@property (nonatomic, weak) IBOutlet UIButton *btnPlay;
+@property (nonatomic, weak) IBOutlet UIButton *btnGameCenter;
+@property (nonatomic, weak) IBOutlet UIButton *btnInfo;
+@property (nonatomic, weak) IBOutlet ADBannerView *adBannerTop;
+@property (nonatomic, weak) IBOutlet ADBannerView *adBannerBottom;
+@property (nonatomic, weak) IBOutlet UIView *gameOverView;
 
-@property (assign) BOOL reShowLeaderboard;
-@property (assign, readwrite) NSInteger score;
+@property (nonatomic, assign) BOOL reShowLeaderboard;
+@property (nonatomic, assign, readwrite) NSInteger score;
 
-@property () NSArray *achievementDescriptions;
+@property (nonatomic) NSArray *achievementDescriptions;
 
 - (IBAction)onTouchFacebook:(id)sender;
 - (IBAction)onTouchTwitter:(id)sender;

@@ -15,24 +15,24 @@
 
 @interface GameScene () <SKPhysicsContactDelegate, TrampolineObjectDelegate>
 
-@property () ShadowLabelNode  *scoreLabel;
-@property () SKShapeNode  *scoreBorder;
-@property () SKShapeNode  *scoreBorderShadow;
-@property () SKSpriteNode *bgImage;
+@property (nonatomic) ShadowLabelNode  *scoreLabel;
+@property (nonatomic) SKShapeNode  *scoreBorder;
+@property (nonatomic) SKShapeNode  *scoreBorderShadow;
+@property (nonatomic) SKSpriteNode *bgImage;
 
-@property () SKSpriteNode *offScreenNodeLeft;
-@property () SKSpriteNode *offScreenNodeRight;
+@property (nonatomic) SKSpriteNode *offScreenNodeLeft;
+@property (nonatomic) SKSpriteNode *offScreenNodeRight;
 
-@property (assign) BOOL isGameOver;
+@property (nonatomic, assign) BOOL isGameOver;
 @property (nonatomic, assign) NSInteger score;
-@property (assign) CGFloat borderOffset;
+@property (nonatomic, assign) CGFloat borderOffset;
 
-@property (assign) BOOL useSound;
+@property (nonatomic, assign) BOOL useSound;
 
-@property () SKAction *collisionSound;
+@property (nonatomic) SKAction *collisionSound;
 
-@property () NSMutableArray *bals;
-@property () NSMutableArray *trampolines;
+@property (nonatomic) NSMutableArray *bals;
+@property (nonatomic) NSMutableArray *trampolines;
 
 @end
 
