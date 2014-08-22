@@ -25,9 +25,32 @@
 		
         BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
         
-        SKTexture *texture = [SKTexture textureWithImageNamed:@"bg_main"];
-		
-        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
+		SKTexture *texture = nil;
+		if (isIPhone)
+		{
+            CGFloat height = MAX(CGRectGetHeight([[UIScreen mainScreen] bounds]), CGRectGetWidth([[UIScreen mainScreen] bounds]));
+            BOOL isIPhone5 = (height - 568.f == 0) ? YES : NO;
+            NSString *imgName = [NSString stringWithFormat:@"LaunchImage-700%@", isIPhone5 ? @"-568h" : @""];
+			texture = [SKTexture textureWithImageNamed:imgName];
+		}
+		else
+		{
+			texture = [SKTexture textureWithImageNamed:@"LaunchImage-700-Landscape"];
+		}
+        
+        CGSize newSize = aSize;
+        if (isIPhone)
+        {
+            newSize = CGSizeMake(aSize.height, aSize.width);
+        }
+        
+        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:newSize];
+        
+        if (isIPhone)
+        {
+            bgImage.zRotation = M_PI / 2;
+        }
+        
         bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame));
         
