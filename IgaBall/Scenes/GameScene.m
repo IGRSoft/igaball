@@ -170,25 +170,8 @@
     }
     [self.trampolines removeAllObjects];
     
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]
-        && [[UIScreen mainScreen] scale] == 2.0)
-    {
-        // Retina
-        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-        CGFloat height = MAX(CGRectGetHeight([[UIScreen mainScreen] bounds]), CGRectGetWidth([[UIScreen mainScreen] bounds]));
-        BOOL isIPhone5 = (height - 568.f == 0) ? YES : NO;
-        
-        if (isIPhone && !isIPhone5)
-        {
-            [self.bgImage removeFromParent];
-            self.bgImage = nil;
-        }
-    }
-    else
-    {
-        [self.bgImage removeFromParent];
-        self.bgImage = nil;
-    }
+    [self.bgImage removeFromParent];
+    self.bgImage = nil;
     
     [self.offScreenNodeRight removeAllActions];
     [self.offScreenNodeRight removeFromParent];
