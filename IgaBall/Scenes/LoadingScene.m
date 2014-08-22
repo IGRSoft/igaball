@@ -58,6 +58,23 @@
         }
         
         [self addChild:bgImage];
+
+        SKTexture *logoTexture = [SKTexture textureWithImageNamed:@"IGRSoft"];
+        
+        SKSpriteNode *logoImage = [SKSpriteNode spriteNodeWithTexture:logoTexture];
+        
+        if (isIPhone)
+        {
+            logoImage.position = CGPointMake(CGRectGetMidY(self.frame),
+                                           CGRectGetMidX(self.frame));
+        }
+        else
+        {
+            logoImage.position = CGPointMake(CGRectGetMidX(self.frame),
+                                           CGRectGetMidY(self.frame));
+        }
+        
+        [self addChild:logoImage];
     }
 	
     __weak LoadingScene *weakSelf = self;
