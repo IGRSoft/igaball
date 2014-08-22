@@ -33,6 +33,7 @@
 		A58E5C84192392A4004F95BC /* InfoScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A58E5C83192392A4004F95BC /* InfoScene.m */; };
 		A5974A5819100E0C009BD12A /* BallObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A5974A5719100E0C009BD12A /* BallObject.m */; };
 		A5974A6319102D12009BD12A /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5974A6219102D12009BD12A /* GameOverScene.m */; };
+		A5A11DE619A73B5A006424F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5A11DE419A73B5A006424F8 /* Localizable.strings */; };
 		A5AA58E9198EB15B00A4D40C /* SoundMaster.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AA58E8198EB15B00A4D40C /* SoundMaster.m */; };
 		A5AA58F4198EB5CD00A4D40C /* game.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A5AA58F0198EB5CD00A4D40C /* game.m4a */; };
 		A5AA58F5198EB5CD00A4D40C /* gameover.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A5AA58F1198EB5CD00A4D40C /* gameover.m4a */; };
@@ -97,6 +98,10 @@
 		A5974A5719100E0C009BD12A /* BallObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallObject.m; sourceTree = "<group>"; };
 		A5974A6119102D12009BD12A /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		A5974A6219102D12009BD12A /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		A5A11DE519A73B5A006424F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5A11DE719A73B67006424F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5A11DE819A73B7D006424F8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5A11DE919A73C05006424F8 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5AA58E7198EB15B00A4D40C /* SoundMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundMaster.h; sourceTree = "<group>"; };
 		A5AA58E8198EB15B00A4D40C /* SoundMaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundMaster.m; sourceTree = "<group>"; };
 		A5AA58F0198EB5CD00A4D40C /* game.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = game.m4a; sourceTree = "<group>"; };
@@ -301,6 +306,7 @@
 				A5B177081908FA54000C9921 /* InfoPlist.strings */,
 				A573C09F19210BB100D50372 /* PillowParticle.sks */,
 				A573C0A319210C4300D50372 /* PillowParticle.png */,
+				A5A11DE419A73B5A006424F8 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -367,6 +373,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				uk,
 			);
 			mainGroup = A54FCAC81908F926009B5255;
 			productRefGroup = A54FCAD21908F926009B5255 /* Products */;
@@ -385,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5B1770E1908FA54000C9921 /* InfoPlist.strings in Resources */,
+				A5A11DE619A73B5A006424F8 /* Localizable.strings in Resources */,
 				A5B1770C1908FA54000C9921 /* Images.xcassets in Resources */,
 				A5199451197EA445009684C4 /* Sniglet.ttf in Resources */,
 				A5B1770A1908FA54000C9921 /* Main_iPad.storyboard in Resources */,
@@ -454,6 +463,17 @@
 				A54FCB071908F926009B5255 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A5A11DE419A73B5A006424F8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5A11DE519A73B5A006424F8 /* Base */,
+				A5A11DE719A73B67006424F8 /* en */,
+				A5A11DE819A73B7D006424F8 /* ru */,
+				A5A11DE919A73C05006424F8 /* uk */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		A5B177021908FA54000C9921 /* Main_iPad.storyboard */ = {

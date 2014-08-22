@@ -111,13 +111,13 @@ const CGFloat fadeDuration = 0.5;
 
 - (IBAction)onTouchFacebook:(id)sender
 {
-	NSString *msg = @"I have found excellent game - IgaBall, You can find it in iTunes Store: http://igrsoft.com";
+	NSString *msg = @"I have found excellent game - IgaBall, You can find it in iTunes Store: https://appsto.re/i6gM836";
     [self shareText:msg forServiceType:SLServiceTypeTwitter];
 }
 
 - (IBAction)onTouchTwitter:(id)sender
 {
-	NSString *msg = @"I have found excellent game - IgaBall, You can find it in iTunes Store: http://igrsoft.com";
+	NSString *msg = @"I have found excellent game - IgaBall, You can find it in iTunes Store: https://appsto.re/i6gM836";
     [self shareText:msg forServiceType:SLServiceTypeTwitter];
 }
 
@@ -173,13 +173,13 @@ const CGFloat fadeDuration = 0.5;
 
 - (IBAction)onTouchShareScoreToFacebook:(id)sender
 {
-    NSString *msg = [NSString stringWithFormat:@"My Score in IgaBall game is %@! How mach can you get http://igrsoft.com", @(self.score)];
+    NSString *msg = [NSString stringWithFormat:@"My Score in IgaBall game is %@! How mach can you get https://appsto.re/i6gM836", @(self.score)];
     [self shareText:msg forServiceType:SLServiceTypeFacebook];
 }
 
 - (IBAction)onTouchShareScoreToTwitter:(id)sender
 {
-    NSString *msg = [NSString stringWithFormat:@"My Score in IgaBall game is %@! How mach can you get http://igrsoft.com", @(self.score)];
+    NSString *msg = [NSString stringWithFormat:@"My Score in IgaBall game is %@! How mach can you get https://appsto.re/i6gM836", @(self.score)];
     [self shareText:msg forServiceType:SLServiceTypeTwitter];
 }
 
