@@ -10,6 +10,10 @@
       "filename" : "i_icon.png"
     },
     {
+      "idiom" : "iphone",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "i_icon.png"

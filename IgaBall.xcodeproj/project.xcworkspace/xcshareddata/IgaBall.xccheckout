@@ -10,29 +10,29 @@
 	<string>IgaBall</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>24CC3AD0-CB06-476E-BDA3-1851850AC429</key>
+		<key>E5BE76EB6F6F00D157D65707674D8F76D5603ABB</key>
 		<string>https://github.com/iKorich/igaball.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>IgaBall.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>24CC3AD0-CB06-476E-BDA3-1851850AC429</key>
+		<key>E5BE76EB6F6F00D157D65707674D8F76D5603ABB</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/iKorich/igaball.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>24CC3AD0-CB06-476E-BDA3-1851850AC429</string>
+	<string>E5BE76EB6F6F00D157D65707674D8F76D5603ABB</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>24CC3AD0-CB06-476E-BDA3-1851850AC429</string>
+			<string>E5BE76EB6F6F00D157D65707674D8F76D5603ABB</string>
 			<key>IDESourceControlWCCName</key>
 			<string>igaball</string>
 		</dict>

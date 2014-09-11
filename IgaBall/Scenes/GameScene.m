@@ -192,7 +192,7 @@
 	
     if ([node.name isEqualToString:NSStringFromClass([TrampolineObject class])])
 	{
-        NSLog(@"Trampoline was touched!");
+        DBNSLog(@"Trampoline was touched!");
         TrampolineObject *trampoline = (TrampolineObject *)node.parent;
 		[trampoline activateObjectWitDuration:YES];
     }

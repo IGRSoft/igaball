@@ -15,9 +15,9 @@
 #import "InfoScene.h"
 #import "SoundMaster.h"
 
-@import iAd;
 @import GameKit;
 @import Social;
+@import iAd;
 
 @interface GameController () <ADBannerViewDelegate, GKGameCenterControllerDelegate>
 
@@ -28,13 +28,15 @@
 @property (nonatomic, weak) IBOutlet UIButton *btnGameCenter;
 @property (nonatomic, weak) IBOutlet UIButton *btnInfo;
 @property (nonatomic, weak) IBOutlet ADBannerView *adBannerTop;
-@property (nonatomic, weak) IBOutlet ADBannerView *adBannerBottom;
 @property (nonatomic, weak) IBOutlet UIView *gameOverView;
 
 @property (nonatomic, assign) BOOL reShowLeaderboard;
 @property (nonatomic, assign, readwrite) NSInteger score;
 
 @property (nonatomic) NSArray *achievementDescriptions;
+
+@property (nonatomic, assign) BOOL soundOn;
+@property (nonatomic, assign) BOOL wasSound;
 
 - (IBAction)onTouchFacebook:(id)sender;
 - (IBAction)onTouchTwitter:(id)sender;
@@ -73,9 +75,10 @@ const CGFloat fadeDuration = 0.5;
 	//Sound
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     
-	BOOL useSound = [ud objectForKey:kUseSound] ? [ud boolForKey:kUseSound] : YES;
-	[self setupSoundButton:useSound];
-	
+	self.soundOn = [ud objectForKey:kUseSound] ? [ud boolForKey:kUseSound] : YES;
+	[self setupSoundButton:self.soundOn];
+	self.wasSound = NO;
+    
     // Create and configure the scene.
     SKScene * scene = [[LoadingScene alloc] initWithSize:skView.bounds.size gameController:self];
     scene.scaleMode = SKSceneScaleModeResizeFill;
@@ -124,11 +127,11 @@ const CGFloat fadeDuration = 0.5;
 - (IBAction)onTouchSound:(id)sender
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	BOOL useSound = ![ud boolForKey:kUseSound];
-	[ud setBool:useSound forKey:kUseSound];
+    self.soundOn = !self.soundOn;
+	[ud setBool:self.soundOn forKey:kUseSound];
 	[ud synchronize];
-	
-	if (!useSound)
+    
+	if (!self.soundOn)
 	{
 		[[SoundMaster sharedMaster] pauseMusic];
 	}
@@ -137,7 +140,7 @@ const CGFloat fadeDuration = 0.5;
 		[self playMusic:@"main"];
 	}
 	
-	[self setupSoundButton:useSound];
+	[self setupSoundButton:self.soundOn];
 }
 
 - (IBAction)onTouchPlay:(id)sender
@@ -203,14 +206,7 @@ const CGFloat fadeDuration = 0.5;
 
 - (void)playMusic:(NSString *)aName loop:(BOOL)aLoop
 {
-	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-	if (![ud objectForKey:kUseSound])
-	{
-		[ud setBool:YES forKey:kUseSound];
-		[ud synchronize];
-	}
-	
-	if (![ud boolForKey:kUseSound])
+	if (!self.soundOn)
 	{
 		return;
 	}
@@ -256,7 +252,6 @@ const CGFloat fadeDuration = 0.5;
 	[self.btnInfo setHidden:YES];
     
 	[self.adBannerTop setHidden:YES];
-	[self.adBannerBottom setHidden:YES];
     
     [self.gameOverView setHidden:YES];
 }
@@ -444,7 +439,7 @@ const CGFloat fadeDuration = 0.5;
 {
     [GKAchievement reportAchievements:anAchievements withCompletionHandler:^(NSError *error) {
     	if (error != nil) {
-        	NSLog(@"%@", [error localizedDescription]);
+        	DBNSLog(@"%@", [error localizedDescription]);
         }
     }];
 }
@@ -503,9 +498,38 @@ const CGFloat fadeDuration = 0.5;
 
 #pragma mark - AD
 
+- (void)bannerViewWillLoadAd:(ADBannerView *)banner
+{
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+}
+
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
+    DBNSLog(@"%@", [error localizedDescription]);
+}
 
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
+{
+    self.wasSound = self.soundOn;
+    
+    if (self.soundOn)
+    {
+        [[SoundMaster sharedMaster] pauseMusic];
+    }
+    
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+    if (self.wasSound)
+    {
+        [[SoundMaster sharedMaster] resumeMusic];
+        self.wasSound = NO;
+    }
 }
 
 @end

@@ -10,6 +10,10 @@
       "filename" : "Ball2.png"
     },
     {
+      "idiom" : "iphone",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "Ball2.png"

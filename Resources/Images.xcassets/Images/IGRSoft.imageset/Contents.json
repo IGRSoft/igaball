@@ -10,6 +10,10 @@
       "filename" : "igr-logo.png"
     },
     {
+      "idiom" : "iphone",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "ipad",
       "scale" : "1x",
       "filename" : "igr-logo.png"
