@@ -8,6 +8,7 @@
 
 #import "MainMenuScene.h"
 #import "Constants.h"
+#import "SDiPhoneVersion.h"
 
 @interface MainMenuScene ()
 
@@ -17,62 +18,61 @@
 
 - (id)initWithSize:(CGSize)aSize gameController:(GameController *)gGameController
 {
-    DBNSLog(@"%s", __func__);
-    
-    if (self = [super initWithSize:aSize gameController:gGameController])
+	DBNSLog(@"%s", __func__);
+	
+	if (self = [super initWithSize:aSize gameController:gGameController])
 	{
-        /* Setup your scene here */
+		/* Setup your scene here */
 		
-        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-        
+		BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+		
 		SKTexture *texture = nil;
 		if (isIPhone)
 		{
-            CGFloat height = MAX(CGRectGetHeight([[UIScreen mainScreen] bounds]), CGRectGetWidth([[UIScreen mainScreen] bounds]));
-            BOOL isIPhone5 = (height - 568.f == 0) ? YES : NO;
-            NSString *imgName = [NSString stringWithFormat:@"LaunchImage-700%@", isIPhone5 ? @"-568h" : @""];
+			BOOL isIPhone5 = [SDiPhoneVersion deviceSize] == iPhone47inch;
+			NSString *imgName = [NSString stringWithFormat:@"LaunchImage-700%@", isIPhone5 ? @"-568h" : @""];
 			texture = [SKTexture textureWithImageNamed:imgName];
 		}
 		else
 		{
 			texture = [SKTexture textureWithImageNamed:@"LaunchImage-700-Landscape"];
 		}
-        
-        CGSize newSize = aSize;
-        if (isIPhone)
-        {
-            newSize = CGSizeMake(aSize.height, aSize.width);
-        }
-        
-        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:newSize];
-        
-        if (isIPhone)
-        {
-            bgImage.zRotation = M_PI / 2;
-        }
-        
-        bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:bgImage];
-        
+		
+		CGSize newSize = aSize;
+		if (isIPhone)
+		{
+			newSize = CGSizeMake(aSize.height, aSize.width);
+		}
+		
+		SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:newSize];
+		
+		if (isIPhone)
+		{
+			bgImage.zRotation = M_PI / 2;
+		}
+		
+		bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
+									   CGRectGetMidY(self.frame));
+		
+		[self addChild:bgImage];
+		
 		NSString *imgName = [NSString stringWithFormat:@"GameName"];
-        SKTexture *nameTexture = [SKTexture textureWithImageNamed:imgName];
+		SKTexture *nameTexture = [SKTexture textureWithImageNamed:imgName];
 		
-        SKSpriteNode *nameImage = [SKSpriteNode spriteNodeWithTexture:nameTexture size:nameTexture.size];
+		SKSpriteNode *nameImage = [SKSpriteNode spriteNodeWithTexture:nameTexture size:nameTexture.size];
 		
-        nameImage.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame) + (isIPhone ? 100 : 190));
-        
-        [self addChild:nameImage];
-    }
+		nameImage.position = CGPointMake(CGRectGetMidX(self.frame),
+										 CGRectGetMidY(self.frame) + (isIPhone ? 100 : 190));
+		
+		[self addChild:nameImage];
+	}
 	
-    return self;
+	return self;
 }
 
 -(void)update:(CFTimeInterval)currentTime
 {
-    /* Called before each frame is rendered */
+	/* Called before each frame is rendered */
 }
 
 @end

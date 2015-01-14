@@ -14,9 +14,15 @@
 
 @end
 
+typedef NS_ENUM(NSUInteger, TrampolineDirection)
+{
+	TrampolineDirection_Left  = 1 << 0,
+	TrampolineDirection_Right = 1 << 1
+};
+
 @interface TrampolineObject : SKNode
 
-- (id)initLeftOrRight:(BOOL)aLeft;
+- (id)initWithDirection:(TrampolineDirection)aDirection;
 
 @property (nonatomic, weak) id <TrampolineObjectDelegate> delegate;
 

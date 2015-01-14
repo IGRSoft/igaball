@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "BallObject.h"
+#import "TrampolineObject.h"
 
 @interface IgaBallTests : XCTestCase
 
@@ -26,9 +28,19 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testBall
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+	BallObject *ball = [[BallObject alloc] init];
+	XCTAssertNotNil(ball, @"Can't crate ball.");
+}
+
+- (void)testTrampoline
+{
+	TrampolineObject *trampolineRight = [[TrampolineObject alloc] initWithDirection:TrampolineDirection_Right];
+	XCTAssertNotNil(trampolineRight, @"Can't crate trampoline.");
+	
+	TrampolineObject *trampolineLeft = [[TrampolineObject alloc] initWithDirection:TrampolineDirection_Left];
+	XCTAssertNotNil(trampolineLeft, @"Can't crate trampoline.");
 }
 
 @end

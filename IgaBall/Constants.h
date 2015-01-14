@@ -9,9 +9,9 @@
 #ifndef IgaBall_Constants_h
 #define IgaBall_Constants_h
 
-static const uint32_t trampolineCategory     = 0x1 << 0;
-static const uint32_t ballCategory       = 0x1 << 1;
-static const uint32_t offScreenCategory  = 0x1 << 2;
+static const uint32_t trampolineCategory    = 0x1 << 0;
+static const uint32_t ballCategory			= 0x1 << 1;
+static const uint32_t offScreenCategory		= 0x1 << 2;
 
 static const NSUInteger ballsCount		 = 5;
 static const CGFloat defaultDuration	 = 3.f;

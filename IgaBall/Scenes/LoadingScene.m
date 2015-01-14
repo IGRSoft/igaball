@@ -8,6 +8,7 @@
 
 #import "LoadingScene.h"
 #import "SoundMaster.h"
+#import "SDiPhoneVersion.h"
 
 @interface LoadingScene ()
 
@@ -17,83 +18,82 @@
 
 - (id)initWithSize:(CGSize)aSize gameController:(GameController *)gGameController
 {
-    DBNSLog(@"%s", __func__);
-    
-    if (self = [super initWithSize:aSize gameController:gGameController])
+	DBNSLog(@"%s", __func__);
+	
+	if (self = [super initWithSize:aSize gameController:gGameController])
 	{
-        /* Setup your scene here */
+		/* Setup your scene here */
 		[[SoundMaster sharedMaster] preloadMusic:@"game.m4a"];
-        [[SoundMaster sharedMaster] preloadMusic:@"gameover.m4a"];
-        [[SoundMaster sharedMaster] preloadEffect:@"main.m4a"];
-        [[SoundMaster sharedMaster] preloadEffect:@"pop.m4a"];
-        
-        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-        		
+		[[SoundMaster sharedMaster] preloadMusic:@"gameover.m4a"];
+		[[SoundMaster sharedMaster] preloadEffect:@"main.m4a"];
+		[[SoundMaster sharedMaster] preloadEffect:@"pop.m4a"];
+		
+		BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+		
 		SKTexture *texture = nil;
 		if (isIPhone)
 		{
-            CGFloat height = MAX(CGRectGetHeight([[UIScreen mainScreen] bounds]), CGRectGetWidth([[UIScreen mainScreen] bounds]));
-            BOOL isIPhone5 = (height - 568.f == 0) ? YES : NO;
-            NSString *imgName = [NSString stringWithFormat:@"LaunchImage-700%@", isIPhone5 ? @"-568h" : @""];
+			BOOL isIPhone5 = [SDiPhoneVersion deviceSize] == iPhone47inch;
+			NSString *imgName = [NSString stringWithFormat:@"LaunchImage-700%@", isIPhone5 ? @"-568h" : @""];
 			texture = [SKTexture textureWithImageNamed:imgName];
 		}
 		else
 		{
 			texture = [SKTexture textureWithImageNamed:@"LaunchImage-700-Landscape"];
 		}
-
-        SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
-
-        if (isIPhone)
-        {
-            bgImage.zRotation = M_PI / 2;
-            
-            bgImage.position = CGPointMake(CGRectGetMidY(self.frame),
-                                           CGRectGetMidX(self.frame));
-        }
-        else
-        {
-            bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
-                                           CGRectGetMidY(self.frame));
-        }
-        
-        [self addChild:bgImage];
-
-        SKTexture *logoTexture = [SKTexture textureWithImageNamed:@"IGRSoft"];
-        
-        SKSpriteNode *logoImage = [SKSpriteNode spriteNodeWithTexture:logoTexture];
-        
-        if (isIPhone)
-        {
-            logoImage.position = CGPointMake(CGRectGetMidY(self.frame),
-                                           CGRectGetMidX(self.frame));
-        }
-        else
-        {
-            logoImage.position = CGPointMake(CGRectGetMidX(self.frame),
-                                           CGRectGetMidY(self.frame));
-        }
-        
-        [self addChild:logoImage];
-    }
+		
+		SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
+		
+		if (isIPhone)
+		{
+			bgImage.zRotation = M_PI / 2;
+			
+			bgImage.position = CGPointMake(CGRectGetMidY(self.frame),
+										   CGRectGetMidX(self.frame));
+		}
+		else
+		{
+			bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
+										   CGRectGetMidY(self.frame));
+		}
+		
+		[self addChild:bgImage];
+		
+		SKTexture *logoTexture = [SKTexture textureWithImageNamed:@"IGRSoft"];
+		
+		SKSpriteNode *logoImage = [SKSpriteNode spriteNodeWithTexture:logoTexture];
+		
+		if (isIPhone)
+		{
+			logoImage.position = CGPointMake(CGRectGetMidY(self.frame),
+											 CGRectGetMidX(self.frame));
+		}
+		else
+		{
+			logoImage.position = CGPointMake(CGRectGetMidX(self.frame),
+											 CGRectGetMidY(self.frame));
+		}
+		
+		[self addChild:logoImage];
+	}
 	
-    __weak LoadingScene *weakSelf = self;
+	__weak LoadingScene *weakSelf = self;
 	[self runAction:
 	 [SKAction sequence:@[
 						  [SKAction waitForDuration:1.0],
 						  [SKAction runBlock:^{
 		 
-         [weakSelf.gameController setupMainMenu];
+		 [weakSelf.gameController setupMainMenu];
 	 }]
 						  ]]
 	 ];
 	
-    return self;
+	return self;
 }
 
 -(void)update:(CFTimeInterval)currentTime
 {
-    /* Called before each frame is rendered */
+	/* Called before each frame is rendered */
 }
 
 @end

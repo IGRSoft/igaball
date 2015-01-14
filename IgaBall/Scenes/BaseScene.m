@@ -18,17 +18,17 @@
 @implementation BaseScene
 
 - (instancetype)initWithSize:(CGSize)aSize gameController:(GameController *)gGameController
-{	
-    if (self = [super initWithSize:aSize])
+{
+	if (self = [super initWithSize:aSize])
 	{
-        self.gameController = gGameController;
-        
-        self.name = NSStringFromClass([self class]);
-        
-        self.backgroundColor = DEFAULT_BG_COLOR;
-    }
-    
-    return self;
+		self.gameController = gGameController;
+		
+		self.name = NSStringFromClass([self class]);
+		
+		self.backgroundColor = DEFAULT_BG_COLOR;
+	}
+	
+	return self;
 }
 
 @end

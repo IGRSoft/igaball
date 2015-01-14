@@ -29,12 +29,13 @@
 		A5556F64190D1C8A0078C4C9 /* TrampolineObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A5556F63190D1C8A0078C4C9 /* TrampolineObject.m */; };
 		A573C0A119210BB100D50372 /* PillowParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A573C09F19210BB100D50372 /* PillowParticle.sks */; };
 		A573C0A419210C4300D50372 /* PillowParticle.png in Resources */ = {isa = PBXBuildFile; fileRef = A573C0A319210C4300D50372 /* PillowParticle.png */; };
+		A584F9E41A6713ED001E8D8D /* SoundMaster.m in Sources */ = {isa = PBXBuildFile; fileRef = A584F9D01A6713ED001E8D8D /* SoundMaster.m */; };
+		A584FA0C1A6715AD001E8D8D /* SDiPhoneVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A584F9F11A6715AD001E8D8D /* SDiPhoneVersion.m */; };
 		A58E5C81192376AD004F95BC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58E5C80192376AD004F95BC /* Social.framework */; };
 		A58E5C84192392A4004F95BC /* InfoScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A58E5C83192392A4004F95BC /* InfoScene.m */; };
 		A5974A5819100E0C009BD12A /* BallObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A5974A5719100E0C009BD12A /* BallObject.m */; };
 		A5974A6319102D12009BD12A /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5974A6219102D12009BD12A /* GameOverScene.m */; };
 		A5A11DE619A73B5A006424F8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5A11DE419A73B5A006424F8 /* Localizable.strings */; };
-		A5AA58E9198EB15B00A4D40C /* SoundMaster.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AA58E8198EB15B00A4D40C /* SoundMaster.m */; };
 		A5AA58F4198EB5CD00A4D40C /* game.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A5AA58F0198EB5CD00A4D40C /* game.m4a */; };
 		A5AA58F5198EB5CD00A4D40C /* gameover.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A5AA58F1198EB5CD00A4D40C /* gameover.m4a */; };
 		A5AA58F6198EB5CD00A4D40C /* main.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A5AA58F2198EB5CD00A4D40C /* main.m4a */; };
@@ -91,6 +92,10 @@
 		A5556F65190D1F140078C4C9 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		A573C09F19210BB100D50372 /* PillowParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PillowParticle.sks; sourceTree = "<group>"; };
 		A573C0A319210C4300D50372 /* PillowParticle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PillowParticle.png; sourceTree = "<group>"; };
+		A584F9CF1A6713ED001E8D8D /* SoundMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundMaster.h; path = SoundMaster/SoundMaster.h; sourceTree = "<group>"; };
+		A584F9D01A6713ED001E8D8D /* SoundMaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundMaster.m; path = SoundMaster/SoundMaster.m; sourceTree = "<group>"; };
+		A584F9F01A6715AD001E8D8D /* SDiPhoneVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDiPhoneVersion.h; path = SDiPhoneVersion/SDiPhoneVersion.h; sourceTree = "<group>"; };
+		A584F9F11A6715AD001E8D8D /* SDiPhoneVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDiPhoneVersion.m; path = SDiPhoneVersion/SDiPhoneVersion.m; sourceTree = "<group>"; };
 		A58E5C80192376AD004F95BC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A58E5C82192392A4004F95BC /* InfoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoScene.h; sourceTree = "<group>"; };
 		A58E5C83192392A4004F95BC /* InfoScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoScene.m; sourceTree = "<group>"; };
@@ -102,8 +107,6 @@
 		A5A11DE719A73B67006424F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5A11DE819A73B7D006424F8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5A11DE919A73C05006424F8 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A5AA58E7198EB15B00A4D40C /* SoundMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundMaster.h; sourceTree = "<group>"; };
-		A5AA58E8198EB15B00A4D40C /* SoundMaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundMaster.m; sourceTree = "<group>"; };
 		A5AA58F0198EB5CD00A4D40C /* game.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = game.m4a; sourceTree = "<group>"; };
 		A5AA58F1198EB5CD00A4D40C /* gameover.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameover.m4a; sourceTree = "<group>"; };
 		A5AA58F2198EB5CD00A4D40C /* main.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.m4a; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				A54FCADC1908F926009B5255 /* IgaBall */,
+				A584F9AC1A6713ED001E8D8D /* Externals */,
 				A54FCB031908F926009B5255 /* IgaBallTests */,
 				A5B177011908FA54000C9921 /* Resources */,
 				A54FCAD31908F926009B5255 /* Frameworks */,
@@ -202,7 +206,6 @@
 		A54FCADC1908F926009B5255 /* IgaBall */ = {
 			isa = PBXGroup;
 			children = (
-				A5AA58E6198EB15B00A4D40C /* SoundMaster */,
 				A5199456197EAAE7009684C4 /* CustomView */,
 				A5556F61190D1C670078C4C9 /* Objects */,
 				A5556F57190D1C310078C4C9 /* Scenes */,
@@ -286,13 +289,31 @@
 			path = Oblects;
 			sourceTree = "<group>";
 		};
-		A5AA58E6198EB15B00A4D40C /* SoundMaster */ = {
+		A584F9AC1A6713ED001E8D8D /* Externals */ = {
 			isa = PBXGroup;
 			children = (
-				A5AA58E7198EB15B00A4D40C /* SoundMaster.h */,
-				A5AA58E8198EB15B00A4D40C /* SoundMaster.m */,
+				A584F9EB1A6715AD001E8D8D /* SDiPhoneVersion */,
+				A584F9AD1A6713ED001E8D8D /* SoundMaster */,
+			);
+			path = Externals;
+			sourceTree = "<group>";
+		};
+		A584F9AD1A6713ED001E8D8D /* SoundMaster */ = {
+			isa = PBXGroup;
+			children = (
+				A584F9CF1A6713ED001E8D8D /* SoundMaster.h */,
+				A584F9D01A6713ED001E8D8D /* SoundMaster.m */,
 			);
 			path = SoundMaster;
+			sourceTree = "<group>";
+		};
+		A584F9EB1A6715AD001E8D8D /* SDiPhoneVersion */ = {
+			isa = PBXGroup;
+			children = (
+				A584F9F01A6715AD001E8D8D /* SDiPhoneVersion.h */,
+				A584F9F11A6715AD001E8D8D /* SDiPhoneVersion.m */,
+			);
+			path = SDiPhoneVersion;
 			sourceTree = "<group>";
 		};
 		A5B177011908FA54000C9921 /* Resources */ = {
@@ -427,6 +448,7 @@
 				A5974A5819100E0C009BD12A /* BallObject.m in Sources */,
 				A54FCAF01908F926009B5255 /* GameController.m in Sources */,
 				A54FCAE71908F926009B5255 /* AppDelegate.m in Sources */,
+				A584F9E41A6713ED001E8D8D /* SoundMaster.m in Sources */,
 				A5556F5E190D1C310078C4C9 /* GameScene.m in Sources */,
 				A58E5C84192392A4004F95BC /* InfoScene.m in Sources */,
 				A5556F5F190D1C310078C4C9 /* LoadingScene.m in Sources */,
@@ -434,7 +456,7 @@
 				A5556F60190D1C310078C4C9 /* MainMenuScene.m in Sources */,
 				A54FCAE31908F926009B5255 /* main.m in Sources */,
 				A5E754AD196B2AC2006E4E47 /* BaseScene.m in Sources */,
-				A5AA58E9198EB15B00A4D40C /* SoundMaster.m in Sources */,
+				A584FA0C1A6715AD001E8D8D /* SDiPhoneVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

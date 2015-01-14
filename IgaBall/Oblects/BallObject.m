@@ -24,10 +24,16 @@
 	{
 		NSUInteger ballId = arc4random() % ballsCount;
 		NSString *ballName = [NSString stringWithFormat:@"Ball%@", @(ballId)];
-				
+		
 		SKTexture *texture = [SKTexture textureWithImageNamed:ballName];
-        _objectSize = texture.size;
-        SKSpriteNode *node = [SKSpriteNode spriteNodeWithTexture:texture size:self.objectSize];
+		NSAssert(texture, @"Can't create texture for Ball: %@", ballName);
+		if (!texture)
+		{
+			return nil;
+		}
+		
+		_objectSize = texture.size;
+		SKSpriteNode *node = [SKSpriteNode spriteNodeWithTexture:texture size:self.objectSize];
 		
 		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.objectSize.width / 5];
 		physicsBody.dynamic = YES;
@@ -48,10 +54,10 @@
 
 -(void)dealloc
 {
-    DBNSLog(@"DEALOC - BallObject");
-    
-    self.physicsBody = nil;
-    [self removeAllChildren];
+	DBNSLog(@"DEALOC - BallObject");
+	
+	self.physicsBody = nil;
+	[self removeAllChildren];
 }
 
 - (CGSize)size
@@ -62,7 +68,7 @@
 - (CGFloat)moveDuration
 {
 	CGFloat offset = arc4random() % 500 / 10000.f;
-
+	
 	_moveDuration -= offset;
 	
 	if (arc4random() % 5 == 0)
