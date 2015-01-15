@@ -1,4 +1,4 @@
-IgaBall
+<img src="https://raw.githubusercontent.com/IGRSoft/igaball/master/Resources/Images.xcassets/AppIcon.appiconset/icon_58.png">" IgaBall
 =======
 
 Do You want to improve your reaction?
@@ -10,13 +10,25 @@ But there is a one catch, balls randomly accelerate and the lifetime of the spri
 Try to find the best time to hit the ball!
 Prove that you're the best!
 
+<img src="https://raw.githubusercontent.com/IGRSoft/igaball/master/Resources/screenshot.png">
+
 Install
-=======
+-------------
 
 From iTines [latest build][1]
 
+Credits
+-------------
+
+Developer: Vitalii (Korich) Parovishnyk 
+
+Known Issues
+-------------
+
+* Wrong graphics for iPhone 6 & 6+;
+
 License
-=======
+-------------
 
 GPL v3
 
