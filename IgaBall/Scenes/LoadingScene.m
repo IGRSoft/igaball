@@ -20,8 +20,13 @@
 {
 	DBNSLog(@"%s", __func__);
 	
+    SKSpriteNode *logoImage = nil;
+    CGFloat changeSceneDelay = 0.0;
+    
 	if (self = [super initWithSize:aSize gameController:gGameController])
 	{
+        changeSceneDelay = 1.0;
+        
 		/* Setup your scene here */
 		[[SoundMaster sharedMaster] preloadMusic:@"game.m4a"];
 		[[SoundMaster sharedMaster] preloadMusic:@"gameover.m4a"];
@@ -33,7 +38,7 @@
         
 		SKTexture *logoTexture = [SKTexture textureWithImageNamed:@"IGRSoft"];
 		
-		SKSpriteNode *logoImage = [SKSpriteNode spriteNodeWithTexture:logoTexture];
+		logoImage = [SKSpriteNode spriteNodeWithTexture:logoTexture];
 		
         BOOL isIOS7 = iOSVersionLessThanOrEqualTo(@"7.1.2");
 		if (isIOS7)
@@ -53,9 +58,11 @@
 	__weak LoadingScene *weakSelf = self;
 	[self runAction:
 	 [SKAction sequence:@[
-						  [SKAction waitForDuration:1.0],
+						  [SKAction waitForDuration:changeSceneDelay],
 						  [SKAction runBlock:^{
-		 
+         
+         [logoImage setHidden:YES];
+         
 		 [weakSelf.gameController setupMainMenu];
 	 }]
 						  ]]

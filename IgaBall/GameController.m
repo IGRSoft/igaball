@@ -270,19 +270,16 @@ const CGFloat fadeDuration = 0.5;
 	
 	[self playMusic:@"main"];
 	
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		
-		[self.btnFacebook setHidden:NO];
-		[self.btnTwitter setHidden:NO];
-		[self.btnSound setHidden:NO];
-		[self.btnPlay setHidden:NO];
-		[self.btnGameCenter setHidden:NO];
-		[self.btnInfo setHidden:NO];
-		
-		BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-		
-		[self.adBannerTop setHidden:isIPhone];
-	});
+    [self.btnFacebook setHidden:NO];
+    [self.btnTwitter setHidden:NO];
+    [self.btnSound setHidden:NO];
+    [self.btnPlay setHidden:NO];
+    [self.btnGameCenter setHidden:NO];
+    [self.btnInfo setHidden:NO];
+    
+    BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+    
+    [self.adBannerTop setHidden:isIPhone];
 }
 
 - (void)setupGameOverWithScore:(NSInteger)aScore
@@ -308,11 +305,8 @@ const CGFloat fadeDuration = 0.5;
 	
 	[self playMusic:@"gameover" loop:NO];
 	
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		
-		[self.gameOverView setHidden:NO];
-		[self.adBannerTop setHidden:NO];
-	});
+    [self.gameOverView setHidden:NO];
+    [self.adBannerTop setHidden:NO];
 	
 	[self reportScore:_score forLeaderboard:kLeaderboardID];
 }
