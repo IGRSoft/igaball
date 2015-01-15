@@ -31,7 +31,7 @@
 
 @property (nonatomic) SKAction *collisionSound;
 
-@property (nonatomic) NSMutableArray *bals;
+@property (nonatomic) NSMutableArray *balls;
 @property (nonatomic) NSMutableArray *trampolines;
 
 @end
@@ -68,7 +68,7 @@
 		self.isGameOver = NO;
 		self.score = -1;
 		
-		self.bals = [NSMutableArray array];
+		self.balls = [NSMutableArray array];
 		self.trampolines = [NSMutableArray array];
 		
 		self.borderOffset = 50.f;
@@ -76,8 +76,10 @@
 		CGPoint borderPoint = CGPointMake(self.frame.size.width - self.borderOffset,
 										  CGRectGetMidY(self.frame));
 		CGRect borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
-		
-		_offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(CGRectGetWidth(self.frame), borderRect.size.height)];
+        CGSize screenOffsetSize = CGSizeMake(CGRectGetWidth(self.frame), borderRect.size.height);
+        
+		_offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor]
+                                                           size:screenOffsetSize];
 		_offScreenNodeRight.position = CGPointMake(borderPoint.x + self.borderOffset,
 												   borderPoint.y);
 		
@@ -87,7 +89,8 @@
 								  CGRectGetMidY(self.frame));
 		borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
 		
-		_offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:CGSizeMake(CGRectGetWidth(self.frame), borderRect.size.height)];
+		_offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor]
+                                                          size:screenOffsetSize];
 		_offScreenNodeLeft.position = CGPointMake(borderPoint.x - self.borderOffset,
 												  borderPoint.y);
 		
@@ -156,18 +159,12 @@
 	[self.scoreLabel removeFromParent];
 	self.scoreLabel = nil;
 	
-	for (BallObject *bal in self.bals)
-	{
-		[bal removeAllActions];
-		[bal removeFromParent];
-	}
-	[self.bals removeAllObjects];
+    [self.balls makeObjectsPerformSelector:@selector(removeAllActions)];
+    [self.balls makeObjectsPerformSelector:@selector(removeFromParent)];
+	[self.balls removeAllObjects];
 	
-	for (TrampolineObject *trampoline in self.trampolines)
-	{
-		[trampoline removeAllActions];
-		[trampoline removeFromParent];
-	}
+    [self.trampolines makeObjectsPerformSelector:@selector(removeAllActions)];
+    [self.trampolines makeObjectsPerformSelector:@selector(removeFromParent)];
 	[self.trampolines removeAllObjects];
 	
 	[self.bgImage removeFromParent];
@@ -178,6 +175,8 @@
 	[self.offScreenNodeLeft removeAllActions];
 	[self.offScreenNodeLeft removeFromParent];
 }
+
+#pragma mark - Touches
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -197,6 +196,8 @@
 		[trampoline activateObjectWitDuration:YES];
 	}
 }
+
+#pragma mark - Add Game objects to scene
 
 - (void)addTrampolineToFrame:(CGRect)rect rotate:(BOOL)rotate
 {
@@ -248,8 +249,10 @@
 	ball.zPosition = kPositionZBall;
 	[self addChild:ball];
 	
-	[self.bals addObject:ball];
+	[self.balls addObject:ball];
 }
+
+#pragma mark - Game objects Actions
 
 - (void)startMoveBall:(BallObject *)ball
 {
@@ -257,7 +260,8 @@
 	
 	BallDiraction ballDiraction = ball.position.x > screeCentre ? BallDiractionLeft : BallDiractionRight;
 	
-	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -(screeCentre * 2.f) : (screeCentre * 2.f)), ball.position.y);
+	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -(screeCentre * 2.f) : (screeCentre * 2.f)),
+                                   ball.position.y);
 	
 	SKAction *actionMove = [self actionBall:ball destination:realDest];
 	[ball runAction:[SKAction sequence:@[actionMove]]];
@@ -279,7 +283,7 @@
 	CGFloat pi = (arc4random() % 2 == 0) ? -M_PI : M_PI;
 	NSUInteger rotationCount = arc4random() % 5;
 	
-	SKAction *oneRevolution = [SKAction repeatAction:[SKAction rotateByAngle:pi*2 duration:rotationCount] count:5];
+	SKAction *oneRevolution = [SKAction repeatAction:[SKAction rotateByAngle:pi*2 duration:rotationCount] count:99];
 	SKAction *actionMove = [SKAction moveTo:destination duration:realMoveDuration];
 	
 	return [SKAction group:@[oneRevolution, actionMove]];
@@ -363,9 +367,9 @@
 
 - (void)setScore:(NSInteger)score
 {
-	if (score < self.bals.count && _score < score)
+	if (score < self.balls.count && _score < score)
 	{
-		BallObject *newBall = self.bals[score];
+		BallObject *newBall = self.balls[score];
 		
 		if (!newBall.hasActions)
 		{

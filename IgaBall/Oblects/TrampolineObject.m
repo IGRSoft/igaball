@@ -16,6 +16,7 @@
 @property (nonatomic) SKEmitterNode *particleNode;
 @property (nonatomic) SKSpriteNode *trampolineNode;
 @property (nonatomic) SKPhysicsBody *physicsBodyTemplate;
+
 @end
 
 @implementation TrampolineObject
@@ -25,23 +26,7 @@
 	self = [super init];
 	if (self != nil)
 	{
-		NSString *imgName = @"";
-		switch (aDirection)
-		{
-			case TrampolineDirection_Left:
-			{
-				imgName = @"TrampolineLeft";
-			}
-				break;
-			case TrampolineDirection_Right:
-			{
-				imgName = @"TrampolineRight";
-			}
-				break;
-				
-			default:
-				break;
-		}
+		NSString *imgName = @"Trampoline";
 		
 		_texture = [SKTexture textureWithImageNamed:imgName];
 		NSAssert(_texture, @"Can't create texture for Trampoline: %@", imgName);
@@ -55,6 +40,18 @@
 		
 		_trampolineNode.alpha = 0.f;
 		
+        switch (aDirection)
+        {
+            case TrampolineDirection_Right:
+            {
+                _trampolineNode.xScale = -1.0;
+            }
+                break;
+            case TrampolineDirection_Left:
+            default:
+                break;
+        }
+        
 		self.activationDuration = defaultDuration / 3.f;
 		
 		[self addChild:self.trampolineNode];
