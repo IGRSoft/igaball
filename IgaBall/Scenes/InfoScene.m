@@ -24,38 +24,11 @@
 	if (self = [super initWithSize:aSize gameController:gGameController])
 	{
 		// 1
-		BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-		
-		SKTexture *texture = nil;
-		if (isIPhone)
-		{
-			BOOL isIPhone5 = [SDiPhoneVersion deviceSize] == iPhone47inch;
-			NSString *imgName = [NSString stringWithFormat:@"LaunchImage-700%@", isIPhone5 ? @"-568h" : @""];
-			texture = [SKTexture textureWithImageNamed:imgName];
-		}
-		else
-		{
-			texture = [SKTexture textureWithImageNamed:@"LaunchImage-700-Landscape"];
-		}
-		
-		CGSize newSize = aSize;
-		if (isIPhone)
-		{
-			newSize = CGSizeMake(aSize.height, aSize.width);
-		}
-		
-		SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:newSize];
-		
-		if (isIPhone)
-		{
-			bgImage.zRotation = M_PI / 2;
-		}
-		
-		bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
-									   CGRectGetMidY(self.frame));
-		
-		bgImage.zPosition = kPositionZBGImage;
-		[self addChild:bgImage];
+        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+        
+        SKSpriteNode *bgSprite = [self landscapeSpriteForSize:aSize];
+		bgSprite.zPosition = kPositionZBGImage;
+		[self addChild:bgSprite];
 		
 		CGFloat titleFontSize = isIPhone ? 25.f : 50.f;
 		CGFloat textFontSize = isIPhone ? 20.f : 35.f;

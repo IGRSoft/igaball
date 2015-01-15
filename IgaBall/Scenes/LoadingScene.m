@@ -28,42 +28,15 @@
 		[[SoundMaster sharedMaster] preloadEffect:@"main.m4a"];
 		[[SoundMaster sharedMaster] preloadEffect:@"pop.m4a"];
 		
-		BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-		
-		SKTexture *texture = nil;
-		if (isIPhone)
-		{
-			BOOL isIPhone5 = [SDiPhoneVersion deviceSize] == iPhone47inch;
-			NSString *imgName = [NSString stringWithFormat:@"LaunchImage-700%@", isIPhone5 ? @"-568h" : @""];
-			texture = [SKTexture textureWithImageNamed:imgName];
-		}
-		else
-		{
-			texture = [SKTexture textureWithImageNamed:@"LaunchImage-700-Landscape"];
-		}
-		
-		SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
-		
-		if (isIPhone)
-		{
-			bgImage.zRotation = M_PI / 2;
-			
-			bgImage.position = CGPointMake(CGRectGetMidY(self.frame),
-										   CGRectGetMidX(self.frame));
-		}
-		else
-		{
-			bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
-										   CGRectGetMidY(self.frame));
-		}
-		
-		[self addChild:bgImage];
-		
+        SKSpriteNode *bgSprite = [self landscapeSpriteForSize:aSize];
+        [self addChild:bgSprite];
+        
 		SKTexture *logoTexture = [SKTexture textureWithImageNamed:@"IGRSoft"];
 		
 		SKSpriteNode *logoImage = [SKSpriteNode spriteNodeWithTexture:logoTexture];
 		
-		if (isIPhone)
+        BOOL isIOS7 = iOSVersionLessThanOrEqualTo(@"7.1.2");
+		if (isIOS7)
 		{
 			logoImage.position = CGPointMake(CGRectGetMidY(self.frame),
 											 CGRectGetMidX(self.frame));

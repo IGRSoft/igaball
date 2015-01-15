@@ -23,38 +23,10 @@
 	if (self = [super initWithSize:aSize gameController:gGameController])
 	{
 		/* Setup your scene here */
-		
 		BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-		
-		SKTexture *texture = nil;
-		if (isIPhone)
-		{
-			BOOL isIPhone5 = [SDiPhoneVersion deviceSize] == iPhone47inch;
-			NSString *imgName = [NSString stringWithFormat:@"LaunchImage-700%@", isIPhone5 ? @"-568h" : @""];
-			texture = [SKTexture textureWithImageNamed:imgName];
-		}
-		else
-		{
-			texture = [SKTexture textureWithImageNamed:@"LaunchImage-700-Landscape"];
-		}
-		
-		CGSize newSize = aSize;
-		if (isIPhone)
-		{
-			newSize = CGSizeMake(aSize.height, aSize.width);
-		}
-		
-		SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:newSize];
-		
-		if (isIPhone)
-		{
-			bgImage.zRotation = M_PI / 2;
-		}
-		
-		bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
-									   CGRectGetMidY(self.frame));
-		
-		[self addChild:bgImage];
+        
+        SKSpriteNode *bgSprite = [self landscapeSpriteForSize:aSize];
+        [self addChild:bgSprite];
 		
 		NSString *imgName = [NSString stringWithFormat:@"GameName"];
 		SKTexture *nameTexture = [SKTexture textureWithImageNamed:imgName];

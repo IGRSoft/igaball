@@ -25,7 +25,7 @@ Developer: Vitalii (Korich) Parovishnyk
 Known Issues
 -------------
 
-* Wrong graphics for iPhone 6 & 6+;
+* Wrong gameplay for iPhone 6+;
 
 License
 -------------

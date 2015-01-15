@@ -15,4 +15,6 @@
 
 @property (nonatomic, weak, readwrite) GameController *gameController;
 
+- (SKSpriteNode*)landscapeSpriteForSize:(CGSize)aSize;
+
 @end
