@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/IGRSoft/igaball/master/Resources/Images.xcassets/AppIcon.appiconset/icon_58.png">" IgaBall
+<img src="https://raw.githubusercontent.com/IGRSoft/igaball/master/Resources/Images.xcassets/AppIcon.appiconset/icon_58.png"> IgaBall
 =======
 
 Do You want to improve your reaction?
