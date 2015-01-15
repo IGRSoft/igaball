@@ -49,25 +49,25 @@
 	{
 		BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
 		
+        // Background
 		SKTexture *texture = [SKTexture textureWithImageNamed:@"bg_game"];
 		
 		_bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
-		
 		_bgImage.position = CGPointMake(CGRectGetMidX(self.frame),
 										CGRectGetMidY(self.frame));
-		
 		_bgImage.zPosition = kPositionZBGImage;
 		[self addChild:_bgImage];
 		
+        // Sound
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 		self.useSound = [ud boolForKey:kUseSound];
 		
-		self.physicsWorld.gravity = CGVectorMake(0,0);
-		self.physicsWorld.contactDelegate = self;
-		
-		self.isGameOver = NO;
-		self.score = -1;
-		
+        self.collisionSound = [SKAction runBlock:^{
+            
+            [[SoundMaster sharedMaster] playEffect:@"pop.m4a"];
+        }];
+        
+        // Setup Game Objects
 		self.balls = [NSMutableArray array];
 		self.trampolines = [NSMutableArray array];
 		
@@ -96,6 +96,10 @@
 		
 		[self addTrampolineToFrame:borderRect rotate:NO];
 		
+        // Game Scene Phisics
+        self.physicsWorld.gravity = CGVectorMake(0,0);
+        self.physicsWorld.contactDelegate = self;
+        
 		//Add offscreen Collision
 		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:borderRect.size];
 		physicsBody.dynamic = NO;
@@ -109,8 +113,10 @@
 		_offScreenNodeLeft.physicsBody = [physicsBody copy];
 		[self addChild:_offScreenNodeLeft];
 		
-		// Add Score
-		
+        // Game Score
+        self.isGameOver = NO;
+        self.score = -1;
+        
 		CGFloat titleFontSize = isIPhone ? 30.f : 50.f;
 		
 		self.scoreLabel = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
@@ -135,11 +141,6 @@
 		[self.scoreLabel addChild:self.scoreBorderShadow];
 		
 		self.score = 0;
-		
-		self.collisionSound = [SKAction runBlock:^{
-			
-			[[SoundMaster sharedMaster] playEffect:@"pop.m4a"];
-		}];
 	}
 	
 	return self;
@@ -167,6 +168,7 @@
     [self.trampolines makeObjectsPerformSelector:@selector(removeFromParent)];
 	[self.trampolines removeAllObjects];
 	
+    // need release memory (iPhone issue)
 	[self.bgImage removeFromParent];
 	self.bgImage = nil;
 	
@@ -174,6 +176,11 @@
 	[self.offScreenNodeRight removeFromParent];
 	[self.offScreenNodeLeft removeAllActions];
 	[self.offScreenNodeLeft removeFromParent];
+}
+
+-(void)update:(CFTimeInterval)currentTime
+{
+    /* Called before each frame is rendered */
 }
 
 #pragma mark - Touches
@@ -289,9 +296,57 @@
 	return [SKAction group:@[oneRevolution, actionMove]];
 }
 
--(void)update:(CFTimeInterval)currentTime
+- (void)wasFallStart
 {
-	/* Called before each frame is rendered */
+    --self.score;
+}
+
+#pragma mark - Game Over
+
+- (void)setScore:(NSInteger)score
+{
+    if (score < self.balls.count && _score < score)
+    {
+        BallObject *newBall = self.balls[score];
+        
+        if (!newBall.hasActions)
+        {
+            [self startMoveBall:newBall];
+        }
+    }
+    
+    _score = score;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        self.scoreLabel.text = [NSString stringWithFormat:@"%@", @(_score)];
+        
+        BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+        
+        CGFloat height = isIPhone ? 40.f : 70.f;
+        CGFloat width = isIPhone ? 40.f : 70.f;
+        
+        if (score >= 1000)
+        {
+            width = isIPhone ? 100.f :130;
+        }
+        else if (score >= 100)
+        {
+            width = isIPhone ? 80.f :110;
+        }
+        else if (score >= 10)
+        {
+            width = isIPhone ? 60.f : 90;
+        }
+        
+        CGRect borderRect = CGRectMake(-(width*0.5), -(height*0.25) + self.scoreBorder.lineWidth * 0.5,
+                                       width, height);
+        
+        CGPathRef path = CGPathCreateWithRoundedRect(borderRect, (height*0.5), (height*0.5), nil);
+        [self.scoreBorder setPath:path];
+        [self.scoreBorderShadow setPath:path];
+        CGPathRelease(path);
+    });
 }
 
 #pragma mark - SKPhysicsContactDelegate
@@ -303,7 +358,7 @@
 		return;
 	}
 	
-	// 1
+	// check ball on scene
 	SKPhysicsBody *firstBody, *secondBody;
 	
 	if (contact.bodyA.categoryBitMask == offScreenCategory || contact.bodyB.categoryBitMask == offScreenCategory)
@@ -317,6 +372,7 @@
 		return;
 	}
 	
+    // check collision
 	if (contact.bodyA.categoryBitMask > contact.bodyB.categoryBitMask)
 	{
 		firstBody = contact.bodyA;
@@ -328,7 +384,6 @@
 		secondBody = contact.bodyA;
 	}
 	
-	// 2
 	if ((firstBody.categoryBitMask & ballCategory) != 0 &&
 		(secondBody.categoryBitMask & trampolineCategory) != 0)
 	{
@@ -358,57 +413,6 @@
 	{
 		[trampoline runAction:self.collisionSound];
 	}
-}
-
-- (void)wasFallStart
-{
-	--self.score;
-}
-
-- (void)setScore:(NSInteger)score
-{
-	if (score < self.balls.count && _score < score)
-	{
-		BallObject *newBall = self.balls[score];
-		
-		if (!newBall.hasActions)
-		{
-			[self startMoveBall:newBall];
-		}
-	}
-	
-	_score = score;
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		
-		self.scoreLabel.text = [NSString stringWithFormat:@"%@", @(_score)];
-		
-		BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-		
-		CGFloat height = isIPhone ? 40.f : 70.f;
-		CGFloat width = isIPhone ? 40.f : 70.f;
-		
-		if (score >= 1000)
-		{
-			width = isIPhone ? 100.f :130;
-		}
-		else if (score >= 100)
-		{
-			width = isIPhone ? 80.f :110;
-		}
-		else if (score >= 10)
-		{
-			width = isIPhone ? 60.f : 90;
-		}
-		
-		CGRect borderRect = CGRectMake(-(width*0.5), -(height*0.25) + self.scoreBorder.lineWidth * 0.5,
-								 width, height);
-		
-		CGPathRef path = CGPathCreateWithRoundedRect(borderRect, (height*0.5), (height*0.5), nil);
-		[self.scoreBorder setPath:path];
-		[self.scoreBorderShadow setPath:path];
-		CGPathRelease(path);
-	});
 }
 
 @end
