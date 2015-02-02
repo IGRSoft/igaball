@@ -30,7 +30,6 @@
 		A573C0A119210BB100D50372 /* PillowParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A573C09F19210BB100D50372 /* PillowParticle.sks */; };
 		A573C0A419210C4300D50372 /* PillowParticle.png in Resources */ = {isa = PBXBuildFile; fileRef = A573C0A319210C4300D50372 /* PillowParticle.png */; };
 		A584F9E41A6713ED001E8D8D /* SoundMaster.m in Sources */ = {isa = PBXBuildFile; fileRef = A584F9D01A6713ED001E8D8D /* SoundMaster.m */; };
-		A584FA0C1A6715AD001E8D8D /* SDiPhoneVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A584F9F11A6715AD001E8D8D /* SDiPhoneVersion.m */; };
 		A58E5C81192376AD004F95BC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58E5C80192376AD004F95BC /* Social.framework */; };
 		A58E5C84192392A4004F95BC /* InfoScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A58E5C83192392A4004F95BC /* InfoScene.m */; };
 		A5974A5819100E0C009BD12A /* BallObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A5974A5719100E0C009BD12A /* BallObject.m */; };
@@ -45,6 +44,7 @@
 		A5B1770C1908FA54000C9921 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B177061908FA54000C9921 /* Images.xcassets */; };
 		A5B1770E1908FA54000C9921 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B177081908FA54000C9921 /* InfoPlist.strings */; };
 		A5B6E311191A2956000B967D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6E310191A2956000B967D /* GameKit.framework */; };
+		A5CBC08F1A7F8AF400EB85FD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5CBC08D1A7F8AF400EB85FD /* LaunchScreen.xib */; };
 		A5E754AD196B2AC2006E4E47 /* BaseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E754AC196B2AC2006E4E47 /* BaseScene.m */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +116,7 @@
 		A5B177061908FA54000C9921 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A5B177091908FA54000C9921 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5B6E310191A2956000B967D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		A5CBC08E1A7F8AF400EB85FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A5E754AB196B2AC2006E4E47 /* BaseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScene.h; sourceTree = "<group>"; };
 		A5E754AC196B2AC2006E4E47 /* BaseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -328,6 +329,7 @@
 				A573C09F19210BB100D50372 /* PillowParticle.sks */,
 				A573C0A319210C4300D50372 /* PillowParticle.png */,
 				A5A11DE419A73B5A006424F8 /* Localizable.strings */,
+				A5CBC08D1A7F8AF400EB85FD /* LaunchScreen.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -422,6 +424,7 @@
 				A5AA58F7198EB5CD00A4D40C /* pop.m4a in Resources */,
 				A5B1770B1908FA54000C9921 /* Main_iPhone.storyboard in Resources */,
 				A573C0A419210C4300D50372 /* PillowParticle.png in Resources */,
+				A5CBC08F1A7F8AF400EB85FD /* LaunchScreen.xib in Resources */,
 				A5AA58F5198EB5CD00A4D40C /* gameover.m4a in Resources */,
 				A5AA58F4198EB5CD00A4D40C /* game.m4a in Resources */,
 				A5AA58F6198EB5CD00A4D40C /* main.m4a in Resources */,
@@ -456,7 +459,6 @@
 				A5556F60190D1C310078C4C9 /* MainMenuScene.m in Sources */,
 				A54FCAE31908F926009B5255 /* main.m in Sources */,
 				A5E754AD196B2AC2006E4E47 /* BaseScene.m in Sources */,
-				A584FA0C1A6715AD001E8D8D /* SDiPhoneVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +524,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		A5CBC08D1A7F8AF400EB85FD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5CBC08E1A7F8AF400EB85FD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -556,7 +566,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -589,7 +599,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

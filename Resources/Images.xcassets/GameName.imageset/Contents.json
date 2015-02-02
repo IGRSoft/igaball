@@ -11,7 +11,8 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "Logo@3x.png"
     },
     {
       "idiom" : "ipad",

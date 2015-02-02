@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="LVB-YS-i5n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Game Controller-->
         <scene sceneID="CtS-rA-C9T">
             <objects>
                 <viewController id="LVB-YS-i5n" customClass="GameController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HUH-e5-nCJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Zp-ls-MxM"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bdc-N1-crn" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZGp-iO-0KS" userLabel="facebook">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGp-iO-0KS" userLabel="facebook">
                                 <rect key="frame" x="20" y="225" width="80" height="95"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="Facebook">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -23,9 +26,8 @@
                                     <action selector="onTouchFacebook:" destination="LVB-YS-i5n" eventType="touchUpInside" id="g0P-1Z-owX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i9d-40-YDf" userLabel="twitter">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9d-40-YDf" userLabel="twitter">
                                 <rect key="frame" x="108" y="225" width="80" height="95"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="Twitter">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -33,9 +35,8 @@
                                     <action selector="onTouchTwitter:" destination="LVB-YS-i5n" eventType="touchUpInside" id="R7Q-ve-Ak2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GOG-Qa-flx" userLabel="twitter">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOG-Qa-flx" userLabel="twitter">
                                 <rect key="frame" x="196" y="225" width="80" height="95"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="GameCenter">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -43,9 +44,8 @@
                                     <action selector="onTouchGameCenter:" destination="LVB-YS-i5n" eventType="touchUpInside" id="j59-P0-8sc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qXs-71-w0E" userLabel="sound">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXs-71-w0E" userLabel="sound">
                                 <rect key="frame" x="514" y="265" width="34" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="Info">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -53,9 +53,8 @@
                                     <action selector="onTouchInfo:" destination="LVB-YS-i5n" eventType="touchUpInside" id="0jk-mR-50D"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RUa-zm-dIm" userLabel="play">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUa-zm-dIm" userLabel="play">
                                 <rect key="frame" x="220" y="97" width="128" height="140"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                 <state key="normal" image="Play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -63,16 +62,14 @@
                                     <action selector="onTouchPlay:" destination="LVB-YS-i5n" eventType="touchUpInside" id="RDG-jL-yOk"/>
                                 </connections>
                             </button>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="TCE-9g-7vh">
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="TCE-9g-7vh">
                                 <rect key="frame" x="124" y="0.0" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="LVB-YS-i5n" id="Fb5-Cz-ecZ"/>
                                 </connections>
                             </adBannerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pef-YV-oJW" userLabel="sound">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pef-YV-oJW" userLabel="sound">
                                 <rect key="frame" x="472" y="265" width="34" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="SoundOn">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -80,13 +77,11 @@
                                     <action selector="onTouchSound:" destination="LVB-YS-i5n" eventType="touchUpInside" id="bWG-j8-6mT"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" id="Pmg-uF-B6r" userLabel="GameOver View">
-                                <rect key="frame" x="79" y="116" width="410" height="171"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pmg-uF-B6r" userLabel="GameOver View">
+                                <rect key="frame" x="79" y="109" width="410" height="178"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KF0-iu-Xmf">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KF0-iu-Xmf">
                                         <rect key="frame" x="106" y="7" width="96" height="160"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="StopGame">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -94,9 +89,8 @@
                                             <action selector="onTouchStopGame:" destination="LVB-YS-i5n" eventType="touchUpInside" id="OrN-0E-hqR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ro6-o6-I8U">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ro6-o6-I8U">
                                         <rect key="frame" x="2" y="7" width="96" height="160"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="TryAgain">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -104,9 +98,8 @@
                                             <action selector="onTouchTryAgain:" destination="LVB-YS-i5n" eventType="touchUpInside" id="I5P-BE-Yb3"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HTn-0Z-ccg">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTn-0Z-ccg">
                                         <rect key="frame" x="210" y="7" width="96" height="160"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="TwittScore">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -114,9 +107,8 @@
                                             <action selector="onTouchShareScoreToTwitter:" destination="LVB-YS-i5n" eventType="touchUpInside" id="ciZ-wu-fsG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TU2-es-6ed">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TU2-es-6ed">
                                         <rect key="frame" x="314" y="7" width="96" height="160"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="FacebookScore">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -126,9 +118,34 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="178" id="bdj-lx-vZY"/>
+                                    <constraint firstAttribute="width" constant="410" id="lnT-9a-bKF"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.63529413940000001" blue="0.90196084980000002" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="5Zp-ls-MxM" firstAttribute="top" secondItem="GOG-Qa-flx" secondAttribute="bottom" id="4Jf-9z-22S"/>
+                            <constraint firstAttribute="centerX" secondItem="TCE-9g-7vh" secondAttribute="centerX" id="8CD-Hh-Wbe"/>
+                            <constraint firstAttribute="centerX" secondItem="Pmg-uF-B6r" secondAttribute="centerX" id="8Hn-hg-UpS"/>
+                            <constraint firstItem="ZGp-iO-0KS" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leadingMargin" constant="4" id="9Mc-cE-iid"/>
+                            <constraint firstAttribute="centerX" secondItem="TCE-9g-7vh" secondAttribute="centerX" id="AoI-V2-xCh"/>
+                            <constraint firstItem="5Zp-ls-MxM" firstAttribute="top" secondItem="i9d-40-YDf" secondAttribute="bottom" id="GCD-gw-Kvr"/>
+                            <constraint firstItem="5Zp-ls-MxM" firstAttribute="top" secondItem="qXs-71-w0E" secondAttribute="bottom" constant="20" id="Gai-Iy-BWf"/>
+                            <constraint firstItem="5Zp-ls-MxM" firstAttribute="top" secondItem="Pef-YV-oJW" secondAttribute="bottom" constant="20" id="NBr-IK-xeZ"/>
+                            <constraint firstAttribute="centerY" secondItem="RUa-zm-dIm" secondAttribute="centerY" constant="-7" id="OG0-Z5-nqB"/>
+                            <constraint firstItem="5Zp-ls-MxM" firstAttribute="top" secondItem="Pmg-uF-B6r" secondAttribute="bottom" constant="33" id="Phx-9j-TLr"/>
+                            <constraint firstItem="RUa-zm-dIm" firstAttribute="top" secondItem="TCE-9g-7vh" secondAttribute="bottom" constant="47" id="TN5-Tp-iXT"/>
+                            <constraint firstAttribute="centerX" secondItem="RUa-zm-dIm" secondAttribute="centerX" id="WrD-Qu-bGI"/>
+                            <constraint firstItem="GOG-Qa-flx" firstAttribute="leading" secondItem="i9d-40-YDf" secondAttribute="trailing" constant="8" id="XUL-WX-gCd"/>
+                            <constraint firstItem="ZGp-iO-0KS" firstAttribute="top" secondItem="i9d-40-YDf" secondAttribute="top" id="ebP-tx-0oX"/>
+                            <constraint firstItem="RUa-zm-dIm" firstAttribute="top" secondItem="TCE-9g-7vh" secondAttribute="bottom" constant="47" id="hIp-Zo-0z6"/>
+                            <constraint firstItem="qXs-71-w0E" firstAttribute="leading" secondItem="Pef-YV-oJW" secondAttribute="trailing" constant="8" id="hLZ-PA-KoD"/>
+                            <constraint firstItem="i9d-40-YDf" firstAttribute="leading" secondItem="ZGp-iO-0KS" secondAttribute="trailing" constant="8" id="kpe-WQ-xzh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qXs-71-w0E" secondAttribute="trailing" constant="4" id="wZp-CY-sg6"/>
+                            <constraint firstItem="TCE-9g-7vh" firstAttribute="top" secondItem="HUH-e5-nCJ" secondAttribute="bottom" id="zz8-Jd-2X6"/>
+                        </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>

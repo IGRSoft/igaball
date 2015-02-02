@@ -8,7 +8,6 @@
 
 #import "BaseScene.h"
 #import "Constants.h"
-#import "SDiPhoneVersion.h"
 
 @interface BaseScene (Protected)
 
@@ -34,47 +33,14 @@
 
 - (SKSpriteNode*)landscapeSpriteForSize:(CGSize)aSize
 {
-    NSString *imgName = @"LaunchImage-700";
-    
-    BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
-    BOOL isIOS7 = iOSVersionLessThanOrEqualTo(@"7.1.2");
-    
-    if (isIPhone)
-    {
-        BOOL isIPhone5_6 = [SDiPhoneVersion deviceSize] > iPhone35inch;
-        imgName = [imgName stringByAppendingString:isIPhone5_6 ? @"-568h" : @""];
-    }
-    else
-    {
-        imgName = [imgName stringByAppendingString:@"-Landscape"];
-    }
+    NSString *imgName = @"bg_main";
     
     UIImage *bgImage = [UIImage imageNamed:imgName];
     SKTexture *texture = [SKTexture textureWithImage:bgImage];
+    SKSpriteNode *bgSprite = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
     
-    CGSize newSize = aSize;
-    if (isIPhone && !isIOS7)
-    {
-        newSize = CGSizeMake(aSize.height, aSize.width);
-    }
-    
-    SKSpriteNode *bgSprite = [SKSpriteNode spriteNodeWithTexture:texture size:newSize];
-    
-    if (isIPhone)
-    {
-        bgSprite.zRotation = (M_PI / 2);
-    }
-    
-    if (isIOS7)
-    {
-        bgSprite.position = CGPointMake(CGRectGetMidY(self.frame),
-                                        CGRectGetMidX(self.frame));
-    }
-    else
-    {
-        bgSprite.position = CGPointMake(CGRectGetMidX(self.frame),
+    bgSprite.position = CGPointMake(CGRectGetMidX(self.frame),
                                         CGRectGetMidY(self.frame));
-    }
     
     return bgSprite;
 }

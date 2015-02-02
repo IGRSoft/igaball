@@ -69,30 +69,29 @@
         
         // Setup Game Objects
 		self.balls = [NSMutableArray array];
-		self.trampolines = [NSMutableArray array];
-		
-		self.borderOffset = 50.f;
-		
-		CGPoint borderPoint = CGPointMake(self.frame.size.width - self.borderOffset,
-										  CGRectGetMidY(self.frame));
-		CGRect borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
-        CGSize screenOffsetSize = CGSizeMake(CGRectGetWidth(self.frame), borderRect.size.height);
+        self.trampolines = [NSMutableArray array];
         
-		_offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor]
-                                                           size:screenOffsetSize];
-		_offScreenNodeRight.position = CGPointMake(borderPoint.x + self.borderOffset,
-												   borderPoint.y);
-		
+		_offScreenNodeRight = [SKSpriteNode spriteNodeWithColor:[SKColor greenColor]
+                                                           size:self.frame.size];
+		_offScreenNodeRight.position = CGPointMake(self.frame.origin.x + self.frame.size.width + CGRectGetMidX(self.frame),
+												   CGRectGetMidY(self.frame));
+        _offScreenNodeRight.zPosition = kPositionZBall;
+        
+        _offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor yellowColor]
+                                                          size:self.frame.size];
+        _offScreenNodeLeft.position = CGPointMake(self.frame.origin.x - CGRectGetMidX(self.frame),
+                                                  CGRectGetMidY(self.frame));
+        _offScreenNodeLeft.zPosition = kPositionZBall;
+        
+        self.borderOffset = 50.f;
+        CGPoint borderPoint = CGPointMake(self.frame.size.width - self.borderOffset,
+                                          CGRectGetMidY(self.frame));
+        CGRect borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
 		[self addTrampolineToFrame:borderRect rotate:YES];
 		
 		borderPoint = CGPointMake(self.borderOffset * 0.5,
 								  CGRectGetMidY(self.frame));
 		borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
-		
-		_offScreenNodeLeft = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor]
-                                                          size:screenOffsetSize];
-		_offScreenNodeLeft.position = CGPointMake(borderPoint.x - self.borderOffset,
-												  borderPoint.y);
 		
 		[self addTrampolineToFrame:borderRect rotate:NO];
 		
@@ -101,7 +100,7 @@
         self.physicsWorld.contactDelegate = self;
         
 		//Add offscreen Collision
-		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:borderRect.size];
+		SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size];
 		physicsBody.dynamic = NO;
 		physicsBody.categoryBitMask = offScreenCategory;
 		physicsBody.contactTestBitMask = ballCategory;

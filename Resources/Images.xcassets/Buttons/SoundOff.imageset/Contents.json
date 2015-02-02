@@ -11,7 +11,8 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "no_sound_icon@3x.png"
     },
     {
       "idiom" : "ipad",

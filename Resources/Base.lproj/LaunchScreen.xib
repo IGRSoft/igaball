@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_main" translatesAutoresizingMaskIntoConstraints="NO" id="ZNg-2k-OFl">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ZNg-2k-OFl" secondAttribute="trailing" id="N4e-Is-Zx9"/>
+                <constraint firstItem="ZNg-2k-OFl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="b9N-e0-wtV"/>
+                <constraint firstAttribute="bottom" secondItem="ZNg-2k-OFl" secondAttribute="bottom" id="c3R-3q-Iqf"/>
+                <constraint firstItem="ZNg-2k-OFl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qwQ-mX-713"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <point key="canvasLocation" x="522" y="374"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg_main" width="480" height="320"/>
+    </resources>
+</document>

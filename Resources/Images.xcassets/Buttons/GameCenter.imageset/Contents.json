@@ -11,7 +11,8 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "app_center_button@3x.png"
     },
     {
       "idiom" : "ipad",

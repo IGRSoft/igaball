@@ -11,7 +11,8 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "facebook_button@3x.png"
     },
     {
       "idiom" : "ipad",

@@ -48,7 +48,7 @@ static NSString * const kDefaultFont = @"Sniglet";
 static NSString * const kUseSound = @"UseSound";
 
 #define kPositionZBGImage       1
-#define kPositionZBall          2
+#define kPositionZBall          3
 #define kPositionZTrampoline    2
 #define kPositionZLabels        10
 
