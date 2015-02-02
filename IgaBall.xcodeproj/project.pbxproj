@@ -45,6 +45,7 @@
 		A5B1770E1908FA54000C9921 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B177081908FA54000C9921 /* InfoPlist.strings */; };
 		A5B6E311191A2956000B967D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6E310191A2956000B967D /* GameKit.framework */; };
 		A5CBC08F1A7F8AF400EB85FD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5CBC08D1A7F8AF400EB85FD /* LaunchScreen.xib */; };
+		A5CD9E9E1A7FF33F0051BA5E /* SDiPhoneVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A584F9F11A6715AD001E8D8D /* SDiPhoneVersion.m */; };
 		A5E754AD196B2AC2006E4E47 /* BaseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E754AC196B2AC2006E4E47 /* BaseScene.m */; };
 /* End PBXBuildFile section */
 
@@ -452,6 +453,7 @@
 				A54FCAF01908F926009B5255 /* GameController.m in Sources */,
 				A54FCAE71908F926009B5255 /* AppDelegate.m in Sources */,
 				A584F9E41A6713ED001E8D8D /* SoundMaster.m in Sources */,
+				A5CD9E9E1A7FF33F0051BA5E /* SDiPhoneVersion.m in Sources */,
 				A5556F5E190D1C310078C4C9 /* GameScene.m in Sources */,
 				A58E5C84192392A4004F95BC /* InfoScene.m in Sources */,
 				A5556F5F190D1C310078C4C9 /* LoadingScene.m in Sources */,

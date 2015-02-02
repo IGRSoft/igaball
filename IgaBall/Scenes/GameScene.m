@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "ShadowLabelNode.h"
 #import "SoundMaster.h"
+#import "SDiPhoneVersion.h"
 
 @interface GameScene () <SKPhysicsContactDelegate, TrampolineObjectDelegate>
 
@@ -37,7 +38,7 @@
 @end
 
 #define TRAMPOLINECOUNT 3
-#define OFFSET_Y	20
+#define OFFSET_Y		20.0
 
 @implementation GameScene
 
@@ -57,6 +58,33 @@
 										CGRectGetMidY(self.frame));
 		_bgImage.zPosition = kPositionZBGImage;
 		[self addChild:_bgImage];
+		
+		// Game Score
+		self.isGameOver = NO;
+		self.score = -1;
+		
+		CGFloat titleFontSize = isIPhone ? 30.f : 50.f;
+		
+		self.scoreLabel = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
+		self.scoreLabel.fontSize = titleFontSize;
+		self.scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+											   self.frame.size.height - (isIPhone ? 40 : 100.f));
+		self.scoreLabel.zPosition = kPositionZLabels;
+		[self addChild:self.scoreLabel];
+		
+		self.scoreBorder = [SKShapeNode node];
+		self.scoreBorder.lineWidth = isIPhone ? 3 : 5.f;
+		self.scoreBorder.strokeColor = [UIColor whiteColor];
+		self.scoreBorder.zPosition = kPositionZLabels;
+		
+		self.scoreBorderShadow = [self.scoreBorder copy];
+		self.scoreBorderShadow.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+		self.scoreBorderShadow.glowWidth = 3;
+		self.scoreBorderShadow.position = CGPointMake(1, -1);
+		self.scoreBorderShadow.zPosition = kPositionZLabels - 1;
+		
+		[self.scoreLabel addChild:self.scoreBorder];
+		[self.scoreLabel addChild:self.scoreBorderShadow];
 		
         // Sound
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -112,34 +140,8 @@
 		_offScreenNodeLeft.physicsBody = [physicsBody copy];
 		[self addChild:_offScreenNodeLeft];
 		
-        // Game Score
-        self.isGameOver = NO;
-        self.score = -1;
-        
-		CGFloat titleFontSize = isIPhone ? 30.f : 50.f;
-		
-		self.scoreLabel = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
-		self.scoreLabel.fontSize = titleFontSize;
-		self.scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-											   self.frame.size.height - (isIPhone ? 40 : 100.f));
-		self.scoreLabel.zPosition = kPositionZLabels;
-		[self addChild:self.scoreLabel];
-		
-		self.scoreBorder = [SKShapeNode node];
-		self.scoreBorder.lineWidth = isIPhone ? 3 : 5.f;
-		self.scoreBorder.strokeColor = [UIColor whiteColor];
-		self.scoreBorder.zPosition = kPositionZLabels;
-		
-		self.scoreBorderShadow = [self.scoreBorder copy];
-		self.scoreBorderShadow.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-		self.scoreBorderShadow.glowWidth = 3;
-		self.scoreBorderShadow.position = CGPointMake(1, -1);
-		self.scoreBorderShadow.zPosition = kPositionZLabels - 1;
-		
-		[self.scoreLabel addChild:self.scoreBorder];
-		[self.scoreLabel addChild:self.scoreBorderShadow];
-		
 		self.score = 0;
+		self.score = 28;
 	}
 	
 	return self;
@@ -207,28 +209,26 @@
 
 - (void)addTrampolineToFrame:(CGRect)rect rotate:(BOOL)rotate
 {
-	CGFloat iPhoneScale = 1.f;
-	CGFloat yOffset = 10.f;
-	
 	BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+	CGFloat x = CGRectGetMidX(rect) + (rotate ? -15 : 15);
+	CGFloat y = OFFSET_Y;
 	
 	if (isIPhone)
 	{
-		iPhoneScale = 0.5f;
-		yOffset = -40.f;
+		x = CGRectGetMidX(rect) + (rotate ? 15 : -15);
+		y *= 0.5;
 	}
+
+	rect.origin.y = y;
+	rect.size.height = self.scoreLabel.position.y - rect.origin.y;
+	
+	CGFloat frameHeight = rect.size.height / TRAMPOLINECOUNT;
 	
 	for (NSUInteger i = 0 ; i < TRAMPOLINECOUNT ; ++i)
 	{
-		CGFloat x = CGRectGetMidX(rect) + (rotate ? -15 : 15);
-		if (isIPhone)
-		{
-			x = CGRectGetMidX(rect) + (rotate ? 15 : -15);
-		}
-		
 		TrampolineObject *trampoline = [[TrampolineObject alloc] initWithDirection:(rotate ? TrampolineDirection_Right : TrampolineDirection_Left)];
 		trampoline.position = CGPointMake(x,
-										  yOffset + OFFSET_Y*iPhoneScale * i + trampoline.size.height * (i + 1));
+										  rect.origin.y + frameHeight * i + frameHeight * 0.5);
 		
 		trampoline.delegate = self;
 		trampoline.zPosition = kPositionZTrampoline;
