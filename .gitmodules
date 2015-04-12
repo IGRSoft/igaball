@@ -1,6 +1,3 @@
 [submodule "Externals/SoundMaster"]
 	path = Externals/SoundMaster
 	url = https://github.com/jerminal/SoundMaster.git
-[submodule "Externals/SDiPhoneVersion"]
-	path = Externals/SDiPhoneVersion
-	url = https://github.com/sebyddd/SDiPhoneVersion.git

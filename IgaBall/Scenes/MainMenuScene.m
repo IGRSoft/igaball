@@ -8,7 +8,6 @@
 
 #import "MainMenuScene.h"
 #import "Constants.h"
-#import "SDiPhoneVersion.h"
 
 @interface MainMenuScene ()
 
@@ -34,7 +33,7 @@
 		SKSpriteNode *nameImage = [SKSpriteNode spriteNodeWithTexture:nameTexture size:nameTexture.size];
 		
 		nameImage.position = CGPointMake(CGRectGetMidX(self.frame),
-										 CGRectGetMidY(self.frame) + (isIPhone ? 100 : 190));
+										 CGRectGetMidY(self.frame) + (isIPhone ? 100.0 : 190.0));
 		
 		[self addChild:nameImage];
 	}

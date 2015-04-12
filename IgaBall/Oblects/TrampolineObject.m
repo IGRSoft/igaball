@@ -38,7 +38,7 @@
 		_trampolineNode = [SKSpriteNode spriteNodeWithTexture:_texture size:_texture.size];
 		_trampolineNode.name = NSStringFromClass([TrampolineObject class]);
 		
-		_trampolineNode.alpha = 0.f;
+		_trampolineNode.alpha = 0.0;
 		
         switch (aDirection)
         {
@@ -52,7 +52,7 @@
                 break;
         }
         
-		self.activationDuration = defaultDuration / 3.f;
+		self.activationDuration = defaultDuration / 3.0;
 		
 		[self addChild:self.trampolineNode];
 		
@@ -100,8 +100,8 @@
 		return;
 	}
 	
-	_trampolineNode.alpha = 1.f;
-	_particleNode.alpha = 0.f;
+	_trampolineNode.alpha = 1.0;
+	_particleNode.alpha = 0.0;
 	
 	self.physicsBody = [self.physicsBodyTemplate copy];
 	
@@ -109,7 +109,7 @@
 	
 	if (withDuration)
 	{
-		CGFloat offset = arc4random() % 100 / 10000.f;
+		CGFloat offset = arc4random() % 100 / 10000.0;
 		_activationDuration -= offset;
 		
 		if (arc4random() % 5 == 0)
@@ -120,10 +120,10 @@
 		_activationDuration = MAX(_activationDuration, 0.3);
 		_activationDuration -= 0.1;
 		
-		SKAction *blinkAction1 = [SKAction fadeAlphaTo:0.5f duration:0.20];
-		SKAction *blinkAction2 = [SKAction fadeAlphaTo:1.f duration:0.20];
-		SKAction *blinkAction3 = [SKAction fadeAlphaTo:0.3f duration:0.10];
-		SKAction *blinkAction4 = [SKAction fadeAlphaTo:1.f duration:0.10];
+		SKAction *blinkAction1 = [SKAction fadeAlphaTo:0.5 duration:0.20];
+		SKAction *blinkAction2 = [SKAction fadeAlphaTo:1.0 duration:0.20];
+		SKAction *blinkAction3 = [SKAction fadeAlphaTo:0.3 duration:0.10];
+		SKAction *blinkAction4 = [SKAction fadeAlphaTo:1.0 duration:0.10];
 		
 		__weak TrampolineObject *weakSelf = self;
 		[self runAction: [SKAction sequence:@[
@@ -142,8 +142,8 @@
 			}
 			
 			weakSelf.physicsBody = nil;
-			weakSelf.trampolineNode.alpha = 0.f;
-			weakSelf.particleNode.alpha = 1.f;
+			weakSelf.trampolineNode.alpha = 0.0;
+			weakSelf.particleNode.alpha = 1.0;
 		}]
 											  ]]
 		 ];
@@ -159,8 +159,8 @@
 	
 	self.physicsBody = nil;
 	
-	_trampolineNode.alpha = 0.f;
-	_particleNode.alpha = 1.f;
+	_trampolineNode.alpha = 0.0;
+	_particleNode.alpha = 1.0;
 }
 
 @end

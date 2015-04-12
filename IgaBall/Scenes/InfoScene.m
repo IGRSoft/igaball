@@ -9,7 +9,6 @@
 #import "InfoScene.h"
 #import "Constants.h"
 #import "ShadowLabelNode.h"
-#import "SDiPhoneVersion.h"
 
 @interface InfoScene ()
 
@@ -23,16 +22,16 @@
 	
 	if (self = [super initWithSize:aSize gameController:gGameController])
 	{
-		// 1
+		// Setup main view
         BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
         
         SKSpriteNode *bgSprite = [self landscapeSpriteForSize:aSize];
 		bgSprite.zPosition = kPositionZBGImage;
 		[self addChild:bgSprite];
 		
-		CGFloat titleFontSize = isIPhone ? 25.f : 50.f;
-		CGFloat textFontSize = isIPhone ? 20.f : 35.f;
-		CGFloat yOffset = isIPhone ? 10.f : 30.f;
+		CGFloat titleFontSize = isIPhone ? 25.0 : 50.0;
+		CGFloat textFontSize = isIPhone ? 20.0 : 35.0;
+		CGFloat yOffset = isIPhone ? 10.0 : 30.0;
 		
 		SKLabelNode *labelBack = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
 		labelBack.text = @"Touch anywhere to go back";
@@ -40,17 +39,17 @@
 		
 		SKAction *pulseText = [SKAction sequence:@[
 												   [SKAction fadeAlphaTo:0.5 duration:0.7],
-												   [SKAction fadeAlphaTo:1 duration:0.7],
+												   [SKAction fadeAlphaTo:1.0 duration:0.7],
 												   ]];
 		
 		[labelBack runAction:[SKAction repeatActionForever:pulseText]];
 		
-		labelBack.position = CGPointMake(self.size.width/2, yOffset * 2);
+		labelBack.position = CGPointMake(self.size.width * 0.5, yOffset * 2);
 		
 		labelBack.zPosition = kPositionZLabels;
 		[self addChild:labelBack];
 		
-		// 3
+		// Setup Copyrights
 		SKLabelNode *labelCopyrights = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
 		labelCopyrights.text = @"IGR Software © 2014";
 		labelCopyrights.fontSize = titleFontSize;
@@ -59,7 +58,7 @@
 		labelCopyrights.zPosition = kPositionZLabels;
 		[self addChild:labelCopyrights];
 		
-		// 4
+		// Setup Developers
 		SKLabelNode *labelDeveloperTitle = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
 		labelDeveloperTitle.text = @"Develop:";
 		labelDeveloperTitle.fontSize = titleFontSize;
@@ -76,7 +75,7 @@
 		labelDeveloper.zPosition = kPositionZLabels;
 		[self addChild:labelDeveloper];
 		
-		// 5
+		// Setup Designers
 		SKLabelNode *labelDesignerTitle = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
 		labelDesignerTitle.text = @"Design:";
 		labelDesignerTitle.fontSize = titleFontSize;
@@ -93,7 +92,7 @@
 		labelDesigner.zPosition = kPositionZLabels;
 		[self addChild:labelDesigner];
 		
-		// 6
+		// Setup Another
 		SKLabelNode *labelSoundTitle = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
 		labelSoundTitle.text = @"Sound:";
 		labelSoundTitle.fontSize = titleFontSize;
@@ -110,12 +109,12 @@
 		labelSound1.zPosition = kPositionZLabels;
 		[self addChild:labelSound1];
 		
-		[UIView animateWithDuration:1.0f
-							  delay:0.0f
+		[UIView animateWithDuration:1.0
+							  delay:0.0
 							options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse
 						 animations:^
 		 {
-			 labelBack.alpha = 0.5f;
+			 labelBack.alpha = 0.5;
 		 }
 						 completion:^(BOOL finished)
 		 {

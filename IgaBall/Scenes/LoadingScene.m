@@ -8,7 +8,6 @@
 
 #import "LoadingScene.h"
 #import "SoundMaster.h"
-#import "SDiPhoneVersion.h"
 
 @interface LoadingScene ()
 
@@ -40,17 +39,8 @@
 		
 		logoImage = [SKSpriteNode spriteNodeWithTexture:logoTexture];
 		
-        BOOL isIOS7 = iOSVersionLessThanOrEqualTo(@"7.1.2");
-		if (isIOS7)
-		{
-			logoImage.position = CGPointMake(CGRectGetMidY(self.frame),
-											 CGRectGetMidX(self.frame));
-		}
-		else
-		{
-			logoImage.position = CGPointMake(CGRectGetMidX(self.frame),
-											 CGRectGetMidY(self.frame));
-		}
+        logoImage.position = CGPointMake(CGRectGetMidX(self.frame),
+                                         CGRectGetMidY(self.frame));
 		
 		[self addChild:logoImage];
 	}

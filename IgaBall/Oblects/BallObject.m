@@ -67,7 +67,7 @@
 
 - (CGFloat)moveDuration
 {
-	CGFloat offset = arc4random() % 500 / 10000.f;
+	CGFloat offset = arc4random() % 500 / 10000.0;
 	
 	_moveDuration -= offset;
 	

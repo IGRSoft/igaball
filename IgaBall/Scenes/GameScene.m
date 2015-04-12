@@ -12,7 +12,6 @@
 #import "Constants.h"
 #import "ShadowLabelNode.h"
 #import "SoundMaster.h"
-#import "SDiPhoneVersion.h"
 
 @interface GameScene () <SKPhysicsContactDelegate, TrampolineObjectDelegate>
 
@@ -63,24 +62,24 @@
 		self.isGameOver = NO;
 		self.score = -1;
 		
-		CGFloat titleFontSize = isIPhone ? 30.f : 50.f;
+		CGFloat titleFontSize = isIPhone ? 30.0 : 50.0;
 		
 		self.scoreLabel = [ShadowLabelNode labelNodeWithFontNamed:kDefaultFont];
 		self.scoreLabel.fontSize = titleFontSize;
 		self.scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-											   self.frame.size.height - (isIPhone ? 40 : 100.f));
+											   self.frame.size.height - (isIPhone ? 40.0 : 100.0));
 		self.scoreLabel.zPosition = kPositionZLabels;
 		[self addChild:self.scoreLabel];
 		
 		self.scoreBorder = [SKShapeNode node];
-		self.scoreBorder.lineWidth = isIPhone ? 3 : 5.f;
+		self.scoreBorder.lineWidth = isIPhone ? 3.0 : 5.0;
 		self.scoreBorder.strokeColor = [UIColor whiteColor];
 		self.scoreBorder.zPosition = kPositionZLabels;
 		
 		self.scoreBorderShadow = [self.scoreBorder copy];
 		self.scoreBorderShadow.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-		self.scoreBorderShadow.glowWidth = 3;
-		self.scoreBorderShadow.position = CGPointMake(1, -1);
+		self.scoreBorderShadow.glowWidth = 3.0;
+		self.scoreBorderShadow.position = CGPointMake(1.0, -1.0);
 		self.scoreBorderShadow.zPosition = kPositionZLabels - 1;
 		
 		[self.scoreLabel addChild:self.scoreBorder];
@@ -111,7 +110,7 @@
                                                   CGRectGetMidY(self.frame));
         _offScreenNodeLeft.zPosition = kPositionZBall;
         
-        self.borderOffset = 50.f;
+        self.borderOffset = 50.0;
         CGPoint borderPoint = CGPointMake(self.frame.size.width - self.borderOffset,
                                           CGRectGetMidY(self.frame));
         CGRect borderRect = CGRectMake(borderPoint.x, borderPoint.y, self.borderOffset * 0.5, aSize.height);
@@ -124,7 +123,7 @@
 		[self addTrampolineToFrame:borderRect rotate:NO];
 		
         // Game Scene Phisics
-        self.physicsWorld.gravity = CGVectorMake(0,0);
+        self.physicsWorld.gravity = CGVectorMake(0.0, 0.0);
         self.physicsWorld.contactDelegate = self;
         
 		//Add offscreen Collision
@@ -265,7 +264,7 @@
 	
 	BallDiraction ballDiraction = ball.position.x > screeCentre ? BallDiractionLeft : BallDiractionRight;
 	
-	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -(screeCentre * 2.f) : (screeCentre * 2.f)),
+	CGPoint realDest = CGPointMake(ball.position.x + (ballDiraction == BallDiractionLeft ? -(screeCentre * 2.0) : (screeCentre * 2.0)),
                                    ball.position.y);
 	
 	SKAction *actionMove = [self actionBall:ball destination:realDest];
@@ -321,20 +320,20 @@
         
         BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
         
-        CGFloat height = isIPhone ? 40.f : 70.f;
-        CGFloat width = isIPhone ? 40.f : 70.f;
+        CGFloat height = isIPhone ? 40.0 : 70.0;
+        CGFloat width = isIPhone ? 40.0 : 70.0;
         
         if (score >= 1000)
         {
-            width = isIPhone ? 100.f :130;
+            width = isIPhone ? 100.0 :130.0;
         }
         else if (score >= 100)
         {
-            width = isIPhone ? 80.f :110;
+            width = isIPhone ? 80.0 :110.0;
         }
         else if (score >= 10)
         {
-            width = isIPhone ? 60.f : 90;
+            width = isIPhone ? 60.0 : 90.0;
         }
         
         CGRect borderRect = CGRectMake(-(width*0.5), -(height*0.25) + self.scoreBorder.lineWidth * 0.5,

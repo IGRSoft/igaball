@@ -45,7 +45,6 @@
 		A5B1770E1908FA54000C9921 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B177081908FA54000C9921 /* InfoPlist.strings */; };
 		A5B6E311191A2956000B967D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6E310191A2956000B967D /* GameKit.framework */; };
 		A5CBC08F1A7F8AF400EB85FD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5CBC08D1A7F8AF400EB85FD /* LaunchScreen.xib */; };
-		A5CD9E9E1A7FF33F0051BA5E /* SDiPhoneVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A584F9F11A6715AD001E8D8D /* SDiPhoneVersion.m */; };
 		A5E754AD196B2AC2006E4E47 /* BaseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E754AC196B2AC2006E4E47 /* BaseScene.m */; };
 /* End PBXBuildFile section */
 
@@ -95,8 +94,6 @@
 		A573C0A319210C4300D50372 /* PillowParticle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PillowParticle.png; sourceTree = "<group>"; };
 		A584F9CF1A6713ED001E8D8D /* SoundMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundMaster.h; path = SoundMaster/SoundMaster.h; sourceTree = "<group>"; };
 		A584F9D01A6713ED001E8D8D /* SoundMaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundMaster.m; path = SoundMaster/SoundMaster.m; sourceTree = "<group>"; };
-		A584F9F01A6715AD001E8D8D /* SDiPhoneVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDiPhoneVersion.h; path = SDiPhoneVersion/SDiPhoneVersion.h; sourceTree = "<group>"; };
-		A584F9F11A6715AD001E8D8D /* SDiPhoneVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDiPhoneVersion.m; path = SDiPhoneVersion/SDiPhoneVersion.m; sourceTree = "<group>"; };
 		A58E5C80192376AD004F95BC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A58E5C82192392A4004F95BC /* InfoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoScene.h; sourceTree = "<group>"; };
 		A58E5C83192392A4004F95BC /* InfoScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoScene.m; sourceTree = "<group>"; };
@@ -294,7 +291,6 @@
 		A584F9AC1A6713ED001E8D8D /* Externals */ = {
 			isa = PBXGroup;
 			children = (
-				A584F9EB1A6715AD001E8D8D /* SDiPhoneVersion */,
 				A584F9AD1A6713ED001E8D8D /* SoundMaster */,
 			);
 			path = Externals;
@@ -307,15 +303,6 @@
 				A584F9D01A6713ED001E8D8D /* SoundMaster.m */,
 			);
 			path = SoundMaster;
-			sourceTree = "<group>";
-		};
-		A584F9EB1A6715AD001E8D8D /* SDiPhoneVersion */ = {
-			isa = PBXGroup;
-			children = (
-				A584F9F01A6715AD001E8D8D /* SDiPhoneVersion.h */,
-				A584F9F11A6715AD001E8D8D /* SDiPhoneVersion.m */,
-			);
-			path = SDiPhoneVersion;
 			sourceTree = "<group>";
 		};
 		A5B177011908FA54000C9921 /* Resources */ = {
@@ -453,7 +440,6 @@
 				A54FCAF01908F926009B5255 /* GameController.m in Sources */,
 				A54FCAE71908F926009B5255 /* AppDelegate.m in Sources */,
 				A584F9E41A6713ED001E8D8D /* SoundMaster.m in Sources */,
-				A5CD9E9E1A7FF33F0051BA5E /* SDiPhoneVersion.m in Sources */,
 				A5556F5E190D1C310078C4C9 /* GameScene.m in Sources */,
 				A58E5C84192392A4004F95BC /* InfoScene.m in Sources */,
 				A5556F5F190D1C310078C4C9 /* LoadingScene.m in Sources */,
@@ -621,7 +607,6 @@
 				INFOPLIST_FILE = "IgaBall/IgaBall-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -638,7 +623,6 @@
 				INFOPLIST_FILE = "IgaBall/IgaBall-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

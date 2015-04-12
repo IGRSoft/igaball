@@ -440,38 +440,38 @@ const CGFloat fadeDuration = 0.5;
 
 - (CGFloat)neededResultForAchievement:(NSString *)anAchievement
 {
-	CGFloat count = -1.f;
+	CGFloat count = -1.0;
 	
 	if ([anAchievement isEqualToString:kAchievement10ID])
 	{
-		count = 10.f;
+		count = 10.0;
 	}
 	else if ([anAchievement isEqualToString:kAchievement25ID])
 	{
-		count = 25.f;
+		count = 25.0;
 	}
 	else if ([anAchievement isEqualToString:kAchievement50ID])
 	{
-		count = 50.f;
+		count = 50.0;
 	}
 	else if ([anAchievement isEqualToString:kAchievement75ID])
 	{
-		count = 75.f;
+		count = 75.0;
 	}
 	else if ([anAchievement isEqualToString:kAchievement100ID])
 	{
-		count = 100.f;
+		count = 100.0;
 	}
 	else if ([anAchievement isEqualToString:kAchievement200ID])
 	{
-		count = 200.f;
+		count = 200.0;
 	}
 	else if ([anAchievement isEqualToString:kAchievement1000ID])
 	{
 		NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
 		NSInteger totalBits = ![ud integerForKey:kUserDefaultsTotalBits];
 		
-		count = 10000.f - totalBits;
+		count = 10000.0 - totalBits;
 	}
 	
 	return count;

@@ -14,7 +14,7 @@ static const uint32_t ballCategory			= 0x1 << 1;
 static const uint32_t offScreenCategory		= 0x1 << 2;
 
 static const NSUInteger ballsCount		 = 5;
-static const CGFloat defaultDuration	 = 3.f;
+static const CGFloat defaultDuration	 = 3.0;
 
 typedef NS_ENUM(NSUInteger, BallDiraction)
 {
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, GameScheme)
 
 #define kUserDefaultsTotalBits @"TotalBits"
 
-#define DEFAULT_BG_COLOR [SKColor colorWithRed:30.f/255.f green:193.f/255.f blue:239.f/255.f alpha:1.000]
+#define DEFAULT_BG_COLOR [SKColor colorWithRed:30.0/255.0 green:193.0/255.0 blue:239.0/255.0 alpha:1.000]
 
 static NSString * const kDefaultFont = @"Sniglet";
 static NSString * const kUseSound = @"UseSound";
