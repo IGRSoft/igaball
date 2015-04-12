@@ -141,7 +141,6 @@
 		[self addChild:_offScreenNodeLeft];
 		
 		self.score = 0;
-		self.score = 28;
 	}
 	
 	return self;
