@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/IGRSoft/igaball/master/Resources/Images.xcassets/AppIcon.appiconset/icon_58.png"> IgaBall
+<img src="https://raw.githubusercontent.com/IGRSoft/igaball/master/Resources/Images.xcassets/AppIcon.appiconset/icon_29@2x.png"> IgaBall
 =======
 
 Do You want to improve your reaction?
@@ -21,11 +21,6 @@ Credits
 -------------
 
 Developer: Vitalii (Korich) Parovishnyk 
-
-Known Issues
--------------
-
-* Wrong gameplay for iPhone 6+;
 
 License
 -------------
