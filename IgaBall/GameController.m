@@ -494,19 +494,25 @@ const CGFloat fadeDuration = 0.5;
 
 - (void)bannerViewWillLoadAd:(ADBannerView *)banner
 {
+    DBNSLog(@"%s", __func__);
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
+    DBNSLog(@"%s", __func__);
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
+    self.adBannerTop.alpha = 0.0;
+    
 	DBNSLog(@"%@", [error localizedDescription]);
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
 {
+    DBNSLog(@"%s", __func__);
+    
 	self.wasSound = self.soundOn;
 	
 	if (self.soundOn)
@@ -519,6 +525,8 @@ const CGFloat fadeDuration = 0.5;
 
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner
 {
+    DBNSLog(@"%s", __func__);
+    
 	if (self.wasSound)
 	{
 		[[SoundMaster sharedMaster] resumeMusic];
