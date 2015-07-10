@@ -99,7 +99,7 @@ const CGFloat fadeDuration = 0.5;
 	return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
 	return UIInterfaceOrientationMaskLandscape;
 }

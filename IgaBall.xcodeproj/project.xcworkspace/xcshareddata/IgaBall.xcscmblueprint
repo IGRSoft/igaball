@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E5BE76EB6F6F00D157D65707674D8F76D5603ABB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "587103DBE1A094023D5A3F6575FD4F11A1A7B40B" : 0,
+    "E5BE76EB6F6F00D157D65707674D8F76D5603ABB" : 0,
+    "314DE8E74304520AC762622D36460EDB7E1C15E5" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "728BF429-54B8-42C2-A5AC-1C8533C90BF1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "587103DBE1A094023D5A3F6575FD4F11A1A7B40B" : "igaballExternals\/SoundMaster",
+    "E5BE76EB6F6F00D157D65707674D8F76D5603ABB" : "igaball",
+    "314DE8E74304520AC762622D36460EDB7E1C15E5" : "igaballExternals\/SDiPhoneVersion"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "IgaBall",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "IgaBall.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/sebyddd\/SDiPhoneVersion.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "314DE8E74304520AC762622D36460EDB7E1C15E5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jerminal\/SoundMaster.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "587103DBE1A094023D5A3F6575FD4F11A1A7B40B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/iKorich\/igaball.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E5BE76EB6F6F00D157D65707674D8F76D5603ABB"
+    }
+  ]
+}
