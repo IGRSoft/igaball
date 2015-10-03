@@ -16,7 +16,6 @@
 		A54FCAE31908F926009B5255 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A54FCAE21908F926009B5255 /* main.m */; };
 		A54FCAE71908F926009B5255 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A54FCAE61908F926009B5255 /* AppDelegate.m */; };
 		A54FCAF01908F926009B5255 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = A54FCAEF1908F926009B5255 /* GameController.m */; };
-		A54FCAFE1908F926009B5255 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAFD1908F926009B5255 /* XCTest.framework */; };
 		A54FCAFF1908F926009B5255 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAD41908F926009B5255 /* Foundation.framework */; };
 		A54FCB001908F926009B5255 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54FCAD81908F926009B5255 /* UIKit.framework */; };
 		A54FCB081908F926009B5255 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A54FCB061908F926009B5255 /* InfoPlist.strings */; };
@@ -75,7 +74,6 @@
 		A54FCAEE1908F926009B5255 /* GameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
 		A54FCAEF1908F926009B5255 /* GameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		A54FCAFC1908F926009B5255 /* IgaBallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IgaBallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A54FCAFD1908F926009B5255 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A54FCB051908F926009B5255 /* IgaBallTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IgaBallTests-Info.plist"; sourceTree = "<group>"; };
 		A54FCB071908F926009B5255 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A54FCB091908F926009B5255 /* IgaBallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IgaBallTests.m; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A54FCAFE1908F926009B5255 /* XCTest.framework in Frameworks */,
 				A54FCB001908F926009B5255 /* UIKit.framework in Frameworks */,
 				A54FCAFF1908F926009B5255 /* Foundation.framework in Frameworks */,
 			);
@@ -197,7 +194,6 @@
 				A54FCAD61908F926009B5255 /* CoreGraphics.framework */,
 				A54FCAD81908F926009B5255 /* UIKit.framework */,
 				A54FCADA1908F926009B5255 /* SpriteKit.framework */,
-				A54FCAFD1908F926009B5255 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
