@@ -34,8 +34,9 @@
 		
         SKSpriteNode *bgSprite = [self landscapeSpriteForSize:aSize];
         [self addChild:bgSprite];
-        
-		SKTexture *logoTexture = [SKTexture textureWithImageNamed:@"IGRSoft"];
+		
+		UIImage *img = [UIImage imageNamed:@"IGRSoft"];
+		SKTexture *logoTexture = [SKTexture textureWithImage:img];
 		
 		logoImage = [SKSpriteNode spriteNodeWithTexture:logoTexture];
 		

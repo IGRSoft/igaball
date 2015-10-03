@@ -28,7 +28,8 @@
 	{
 		NSString *imgName = @"Trampoline";
 		
-		_texture = [SKTexture textureWithImageNamed:imgName];
+		UIImage *img = [UIImage imageNamed:imgName];
+		_texture = [SKTexture textureWithImage:img];
 		NSAssert(_texture, @"Can't create texture for Trampoline: %@", imgName);
 		if (!_texture)
 		{

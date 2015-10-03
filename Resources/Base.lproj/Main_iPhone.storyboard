@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LVB-YS-i5n">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,6 +19,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGp-iO-0KS" userLabel="facebook">
                                 <rect key="frame" x="20" y="225" width="80" height="95"/>
+                                <animations/>
                                 <state key="normal" image="Facebook">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -28,6 +29,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9d-40-YDf" userLabel="twitter">
                                 <rect key="frame" x="108" y="225" width="80" height="95"/>
+                                <animations/>
                                 <state key="normal" image="Twitter">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -37,6 +39,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOG-Qa-flx" userLabel="twitter">
                                 <rect key="frame" x="196" y="225" width="80" height="95"/>
+                                <animations/>
                                 <state key="normal" image="GameCenter">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -46,6 +49,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXs-71-w0E" userLabel="sound">
                                 <rect key="frame" x="514" y="265" width="34" height="35"/>
+                                <animations/>
                                 <state key="normal" image="Info">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -55,6 +59,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUa-zm-dIm" userLabel="play">
                                 <rect key="frame" x="220" y="97" width="128" height="140"/>
+                                <animations/>
                                 <state key="normal" image="Play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -64,12 +69,14 @@
                             </button>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="TCE-9g-7vh">
                                 <rect key="frame" x="124" y="0.0" width="320" height="50"/>
+                                <animations/>
                                 <connections>
                                     <outlet property="delegate" destination="LVB-YS-i5n" id="Fb5-Cz-ecZ"/>
                                 </connections>
                             </adBannerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pef-YV-oJW" userLabel="sound">
                                 <rect key="frame" x="472" y="265" width="34" height="35"/>
+                                <animations/>
                                 <state key="normal" image="SoundOn">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -82,6 +89,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KF0-iu-Xmf">
                                         <rect key="frame" x="106" y="7" width="96" height="160"/>
+                                        <animations/>
                                         <state key="normal" image="StopGame">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -91,6 +99,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ro6-o6-I8U">
                                         <rect key="frame" x="2" y="7" width="96" height="160"/>
+                                        <animations/>
                                         <state key="normal" image="TryAgain">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -100,6 +109,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTn-0Z-ccg">
                                         <rect key="frame" x="210" y="7" width="96" height="160"/>
+                                        <animations/>
                                         <state key="normal" image="TwittScore">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -109,6 +119,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TU2-es-6ed">
                                         <rect key="frame" x="314" y="7" width="96" height="160"/>
+                                        <animations/>
                                         <state key="normal" image="FacebookScore">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -117,6 +128,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="178" id="bdj-lx-vZY"/>
@@ -124,27 +136,25 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" red="0.0" green="0.63529413940000001" blue="0.90196084980000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="5Zp-ls-MxM" firstAttribute="top" secondItem="GOG-Qa-flx" secondAttribute="bottom" id="4Jf-9z-22S"/>
-                            <constraint firstAttribute="centerX" secondItem="TCE-9g-7vh" secondAttribute="centerX" id="8CD-Hh-Wbe"/>
                             <constraint firstAttribute="centerX" secondItem="Pmg-uF-B6r" secondAttribute="centerX" id="8Hn-hg-UpS"/>
-                            <constraint firstItem="ZGp-iO-0KS" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leadingMargin" constant="4" id="9Mc-cE-iid"/>
-                            <constraint firstAttribute="centerX" secondItem="TCE-9g-7vh" secondAttribute="centerX" id="AoI-V2-xCh"/>
+                            <constraint firstItem="ZGp-iO-0KS" firstAttribute="leading" secondItem="bdc-N1-crn" secondAttribute="leadingMargin" id="9Mc-cE-iid"/>
                             <constraint firstItem="5Zp-ls-MxM" firstAttribute="top" secondItem="i9d-40-YDf" secondAttribute="bottom" id="GCD-gw-Kvr"/>
                             <constraint firstItem="5Zp-ls-MxM" firstAttribute="top" secondItem="qXs-71-w0E" secondAttribute="bottom" constant="20" id="Gai-Iy-BWf"/>
                             <constraint firstItem="5Zp-ls-MxM" firstAttribute="top" secondItem="Pef-YV-oJW" secondAttribute="bottom" constant="20" id="NBr-IK-xeZ"/>
                             <constraint firstAttribute="centerY" secondItem="RUa-zm-dIm" secondAttribute="centerY" constant="-7" id="OG0-Z5-nqB"/>
                             <constraint firstItem="5Zp-ls-MxM" firstAttribute="top" secondItem="Pmg-uF-B6r" secondAttribute="bottom" constant="33" id="Phx-9j-TLr"/>
-                            <constraint firstItem="RUa-zm-dIm" firstAttribute="top" secondItem="TCE-9g-7vh" secondAttribute="bottom" constant="47" id="TN5-Tp-iXT"/>
+                            <constraint firstItem="TCE-9g-7vh" firstAttribute="top" secondItem="HUH-e5-nCJ" secondAttribute="bottom" id="T8h-4W-0YQ"/>
                             <constraint firstAttribute="centerX" secondItem="RUa-zm-dIm" secondAttribute="centerX" id="WrD-Qu-bGI"/>
                             <constraint firstItem="GOG-Qa-flx" firstAttribute="leading" secondItem="i9d-40-YDf" secondAttribute="trailing" constant="8" id="XUL-WX-gCd"/>
+                            <constraint firstItem="TCE-9g-7vh" firstAttribute="centerX" secondItem="RUa-zm-dIm" secondAttribute="centerX" id="ZqN-9Y-NrK"/>
                             <constraint firstItem="ZGp-iO-0KS" firstAttribute="top" secondItem="i9d-40-YDf" secondAttribute="top" id="ebP-tx-0oX"/>
-                            <constraint firstItem="RUa-zm-dIm" firstAttribute="top" secondItem="TCE-9g-7vh" secondAttribute="bottom" constant="47" id="hIp-Zo-0z6"/>
                             <constraint firstItem="qXs-71-w0E" firstAttribute="leading" secondItem="Pef-YV-oJW" secondAttribute="trailing" constant="8" id="hLZ-PA-KoD"/>
                             <constraint firstItem="i9d-40-YDf" firstAttribute="leading" secondItem="ZGp-iO-0KS" secondAttribute="trailing" constant="8" id="kpe-WQ-xzh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qXs-71-w0E" secondAttribute="trailing" constant="4" id="wZp-CY-sg6"/>
-                            <constraint firstItem="TCE-9g-7vh" firstAttribute="top" secondItem="HUH-e5-nCJ" secondAttribute="bottom" id="zz8-Jd-2X6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qXs-71-w0E" secondAttribute="trailing" id="wZp-CY-sg6"/>
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>

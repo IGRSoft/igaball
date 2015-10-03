@@ -50,7 +50,8 @@
 		BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
 		
         // Background
-		SKTexture *texture = [SKTexture textureWithImageNamed:@"bg_game"];
+		UIImage *img = [UIImage imageNamed:@"bg_game"];
+		SKTexture *texture = [SKTexture textureWithImage:img];
 		
 		_bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
 		_bgImage.position = CGPointMake(CGRectGetMidX(self.frame),

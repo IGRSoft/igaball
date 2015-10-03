@@ -24,11 +24,15 @@ NSString *const ShadowEffectNodeKey = @"ShadowEffectNodeKey";
 		effectNode.name = ShadowEffectNodeKey;
 		effectNode.shouldEnableEffects = YES;
 		effectNode.zPosition = self.zPosition - 1;
+		
+		[self insertChild:effectNode atIndex:0];
+		
+		CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+		[filter setDefaults];
+		[filter setValue:@(_blurRadius) forKey:@"inputRadius"];
+		effectNode.filter = filter;
 	}
-	CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
-	[filter setDefaults];
-	[filter setValue:@(_blurRadius) forKey:@"inputRadius"];
-	effectNode.filter = filter;
+	
 	[effectNode removeAllChildren];
 	
 	SKLabelNode *labelNode = [SKLabelNode labelNodeWithFontNamed:self.fontName];
@@ -39,8 +43,6 @@ NSString *const ShadowEffectNodeKey = @"ShadowEffectNodeKey";
 	labelNode.fontColor = _shadowColor;
 	labelNode.position = _offset;
 	[effectNode addChild:labelNode];
-	
-	[self insertChild:effectNode atIndex:0];
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath

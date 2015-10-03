@@ -24,8 +24,8 @@
 	{
 		NSUInteger ballId = arc4random() % ballsCount;
 		NSString *ballName = [NSString stringWithFormat:@"Ball%@", @(ballId)];
-		
-		SKTexture *texture = [SKTexture textureWithImageNamed:ballName];
+		UIImage *img = [UIImage imageNamed:ballName];
+		SKTexture *texture = [SKTexture textureWithImage:img];
 		NSAssert(texture, @"Can't create texture for Ball: %@", ballName);
 		if (!texture)
 		{

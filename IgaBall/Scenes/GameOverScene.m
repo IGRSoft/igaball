@@ -21,7 +21,8 @@
 		// Setup main view
 		BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
 		
-		SKTexture *texture = [SKTexture textureWithImageNamed:@"bg_gameover"];
+		UIImage *img = [UIImage imageNamed:@"bg_gameover"];
+		SKTexture *texture = [SKTexture textureWithImage:img];
 		SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithTexture:texture size:aSize];
 		
 		bgImage.position = CGPointMake(CGRectGetMidX(self.frame),

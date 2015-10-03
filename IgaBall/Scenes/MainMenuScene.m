@@ -27,8 +27,8 @@
         SKSpriteNode *bgSprite = [self landscapeSpriteForSize:aSize];
         [self addChild:bgSprite];
 		
-		NSString *imgName = [NSString stringWithFormat:@"GameName"];
-		SKTexture *nameTexture = [SKTexture textureWithImageNamed:imgName];
+		UIImage *img = [UIImage imageNamed:@"GameName"];
+		SKTexture *nameTexture = [SKTexture textureWithImage:img];
 		
 		SKSpriteNode *nameImage = [SKSpriteNode spriteNodeWithTexture:nameTexture size:nameTexture.size];
 		
